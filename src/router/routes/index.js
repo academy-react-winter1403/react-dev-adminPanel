@@ -12,6 +12,9 @@ import PublicRoute from "@components/routes/PublicRoute";
 
 // ** Utils
 import { isObjEmpty } from "@utils";
+import BlogManagement from "../../view/news/list/BlogManagement";
+import GridCardsComponent from "../../@core/components/common/GridCardsComponent/GridCardsComponent";
+import InputGroupButtons from "../../@core/components/common/InputGroupButtons/InputGroupButtons";
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -45,12 +48,24 @@ const Routes = [
     element: <Home />,
   },
   {
-    path: "/sample",
+    path: "/job",
     element: <Sample />,
   },
   {
-    path: "/second-page",
+    path: "/users",
     element: <SecondPage />,
+  },
+  {
+    path: "/blogs",
+    element:<BlogManagement />
+  },
+  {
+    path: "/createBlog",
+    element:<GridCardsComponent />
+  },
+  {
+    path:"/blogCategories",
+    element:<InputGroupButtons />
   },
   {
     path: "/login",
