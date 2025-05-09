@@ -9,13 +9,15 @@ import {
     CardText,
     CardFooter,
   } from "reactstrap";
+import AvatarIcons from "../AvatarIcons/AvatarIcons";
   
   const GridCardsComponent = ({ img }) => {
     return (
       <Col sm={4}>
         <Row className="match-height mb-2 ml-2">
           <Col>
-            <Card>
+            <Card className="position-relative">
+              <AvatarIcons />
               <CardImg top src={img} alt="card"/>
               <CardBody>
                 <CardTitle tag="h4">Card title</CardTitle>

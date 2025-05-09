@@ -13,8 +13,14 @@ import PublicRoute from "@components/routes/PublicRoute";
 // ** Utils
 import { isObjEmpty } from "@utils";
 import BlogManagement from "../../view/news/list/BlogManagement";
-import GridCardsComponent from "../../@core/components/common/GridCardsComponent/GridCardsComponent";
-import InputGroupButtons from "../../@core/components/common/InputGroupButtons/InputGroupButtons";
+import WizardModernVertical from "../../@core/components/common/wizard/WizardModernVertical";
+import ModalForm from "../../@core/components/common/modals/ModalForm";
+import ModalBasic from "../../@core/components/common/modals/ModalBasic";
+import Export from "../../@core/components/common/Export/Export";
+import AddCatgory from "../../view/news/addCatgory/list/AddCatgory";
+import CardDescription from "../../@core/components/common/CardDescription/CardDescription";
+import GoalOverview from "../../@core/components/common/GoalOverview/GoalOverview";
+import BillingAddress from "../../@core/components/common/BillingAddress/BillingAddress";
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -61,11 +67,17 @@ const Routes = [
   },
   {
     path: "/createBlog",
-    element:<GridCardsComponent />
+    element:<WizardModernVertical />
   },
   {
     path:"/blogCategories",
-    element:<InputGroupButtons />
+    element:<AddCatgory />
+  },
+  {
+    path:"/blogs/view",
+    // path: "/blogs/view/:id",
+    // element: <NewsDetails />,
+    element: <BillingAddress />
   },
   {
     path: "/login",
