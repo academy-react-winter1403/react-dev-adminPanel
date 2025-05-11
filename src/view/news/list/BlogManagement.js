@@ -1,49 +1,65 @@
-import { Col, Container, Row } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  CardText,
+  Col,
+  Container,
+  Row,
+} from "reactstrap";
 import CardRoles from "../../../@core/components/common/CardRoles/CardRoles";
 import SelectReact from "../../../@core/components/common/Selection/Selection";
 import InputGroupButtons from "../../../@core/components/common/InputGroupButtons/InputGroupButtons";
-import GridCardsComponent from "../../../@core/components/common/GridCardsComponent/GridCardsComponent";
-import PaginationSeparated from "../../../@core/components/common/PaginationSeparated/PaginationSeparated";
-import TooltipControlled from "../../../@core/components/common/TooltipControlled/TooltipControlled";
+// import ModalForm from "../../../@core/components/common/modals/ModalForm";
+import Export from "../../../@core/components/common/Export/Export";
+import SeparatedPagination from "../../../@core/components/common/PaginationSeparated/PaginationSeparated";
 
 const BlogManagement = () => {
   return (
     <Container>
       <Row>
-        <Col md={3}>
-          <CardRoles />
-          <CardRoles />
-          <CardRoles />
-        </Col>
-        <Col md={9}>
-          <div className="d-flex justify-content-between">
-            <div className="d-flex align-items-center gap-1">
-              نمایش:
-              <SelectReact />
-              <TooltipControlled />
-              <TooltipControlled />
-            </div>
-            <div className="d-flex align-items-center gap-1">
-              مرتب سازی:
-              <SelectReact />
-              <SelectReact />
-            </div>
-          </div>
-          <div className="py-2">
-            <InputGroupButtons />
-          </div>
-          <Row className="d-flex flex-wrap">
-            <GridCardsComponent />
-            <GridCardsComponent />
-            <GridCardsComponent />
-            <GridCardsComponent />
-            <GridCardsComponent />
-            <GridCardsComponent />
+        <Col>
+          <Row>
+            <Col md={4}>
+              <CardRoles />
+            </Col>
+            <Col md={4}>
+              <CardRoles />
+            </Col>
+            <Col md={4}>
+              <CardRoles />
+            </Col>
           </Row>
-          <div className="d-flex justify-content-center">
-            <PaginationSeparated />
-          </div>
         </Col>
+        <Card>
+          <CardHeader>
+            <div className="d-flex align-items-center gap-1 a mt-2">
+              <CardText>نمایش:</CardText>
+              <SelectReact />
+            </div>
+            <div className="d-flex gap-1">
+              <div className="mt-2">
+                <InputGroupButtons />
+              </div>
+              <div className="mt-2">
+                <SelectReact />
+              </div>
+              <div className="demo-inline-spacing mb-1">
+                <Button.Ripple color="primary">Primary</Button.Ripple>
+              </div>
+            </div>
+          </CardHeader>
+          <CardBody>
+            <Export />
+          </CardBody>
+          <CardFooter>
+            <div className="d-flex justify-content-center">
+              <SeparatedPagination />
+            </div>
+          </CardFooter>
+        </Card>
       </Row>
     </Container>
   );

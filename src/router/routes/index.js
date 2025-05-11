@@ -12,15 +12,6 @@ import PublicRoute from "@components/routes/PublicRoute";
 
 // ** Utils
 import { isObjEmpty } from "@utils";
-import BlogManagement from "../../view/news/list/BlogManagement";
-import WizardModernVertical from "../../@core/components/common/wizard/WizardModernVertical";
-import ModalForm from "../../@core/components/common/modals/ModalForm";
-import ModalBasic from "../../@core/components/common/modals/ModalBasic";
-import Export from "../../@core/components/common/Export/Export";
-import AddCatgory from "../../view/news/addCatgory/list/AddCatgory";
-import CardDescription from "../../@core/components/common/CardDescription/CardDescription";
-import GoalOverview from "../../@core/components/common/GoalOverview/GoalOverview";
-import BillingAddress from "../../@core/components/common/BillingAddress/BillingAddress";
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -32,6 +23,10 @@ const getLayout = {
 const TemplateTitle = "%s - Vuexy React Admin Template";
 
 // ** Default Route
+// import BlogManagement from "../../view/news/list/BlogManagement";
+// import AddCatgory from "../../view/news/addCatgory/list/AddCatgory";
+// import NewsDetails from "../../view/news/NewsDetails/list/NewsDetails";
+// import WizardHorizontal from "../../@core/components/common/wizard/WizardHorizontal";
 const DefaultRoute = "/home";
 
 const Home = lazy(() => import("../../pages/Home"));
@@ -41,6 +36,10 @@ const Register = lazy(() => import("../../pages/Register"));
 const ForgotPassword = lazy(() => import("../../pages/ForgotPassword"));
 const Error = lazy(() => import("../../pages/Error"));
 const Sample = lazy(() => import("../../pages/Sample"));
+const BlogManagement = lazy(() => import('../../view/news/list/BlogManagement'))
+const AddCatgory = lazy(() => import('../../view/news/addCatgory/list/AddCatgory'))
+const NewsDetails = lazy(() => import('./../../view/news/NewsDetails/list/NewsDetails'))
+const WizardHorizontal = lazy(() => import('../../@core/components/common/wizard/WizardHorizontal'))
 
 // ** Merge Routes
 const Routes = [
@@ -67,7 +66,7 @@ const Routes = [
   },
   {
     path: "/createBlog",
-    element:<WizardModernVertical />
+    element:<WizardHorizontal />
   },
   {
     path:"/blogCategories",
@@ -76,8 +75,8 @@ const Routes = [
   {
     path:"/blogs/view",
     // path: "/blogs/view/:id",
-    // element: <NewsDetails />,
-    element: <BillingAddress />
+    element: <NewsDetails />,
+    // element: <UserTabs />
   },
   {
     path: "/login",

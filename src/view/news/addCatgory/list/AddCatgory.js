@@ -1,6 +1,14 @@
-import { Card, CardBody, CardFooter, CardHeader, Col, Row } from "reactstrap";
-import CardRoles from "../../../../@core/components/common/CardRoles/CardRoles";
-import ModalForm from "../../../../@core/components/common/modals/ModalForm";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  CardText,
+  Col,
+  Container,
+  Row,
+} from "reactstrap";
 import SelectReact from "../../../../@core/components/common/Selection/Selection";
 import InputGroupButtons from "../../../../@core/components/common/InputGroupButtons/InputGroupButtons";
 import Export from "../../../../@core/components/common/Export/Export";
@@ -8,34 +16,37 @@ import SeparatedPagination from "../../../../@core/components/common/PaginationS
 
 const AddCatgory = () => {
   return (
-    <Row>
-      <Col md={4}>
-        <CardRoles />
-      </Col>
-      <Card>
-        <CardHeader>
-          <div className="mt-2">
-            <SelectReact />
-          </div>
-          <div className="d-flex gap-1">
-            <div className="mt-2">
-              <InputGroupButtons />
+    <Container>
+      <Row>
+        <Card>
+          <CardHeader>
+            <div className="d-flex align-items-center gap-1 a mt-2">
+              <CardText>نمایش:</CardText>
+              <SelectReact />
             </div>
-            <div className="mb-1">
-              <ModalForm />
+            <div className="d-flex gap-1">
+              <div className="mt-2">
+                <InputGroupButtons />
+              </div>
+              <div className="mt-2">
+                <SelectReact />
+              </div>
+              <div className="demo-inline-spacing mb-1">
+                <Button.Ripple color="primary">Primary</Button.Ripple>
+              </div>
             </div>
-          </div>
-        </CardHeader>
-        <CardBody>
-          <Export />
-        </CardBody>
-        <CardFooter>
-          <div className="d-flex justify-content-center">
-            <SeparatedPagination />
-          </div>
-        </CardFooter>
-      </Card>
-    </Row>
+          </CardHeader>
+          <CardBody>
+            <Export />
+          </CardBody>
+          <CardFooter>
+            <div className="d-flex justify-content-center">
+              <SeparatedPagination />
+            </div>
+          </CardFooter>
+        </Card>
+      </Row>
+    </Container>
   );
 };
 export default AddCatgory;
