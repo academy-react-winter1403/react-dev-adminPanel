@@ -40,9 +40,8 @@ import {
 // ** Styles
 import '@styles/react/libs/react-select/_react-select.scss'
 import '@styles/react/libs/tables/react-dataTable-component.scss'
-import { userFilterSearchOption } from '../../../@core/components/constant'
+import { planOptions, roleOptions, sortingCol, statusOptions } from '../../../@core/components/constant'
 import { InputCostume } from '../../../@core/components/common'
-import { roleOptions } from '../../../@core/components/constant/userFilterSearchOption'
 
 // ** Table Header
 const CustomHeader = ({ store, toggleSidebar, handlePerPage, rowsPerPage, handleFilter, searchTerm }) => {
@@ -186,48 +185,6 @@ const UsersList = () => {
   // ** Function to toggle sidebar
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen)
 
-  // ** Get data on mount
-//   useEffect(() => {
-//     dispatch(getAllData())
-//     dispatch(
-//       getData({
-//         sort,
-//         sortColumn,
-//         q: searchTerm,
-//         page: currentPage,
-//         perPage: rowsPerPage,
-//         role: currentRole.value,
-//         status: currentStatus.value,
-//         currentPlan: currentPlan.value
-//       })
-//     )
-//   }, [dispatch, store.data.length, sort, sortColumn, currentPage])
-
-  // ** User filter options
-  // const roleOptions = [
-  //   { value: '', label: 'Select Role' },
-  //   { value: 'admin', label: 'Admin' },
-  //   { value: 'author', label: 'Author' },
-  //   { value: 'editor', label: 'Editor' },
-  //   { value: 'maintainer', label: 'Maintainer' },
-  //   { value: 'subscriber', label: 'Subscriber' }
-  // ]
-
-  // const planOptions = [
-  //   { value: '', label: 'Select Plan' },
-  //   { value: 'basic', label: 'Basic' },
-  //   { value: 'company', label: 'Company' },
-  //   { value: 'enterprise', label: 'Enterprise' },
-  //   { value: 'team', label: 'Team' }
-  // ]
-
-  // const statusOptions = [
-  //   { value: '', label: 'Select Status', number: 0 },
-  //   { value: 'pending', label: 'Pending', number: 1 },
-  //   { value: 'active', label: 'Active', number: 2 },
-  //   { value: 'inactive', label: 'Inactive', number: 3 }
-  // ]
-
   return (
     <Fragment>
       <Card>
@@ -236,69 +193,38 @@ const UsersList = () => {
         </CardHeader>
         <CardBody>
           <Row>
-            <Col className='my-md-0 my-1' md='4'>
+            <Col className='my-md-0 my-1' md='3'>
               <Label for='role-select'> فیلتر براساس نقش </Label>
               <InputCostume
                 value={roleValue}
                 lable={"Role"}
+                option={roleOptions}
               />
             </Col>
-            {/* <Col className='my-md-0 my-1' md='4'>
-              <Label for='plan-select'>Plan</Label>
-              <Select
-                theme={selectThemeColors}
-                isClearable={false}
-                className='react-select'
-                classNamePrefix='select'
-                options={planOptions}
-                value={currentPlan}
-                onChange={data => {
-                  setCurrentPlan(data)
-                  dispatch(
-                    getData({
-                      sort,
-                      sortColumn,
-                      q: searchTerm,
-                      page: currentPage,
-                      perPage: rowsPerPage,
-                      role: currentRole.value,
-                      currentPlan: data.value,
-                      status: currentStatus.value
-                    })
-                  )
-                }}
-              />
-            </Col> */}
-            <Col md='4'>
-              <Label for='status-select'> فیلتر براساس وضعیت </Label>
+            
+            <Col md='3'>
+              <Label for='status-select' className='font-b-yekan'> فیلتر براساس وضعیت </Label>
               <InputCostume
                 lable={"انتخاب براساس وضعیت"}
-                option={roleOptions}
+                option={statusOptions}
                 value={statusValue}
               />
-              {/* <Select
-                theme={selectThemeColors}
-                isClearable={false}
-                className='react-select'
-                classNamePrefix='select'
-                options={statusOptions}
-                value={currentStatus}
-                onChange={data => {
-                  setCurrentStatus(data)
-                  dispatch(
-                    getData({
-                      sort,
-                      sortColumn,
-                      q: searchTerm,
-                      page: currentPage,
-                      status: data.value,
-                      perPage: rowsPerPage,
-                      role: currentRole.value,
-                      currentPlan: currentPlan.value
-                    })
-                  )
-                }}
-              /> */}
+            </Col>
+            <Col className='my-md-0 my-1' md='3'>
+              <Label for='plan-select'> فعال / غیرفعال </Label>
+              <InputCostume
+                lable={"انتخاب براساس وضعیت"}
+                option={planOptions}
+                value={statusValue}
+              />
+            </Col>
+            <Col className='my-md-0 my-1' md='3'>
+              <Label for='plan-select'> صعودی / نزولی </Label>
+              <InputCostume
+                lable={"انتخاب براساس وضعیت"}
+                option={sortingCol}
+                value={statusValue}
+              />
             </Col>
           </Row>
         </CardBody>

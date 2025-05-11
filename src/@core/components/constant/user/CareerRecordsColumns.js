@@ -13,6 +13,8 @@ import { Slack, User, Settings, Database, Edit2, MoreVertical, FileText, Trash2,
 
 // ** Reactstrap Imports
 import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+// import rolPhoto from "../../../assets/images/portrait/small/teacher.png"
+// import styled from 'styled-components'
 
 // ** Renders Client Columns
 const renderClient = row => {
@@ -35,7 +37,7 @@ const renderRole = row => {
   const roleObj = {
     subscriber: {
       class: 'text-primary',
-      icon: User
+      icon: User,
     },
     maintainer: {
       class: 'text-success',
@@ -60,6 +62,7 @@ const renderRole = row => {
   return (
     <span className='text-truncate text-capitalize align-middle'>
       <Icon size={18} className={`${roleObj[row.role] ? roleObj[row.role].class : ''} me-50`} />
+      {/* <img src={"rolPhoto.png"}/> */}
       {row.role}
     </span>
   )
@@ -71,11 +74,11 @@ const statusObj = {
   inactive: 'light-secondary'
 }
 
-export const columns = [
+export const CareerRecordsColumns = [
   {
-    name: 'User',
-    sortable: true,
-    minWidth: '300px',
+    name: 'کاربر',
+    sortable: false,
+    minWidth: '130px',
     sortField: 'fullName',
     selector: row => row.fullName,
     cell: row => (
@@ -95,33 +98,34 @@ export const columns = [
     )
   },
   {
-    name: 'Role',
-    sortable: true,
-    minWidth: '172px',
+    name: 'نام شغل',
+    sortable: false,
+    minWidth: '130px',
     sortField: 'role',
     selector: row => row.role,
-    cell: row => renderRole(row)
+    // cell: row => renderRole(row)
+    cell: row => <span style={{color: "#fff", fontFamily: "tahoma"}}> شغل </span>
   },
   {
-    name: 'Plan',
-    minWidth: '138px',
-    sortable: true,
+    name: 'درباره شغل',
+    minWidth: '130px',
+    sortable: false,
     sortField: 'currentPlan',
     selector: row => row.currentPlan,
     cell: row => <span className='text-capitalize'>{row.currentPlan}</span>
   },
   {
-    name: 'Billing',
-    minWidth: '230px',
-    sortable: true,
+    name: 'تاریخ شروع / پایان',
+    minWidth: '130px',
+    sortable: false,
     sortField: 'billing',
     selector: row => row.billing,
     cell: row => <span className='text-capitalize'>{row.billing}</span>
   },
   {
-    name: 'Status',
-    minWidth: '138px',
-    sortable: true,
+    name: 'شرکت',
+    minWidth: '130px',
+    sortable: false,
     sortField: 'status',
     selector: row => row.status,
     cell: row => (
@@ -131,8 +135,8 @@ export const columns = [
     )
   },
   {
-    name: 'Actions',
-    minWidth: '100px',
+    name: 'نمایش',
+    minWidth: '130px',
     cell: row => (
       <div className='column-action'>
         <UncontrolledDropdown>
@@ -147,12 +151,12 @@ export const columns = [
               onClick={() => store.dispatch(getUser(row.id))}
             >
               <FileText size={14} className='me-50' />
-              <span className='align-middle'>Details</span>
+              <span className='align-middle'> جزئیات </span>
             </DropdownItem>
-            <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
+            {/* <DropdownItem tag='a' href='/' className='w-100' onClick={e => e.preventDefault()}>
               <Archive size={14} className='me-50' />
               <span className='align-middle'>Edit</span>
-            </DropdownItem>
+            </DropdownItem> */}
             <DropdownItem
               tag='a'
               href='/'
@@ -163,11 +167,19 @@ export const columns = [
               }}
             >
               <Trash2 size={14} className='me-50' />
-              <span className='align-middle'>Delete</span>
+              <span className='align-middle'> حذف </span>
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
       </div>
     )
+  },
+  {
+    name: 'وضعیت کار',
+    minWidth: '130px',
+  },
+  {
+    name: 'اقدام',
+    minWidth: '130px',
   }
 ]

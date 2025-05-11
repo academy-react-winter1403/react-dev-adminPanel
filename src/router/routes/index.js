@@ -12,6 +12,9 @@ import PublicRoute from "@components/routes/PublicRoute";
 
 // ** Utils
 import { isObjEmpty } from "@utils";
+import BlogManagement from "../../view/news/list/BlogManagement";
+import GridCardsComponent from "../../@core/components/common/GridCardsComponent/GridCardsComponent";
+import InputGroupButtons from "../../@core/components/common/InputGroupButtons/InputGroupButtons";
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -33,6 +36,9 @@ const ForgotPassword = lazy(() => import("../../pages/ForgotPassword"));
 const Error = lazy(() => import("../../pages/Error"));
 const Sample = lazy(() => import("../../pages/Sample"));
 const UserList = lazy(() => import("../../pages/UserList"))
+const UserView = lazy(() => import("../../view/user/view/index"))
+const CareerRecords = lazy(() => import("../../view/user/view/CareerRecords"))
+
 
 // ** Merge Routes
 const Routes = [
@@ -46,12 +52,16 @@ const Routes = [
     element: <Home />,
   },
   {
-    path: "/sample",
-    element: <Sample />,
+    path: "/blogs",
+    element:<BlogManagement />
   },
   {
-    path: "/second-page",
-    element: <SecondPage />,
+    path: "/createBlog",
+    element:<GridCardsComponent />
+  },
+  {
+    path:"/blogCategories",
+    element:<InputGroupButtons />
   },
   {
     path: "/login",
@@ -77,6 +87,20 @@ const Routes = [
   {
     path: "/user-list",
     element: <UserList />,
+    // meta: {
+    //   layout: "blank",
+    // },
+  },
+  {
+    path: "apps/user/view/:id",
+    element: <UserView />,
+    // meta: {
+    //   layout: "blank",
+    // },
+  },
+  {
+    path: "/job",
+    element: <CareerRecords />,
     // meta: {
     //   layout: "blank",
     // },

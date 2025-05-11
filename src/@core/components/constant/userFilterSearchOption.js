@@ -1,23 +1,24 @@
 export const roleOptions = [
-  { value: "", label: "انت" },
-  { value: "admin", label: "Admin" },
-  { value: "author", label: "Author" },
-  { value: "editor", label: "Editor" },
-  { value: "maintainer", label: "Maintainer" },
-  { value: "subscriber", label: "Subscriber" },
-];
-
-export const planOptions = [
-  { value: "", label: "Select Plan" },
-  { value: "basic", label: "Basic" },
-  { value: "company", label: "Company" },
-  { value: "enterprise", label: "Enterprise" },
-  { value: "team", label: "Team" },
+  { value: "", label: "انتخاب کنید" },
+  { value: "admin", label: "ادمین" },
+  { value: "author", label: "استاد" },
+  { value: "editor", label: "دانشجو" },
 ];
 
 export const statusOptions = [
-  { value: "", label: "Select Status", number: 0 },
-  { value: "pending", label: "Pending", number: 1 },
-  { value: "active", label: "Active", number: 2 },
-  { value: "inactive", label: "Inactive", number: 3 },
+    { value: "", label: " انتخاب کنید ", number: 0 },
+    { value: "pending", label: " فعال ", number: 1 },
+    { value: "active", label: " غیرفعال ", number: 2 },
+  ];
+
+export const planOptions = [
+  { value: "", label: " انتخاب کنید " },
+  { value: "basic", label: " درصد تکمیل پروفایل " },
+  { value: "company", label: " تاریخ ایجاد کاربر " },
 ];
+
+export const sortingCol = [
+    { value: "", label: " انتخاب کنید " },
+    { value: "basic", label: " درصد تکمیل پروفایل " },
+    { value: "company", label: " تاریخ ایجاد کاربر " },
+  ];

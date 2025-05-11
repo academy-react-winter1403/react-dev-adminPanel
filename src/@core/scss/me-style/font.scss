@@ -1,0 +1,38 @@
+@font-face {
+    font-family: "bYekan";
+    src: url(../../assets/fonts/BYekan+/BYekan+.ttf);
+}
+
+label {
+    font-family: bYekan;
+}
+
+.fw-bolder {
+    color: rgb(255 255 255);
+}
+
+.sc-dAbbOL, .sc-ikkxIA, .sc-dhKdcB {
+    background-color: #283046;
+}
+
+
+.sc-eqUAAy {
+    width: 100%;
+    background-color: #343d55;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+.sc-cwHptR {
+    font-family: sans-serif;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.react-dataTable > div:not(.sc-feUZmu) {
+    display: flex;
+    justify-content: center;
+}

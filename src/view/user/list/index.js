@@ -1,7 +1,9 @@
 import React from 'react'
 import { Col, Row } from 'reactstrap'
 import UsersReport from './Reports'
-import Table from "./Table"
+import UserFilterBar from './UserFilterBar'
+import UserListWrapper from './UserListWrapper'
+// import Table from "./Table"
 
 const UserList = () => {
   return (
@@ -10,7 +12,9 @@ const UserList = () => {
         {/* <Col sm="12">
           <FilterBar />
         </Col> */}
-        <Table />
+        {/* <Table /> */}
+        <UserFilterBar />
+        <UserListWrapper />
     </Row>
   )
 }
