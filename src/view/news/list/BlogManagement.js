@@ -12,7 +12,6 @@ import {
 import CardRoles from "../../../@core/components/common/CardRoles/CardRoles";
 import SelectReact from "../../../@core/components/common/Selection/Selection";
 import InputGroupButtons from "../../../@core/components/common/InputGroupButtons/InputGroupButtons";
-// import ModalForm from "../../../@core/components/common/modals/ModalForm";
 import Export from "../../../@core/components/common/Export/Export";
 import SeparatedPagination from "../../../@core/components/common/PaginationSeparated/PaginationSeparated";
 

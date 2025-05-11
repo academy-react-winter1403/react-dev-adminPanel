@@ -20,7 +20,6 @@ const Export = () => {
             <td>mahankhodashenas2483@gmail.com</td>
             <td>mahan</td>
             <td>ai</td>
-            {/* <td>Admin</td> */}
             <td><ButtonAction /></td>
           </tr>
         </tbody>
