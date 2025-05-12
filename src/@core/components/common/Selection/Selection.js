@@ -15,15 +15,16 @@ import {
   Label,
 } from "reactstrap";
 
-const colourOptions = [
-  { value: "ocean", label: "Ocean" },
-  { value: "blue", label: "Blue" },
-  { value: "purple", label: "Purple" },
-  { value: "red", label: "Red" },
-  { value: "orange", label: "Orange" },
-];
+// const NumberCards = [
+//   { value: "6", label: "6 کارت" },
+//   { value: "12", label: "12" },
+//   { value: "24", label: "24" },
+// ];
 
-const SelectReact = () => {
+const SelectReact = ({changeSelect,SelectFilter}) => {
+  const handleSelect = (type) => {
+    changeSelect(type)
+  }
   return (
     <Row>
       <Col >
@@ -31,9 +32,10 @@ const SelectReact = () => {
           theme={selectThemeColors}
           className="react-select"
           classNamePrefix="select"
-          defaultValue={colourOptions[0]}
-          options={colourOptions}
+          defaultValue={SelectFilter[0]}
+          options={SelectFilter}
           isClearable={false}
+          onChange={handleSelect}
         />
       </Col>
     </Row>

@@ -13,6 +13,10 @@ import SelectReact from "../../../../@core/components/common/Selection/Selection
 import InputGroupButtons from "../../../../@core/components/common/InputGroupButtons/InputGroupButtons";
 import Export from "../../../../@core/components/common/Export/Export";
 import SeparatedPagination from "../../../../@core/components/common/PaginationSeparated/PaginationSeparated";
+import {
+  NumberCards,
+  SortType,
+} from "../../../../@core/constants/filters/Filters";
 
 const AddCatgory = () => {
   return (
@@ -20,19 +24,23 @@ const AddCatgory = () => {
       <Row>
         <Card>
           <CardHeader>
-            <div className="d-flex align-items-center gap-1 a mt-2">
-              <CardText>نمایش:</CardText>
-              <SelectReact />
+            <div className="d-flex align-items-center gap-1 mt-1">
+              <div>
+                <CardText>نمایش:</CardText>
+              </div>
+              <div>
+                <SelectReact SelectFilter={NumberCards} />
+              </div>
             </div>
             <div className="d-flex gap-1">
               <div className="mt-2">
                 <InputGroupButtons />
               </div>
               <div className="mt-2">
-                <SelectReact />
+                <SelectReact SelectFilter={SortType} />
               </div>
               <div className="demo-inline-spacing mb-1">
-                <Button.Ripple color="primary">Primary</Button.Ripple>
+                <Button.Ripple color="primary">افزودن</Button.Ripple>
               </div>
             </div>
           </CardHeader>

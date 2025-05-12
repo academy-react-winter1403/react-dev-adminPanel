@@ -16,17 +16,16 @@ import {
   ListGroupItem,
 } from "reactstrap";
 
-const CardDescription = () => {
+const CardDescription = ({Title,describe}) => {
   return (
     <Fragment>
       <Row>
         <Col>
           <Card className="mb-4">
             <CardBody>
-              <CardTitle tag="h4">Card Title</CardTitle>
+              <CardTitle tag="h4">{Title}</CardTitle>
               <CardText>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+                {describe}
               </CardText>
             </CardBody>
           </Card>

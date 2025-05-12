@@ -72,7 +72,7 @@ import Switch from "../Switch/Switch";
 
 // const MySwal = withReactContent(Swal)
 
-const UserInfoCard = ({ selectedUser, avatarImg }) => {
+const UserInfoCard = ({ selectedUser, avatarImg,TitleDetails }) => {
   // ** State
   const [show, setShow] = useState(false);
 
@@ -191,20 +191,20 @@ const UserInfoCard = ({ selectedUser, avatarImg }) => {
                 <Avatar img={avatarImg} className="w-[100px]" size="xl"/>
             </div>
           </div>
-          <h4 className="fw-bolder border-bottom pb-2 mb-1 d-flex justify-content-center">Details</h4>
+          <h4 className="fw-bolder border-bottom pb-2 mb-1 d-flex justify-content-center">{TitleDetails}</h4>
           <div className="d-flex justify-content-center gap-1 align-items-center pt-2 pb-2">
             <Button
               color="primary"
               // onClick={() => setShow(true)}
             >
-              Edit
+              ادیت اخبار
             </Button>
             <Button
               color="danger"
               outline
               // onClick={handleSuspendedClick}
             >
-              Suspended
+              حذف اخبار
             </Button>
               <Switch />
           </div>
