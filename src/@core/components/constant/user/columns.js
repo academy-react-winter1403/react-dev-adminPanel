@@ -13,6 +13,8 @@ import { Slack, User, Settings, Database, Edit2, MoreVertical, FileText, Trash2,
 
 // ** Reactstrap Imports
 import { Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import UserTable from '../../../../view/user/list/UserTable'
+import { Fragment } from 'react'
 // import rolPhoto from "../../../assets/images/portrait/small/teacher.png"
 // import styled from 'styled-components'
 
@@ -82,19 +84,24 @@ export const columns = [
     sortField: 'fullName',
     selector: row => row.fullName,
     cell: row => (
-      <div className='d-flex justify-content-left align-items-center'>
-        {renderClient(row)}
-        <div className='d-flex flex-column'>
-          <Link
-            to={`/apps/user/view/${row.id}`}
-            className='user_name text-truncate text-body'
-            onClick={() => store.dispatch(getUser(row.id))}
-          >
-            <span className='fw-bolder'>{row.fullName}</span>
-          </Link>
-          <small className='text-truncate text-muted mb-0'>{row.email}</small>
-        </div>
-      </div>
+      <Fragment>
+        {console.log(row)}
+        {/* {renderClient(row)} */}
+        <UserTable pic={row.avatar} />
+        
+      </Fragment>
+      // <div className='d-flex justify-content-left align-items-center'>
+      //   <div className='d-flex flex-column'>
+      //     <Link
+      //       to={`/apps/user/view/${row.id}`}
+      //       className='user_name text-truncate text-body'
+      //       onClick={() => store.dispatch(getUser(row.id))}
+      //     >
+      //       <span className='fw-bolder'>{row.fullName}</span>
+      //     </Link>
+      //     <small className='text-truncate text-muted mb-0'>{row.email}</small>
+      //   </div>
+      // </div>
     )
   },
   {
@@ -103,7 +110,11 @@ export const columns = [
     minWidth: '130px',
     sortField: 'role',
     selector: row => row.role,
-    cell: row => renderRole(row)
+    cell: (row) => {
+      return (
+        <UserTable fullName={row.fullName}/>
+      )
+    }
   },
   {
     name: 'نقش',
@@ -119,7 +130,7 @@ export const columns = [
     sortable: false,
     sortField: 'billing',
     selector: row => row.billing,
-    cell: row => <span className='text-capitalize'>{row.billing}</span>
+    cell: row => <p className='text-capitalize' style={{color: "#fff", textAlign: "center"}}>vmskfvsjfvhjksfbvhsfb</p>
   },
   {
     name: 'درصد تکمیل پروفایل',
@@ -129,12 +140,24 @@ export const columns = [
     selector: row => row.status,
     cell: row => (
       <Badge className='text-capitalize' color={statusObj[row.status]} pill>
-        {row.status}
+        50
       </Badge>
     )
   },
   {
     name: 'وضعیت',
+    minWidth: '130px',
+    sortable: true,
+    sortField: 'status',
+    selector: row => row.status,
+    cell: row => (
+      <Badge className='text-capitalize' color={statusObj[row.status]} pill>
+        فعال
+      </Badge>
+    )
+  },
+  {
+    name: 'اقدام',
     minWidth: '130px',
     cell: row => (
       <div className='column-action'>
@@ -172,9 +195,5 @@ export const columns = [
         </UncontrolledDropdown>
       </div>
     )
-  },
-  {
-    name: 'اقدام',
-    minWidth: '130px',
   }
 ]

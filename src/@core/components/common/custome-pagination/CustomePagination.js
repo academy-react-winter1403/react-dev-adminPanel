@@ -18,7 +18,7 @@ const CustomPagination = () => {
       previousLinkClassName={"page-link"}
       pageLinkClassName={"page-link"}
       containerClassName={
-        "pagination react-paginate justify-content-end my-2 pe-1"
+        "pagination react-paginate justify-content-end my-2 pe-1 w-50 flex justify-content-center"
       }
       
     />

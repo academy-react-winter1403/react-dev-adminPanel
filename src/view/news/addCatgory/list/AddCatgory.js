@@ -9,29 +9,15 @@ import {
   Container,
   Row,
 } from "reactstrap";
-import CardRoles from "../../../@core/components/common/CardRoles/CardRoles";
-import SelectReact from "../../../@core/components/common/Selection/Selection";
-import InputGroupButtons from "../../../@core/components/common/InputGroupButtons/InputGroupButtons";
-import Export from "../../../@core/components/common/Export/Export";
-import SeparatedPagination from "../../../@core/components/common/PaginationSeparated/PaginationSeparated";
+import SelectReact from "../../../../@core/components/common/Selection/Selection";
+import InputGroupButtons from "../../../../@core/components/common/InputGroupButtons/InputGroupButtons";
+import Export from "../../../../@core/components/common/Export/Export";
+import SeparatedPagination from "../../../../@core/components/common/PaginationSeparated/PaginationSeparated";
 
-const BlogManagement = () => {
+const AddCatgory = () => {
   return (
     <Container>
       <Row>
-        <Col>
-          <Row>
-            <Col md={4}>
-              <CardRoles />
-            </Col>
-            <Col md={4}>
-              <CardRoles />
-            </Col>
-            <Col md={4}>
-              <CardRoles />
-            </Col>
-          </Row>
-        </Col>
         <Card>
           <CardHeader>
             <div className="d-flex align-items-center gap-1 a mt-2">
@@ -63,5 +49,4 @@ const BlogManagement = () => {
     </Container>
   );
 };
-
-export default BlogManagement;
+export default AddCatgory;

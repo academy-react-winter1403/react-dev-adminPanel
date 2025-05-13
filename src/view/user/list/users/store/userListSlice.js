@@ -18,4 +18,4 @@ const userListSlice = createSlice({
 // const userListFlag = createSlice()
 
 
-export { userListSlice }
+export default userListSlice.reducer
