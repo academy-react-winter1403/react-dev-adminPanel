@@ -6,7 +6,7 @@ import AvatarIcons from "../../../@core/components/common/AvatarIcons/AvatarIcon
 import { IconsPicAvatar } from "../../../@core/components/common";
 import { FileText, MoreVertical, Trash } from "react-feather";
 
-const UserCard = () => {
+const UserCard = ({userName, }) => {
   return (
     <tr className="text-center">
       <td className="px-0" style={{ width: "80px" }}>

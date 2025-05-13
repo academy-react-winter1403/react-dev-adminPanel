@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const userListSlice = createSlice({
+export const userListSlice = createSlice({
     name: "useListSlice",
 
     initialState: {
@@ -16,6 +16,5 @@ const userListSlice = createSlice({
 
 
 // const userListFlag = createSlice()
-
 
 export default userListSlice.reducer
