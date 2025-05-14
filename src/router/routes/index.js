@@ -23,10 +23,6 @@ const getLayout = {
 const TemplateTitle = "%s - Vuexy React Admin Template";
 
 // ** Default Route
-// import BlogManagement from "../../view/news/list/BlogManagement";
-// import AddCatgory from "../../view/news/addCatgory/list/AddCatgory";
-// import NewsDetails from "../../view/news/NewsDetails/list/NewsDetails";
-// import WizardHorizontal from "../../@core/components/common/wizard/WizardHorizontal";
 const DefaultRoute = "/home";
 
 const Home = lazy(() => import("../../pages/Home"));
@@ -39,7 +35,6 @@ const Sample = lazy(() => import("../../pages/Sample"));
 const UserList = lazy(() => import("../../pages/UserList"))
 const UserView = lazy(() => import("../../view/user/view/index"))
 const CareerRecords = lazy(() => import("../../view/user/view/CareerRecords"))
-
 const BlogManagement = lazy(() => import('../../view/news/list/BlogManagement'))
 const AddCatgory = lazy(() => import('../../view/news/addCatgory/list/AddCatgory'))
 const NewsDetails = lazy(() => import('./../../view/news/NewsDetails/list/NewsDetails'))
@@ -70,9 +65,7 @@ const Routes = [
   },
   {
     path:"/blogs/view",
-    // path: "/blogs/view/:id",
     element: <NewsDetails />,
-    // element: <UserTabs />
   },
   {
     path: "/login",

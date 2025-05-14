@@ -1,7 +1,10 @@
 // ** Third Party Components
 import ReactPaginate from "react-paginate";
 
-const SeparatedPagination = () => {
+const SeparatedPagination = ({changePageNumber}) => {
+  const handlePagination = (pageNumber) => {
+    changePageNumber(pageNumber)
+  }
   return (
     <ReactPaginate
       nextLabel=""
@@ -20,6 +23,8 @@ const SeparatedPagination = () => {
       nextClassName="page-item next-item"
       previousClassName="page-item prev-item"
       containerClassName="pagination react-paginate"
+      // onPageChange={handlePagination}
+      onPageChange={({ selected }) => handlePagination(selected)}
     />
   );
 };
