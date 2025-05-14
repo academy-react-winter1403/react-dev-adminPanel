@@ -5,6 +5,7 @@
 //         }
 import { useMutation } from "react-query";
 import { http } from "../../interceptor";
+// import instance from "../../interceptor";
 
 export const postData = async (key) => {
   return useMutation({

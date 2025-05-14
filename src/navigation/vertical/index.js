@@ -8,15 +8,22 @@ export default [
     navLink: "/home",
   },
   {
-    id: "user",
+    id: "secondPage",
+    title: "Second Page",
+    icon: <Mail size={20} />,
+    navLink: "/second-page",
+  },
+  {
+    id: "smaplePage",
     title: "مدیریت کاربران",
-    icon: <Users size={20} />,
+    icon: <Airplay size={20} />,
+    // navLink: "/sample",
     children: [
       {
         id: "userListPage",
         title: "لیست کاربران",
         icon: <Circle size={20} />,
-        navLink: "/users",
+        navLink: "/user-list",
       },
       {
         id: "jobHistory",

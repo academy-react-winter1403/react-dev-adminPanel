@@ -41,6 +41,8 @@ import "./assets/scss/style.scss";
 
 // ** Service Worker
 import * as serviceWorker from "./serviceWorker";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { reactQueryConfig } from "./configs/reactQueryConfig";
 
 // ** Lazy load app
 const LazyApp = lazy(() => import("./App"));
@@ -48,18 +50,22 @@ const LazyApp = lazy(() => import("./App"));
 const container = document.getElementById("root");
 const root = createRoot(container);
 
+const clinet = new QueryClient(reactQueryConfig);
+
 root.render(
   <BrowserRouter>
     <Provider store={store}>
-      <Suspense fallback={<Spinner />}>
-        <ThemeContext>
-          <LazyApp />
-          <Toaster
-            position={themeConfig.layout.toastPosition}
-            toastOptions={{ className: "react-hot-toast" }}
-          />
-        </ThemeContext>
-      </Suspense>
+      <QueryClientProvider client={clinet}>
+        <Suspense fallback={<Spinner />}>
+          <ThemeContext>
+            <LazyApp />
+            <Toaster
+              position={themeConfig.layout.toastPosition}
+              toastOptions={{ className: "react-hot-toast" }}
+            />
+          </ThemeContext>
+        </Suspense>
+      </QueryClientProvider>
     </Provider>
   </BrowserRouter>
 );

@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
-import http from "../../interceptor";
+import { http } from "../../interceptor";
+
 
 export const getData = (key,endUrl) => {
     return useQuery({

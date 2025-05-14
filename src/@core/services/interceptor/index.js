@@ -7,7 +7,9 @@ import {
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
-const instance = axios.create({
+let token = useGetItem("token")
+
+const http = axios.create({
   baseURL: baseURL,
 });
 
@@ -35,13 +37,13 @@ const onError = (error) => {
   return Promise.reject(error);
 };
 
-instance.interceptors.response.use(onSuccess, onError);
+http.interceptors.response.use(onSuccess, onError);
 
-instance.interceptors.request.use((opt) => {
-  const token = useGetItem("token");
+http.interceptors.request.use((opt) => {
+  // const token = localStorage.getItem("token")
 
   if (token) opt.headers.Authorization = "Bearer " + token;
   return opt;
 });
 
-export default instance;
+export {http};
