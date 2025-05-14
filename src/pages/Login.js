@@ -1,6 +1,6 @@
 // ** React Imports
 import { useSkin } from "@hooks/useSkin";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // ** Icons Imports
 import { Facebook, Twitter, Mail, GitHub } from "react-feather";
@@ -14,7 +14,7 @@ import {
   Col,
   CardTitle,
   CardText,
-  Form,
+  // Form,
   Label,
   Input,
   Button,
@@ -26,11 +26,38 @@ import illustrationsDark from "@src/assets/images/pages/login-v2-dark.svg";
 
 // ** Styles
 import "@styles/react/pages/page-authentication.scss";
+import { Field, Formik, Form } from "formik";
+import { postLogin } from "../@core/services/api";
+import toast from "react-hot-toast";
+import { useSetItem } from "../utility/hooks/useLocalStorage";
 
 const Login = () => {
   const { skin } = useSkin();
+  const navigate = useNavigate()
 
   const source = skin === "dark" ? illustrationsDark : illustrationsLight;
+
+  const {mutate: loginMutate} = postLogin("login")
+  const formSubmitHandler = (event) => {
+    console.log(event);
+    const dataObj = {
+      phoneOrGmail: event.phoneOrGmail,
+      password: event.password,
+
+    }
+    loginMutate(["/Sign/Login", dataObj], {
+      onSuccess: (data) => {
+        console.log(data)
+        toast.success(data.message)
+        useSetItem("token", data.token)
+        navigate("/")
+      },
+      onError: (data) => {
+        console.log(data)
+        toast.error("لطفا وضعیت اینترنت خود را بررسی کنید")
+      }
+    })
+  };
 
   return (
     <div className="auth-wrapper auth-cover">
@@ -121,45 +148,85 @@ const Login = () => {
             <CardText className="mb-2">
               Please sign-in to your account and start the adventure
             </CardText>
-            <Form
-              className="auth-login-form mt-2"
-              onSubmit={(e) => e.preventDefault()}
+            <Formik
+              initialValues={{
+                phoneOrGmail: "",
+                password: "",
+                rememberMe: false,
+              }}
+              onSubmit={formSubmitHandler}
             >
-              <div className="mb-1">
-                <Label className="form-label" for="login-email">
-                  Email
-                </Label>
-                <Input
-                  type="email"
-                  id="login-email"
-                  placeholder="john@example.com"
-                  autoFocus
-                />
-              </div>
-              <div className="mb-1">
-                <div className="d-flex justify-content-between">
-                  <Label className="form-label" for="login-password">
-                    Password
+              <Form
+                className="auth-login-form mt-2"
+                // onSubmit={(e) => e.preventDefault()}
+              >
+                <div className="mb-1">
+                  <Label className="form-label" for="phoneOrGmail">
+                    Email
                   </Label>
-                  <Link to="/forgot-password">
-                    <small>Forgot Password?</small>
-                  </Link>
+                  {/* <Input
+                    type="email"
+                    id="login-email"
+                    placeholder="john@example.com"
+                    autoFocus
+                  /> */}
+                  <Field
+                    id="phoneOrGmail"
+                    name="phoneOrGmail"
+                    placeholder="john@example.com"
+                    autoFocus
+                    style={{
+                      width: "100%",
+                      padding: "8px 14px",
+                      borderRadius: "0.357rem",
+                      border: "1px solid rgb(216, 214, 222)",
+                    }}
+                  />
                 </div>
-                <InputPasswordToggle
-                  className="input-group-merge"
-                  id="login-password"
-                />
-              </div>
-              <div className="form-check mb-1">
-                <Input type="checkbox" id="remember-me" />
-                <Label className="form-check-label" for="remember-me">
-                  Remember Me
-                </Label>
-              </div>
-              <Button tag={Link} to="/" color="primary" block>
-                Sign in
-              </Button>
-            </Form>
+                <div className="mb-1">
+                  <div className="d-flex justify-content-between">
+                    <Label className="form-label" for="password">
+                      Password
+                    </Label>
+                    <Link to="/forgot-password">
+                      <small>Forgot Password?</small>
+                    </Link>
+                  </div>
+                  {/* <Field type="text" placeholder="" name="password" className="input-group-merge"/> */}
+                  {/* <InputPasswordToggle
+                    className="input-group-merge"
+                    id="login-password"
+                  /> */}
+                  <Field
+                    id="password"
+                    name="password"
+                    placeholder="1234"
+                    autoFocus
+                    style={{
+                      width: "100%",
+                      padding: "8px 14px",
+                      borderRadius: "0.357rem",
+                      border: "1px solid rgb(216, 214, 222)",
+                    }}
+                    className="input-group-merge"
+                  />
+                </div>
+                <div className="form-check mb-4 flex flex-row justify-content-start">
+                  {/* <Input type="checkbox" id="remember-me" /> */}
+                  <Field type="checkbox" id="rememberMe" name="rememberMe" />
+                  <Label className="form-check-label" for="rememberMe">
+                    مرا به خاطر بسپار
+                  </Label>
+                </div>
+                {/* <Button tag={Link} to="/" color="primary" block type="submit">
+                  Sign in
+                </Button> */}
+                <Button color="primary" block type="submit">
+                  ورود
+                </Button>
+                {/* <Field /> */}
+              </Form>
+            </Formik>
             <p className="text-center mt-2">
               <span className="me-25">New on our platform?</span>
               <Link to="/register">

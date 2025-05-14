@@ -11,28 +11,40 @@ import UserTable from "./UserTable";
 import UserCard from "./UserCard";
 import { getData, getUserListData } from "../../../@core/services/api";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import SpinnerComponent from "../../../@core/components/spinner/Fallback-spinner";
+import { useGetItem } from "../../../utility/hooks/useLocalStorage";
+import { firstAddDataToUserList } from "./users/store/actions";
 const UserListWrapper = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const state = useSelector(state => state)
+  const dispatch = useDispatch()
 
-  console.log(state)
+  // stata distractior
+  const { userListSlice } = state
+  const { userList } = userListSlice
+  // stata distractior
+
+  console.log(userList)
 
   const createNewUserHandler = () => setSidebarOpen(!sidebarOpen);
 
-  const roleId = localStorage.getItem("id")
-  const token = localStorage.getItem("token")
-
+  const token = useGetItem("token")
   console.log(token)
 
   const {data, isLoading} = getUserListData("userLists", "/User/UserMannage")
   
-  if (!isLoading) console.log("user list data...", data)
+  if (!isLoading) {
+    console.log("user list data...", data)
+    dispatch(firstAddDataToUserList(data.listUser))
+  }
 
   useEffect(() => {
 
   }, [])
+
+  if (userList.length === 0) return <SpinnerComponent />
 
   return (
     <Card className="overflow-hidden p-0">
@@ -40,7 +52,13 @@ const UserListWrapper = () => {
         <UserTable createNewUserHandler={createNewUserHandler} />
         <table className="flex flex-row table table-hover">
           <tbody>
-            <UserCard />
+            {
+              userList?.map((item, index) => {
+                return (
+                  <UserCard key={index}/>
+                )
+              })
+            }
           </tbody>
         </table>
         <CreateNewUser
