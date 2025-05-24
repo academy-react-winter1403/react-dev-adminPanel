@@ -7,21 +7,57 @@ import {
   ModalBody,
   ModalHeader,
 } from "reactstrap";
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import "@styles/react/libs/react-select/_react-select.scss";
 import { useSelector } from "react-redux";
+import * as yup from "yup";
 
-const EditUserInfo = ({ show, setShow, refetch, submitUserUpdate }) => {
+const EditeUserInfoComp = ({
+  data,
+  show,
+  setShow,
+  refetch,
+  submitUserUpdate,
+}) => {
   // const userDetails = useSelector((state) => state.UserInfoSlice.details);
 
   const handleSubmit = (event) => {
-    submitUserUpdate({
-      ...event,
-      gender: event.gender === "true" ? true : false,
-    });
-
+    // submitUserUpdate({
+    //   ...event,
+    //   gender: event.gender === "true" ? true : false,
+    // });
+    submitUserUpdate(event)
     console.log(event)
   };
+
+  const validation = yup.object({
+    firstName: yup
+      .string()
+      .required("این فیلد اجباریست👌👌")
+      .min(4, "تعداد کاراکتر حداقل 4 تا")
+      .max(30, "تعداد کاراکتر حداکثر 30 تا"),
+    lastName: yup
+      .string()
+      .required("این فیلد اجباریست👌👌")
+      .min(4, "تعداد کاراکتر حداقل 4 تا")
+      .max(30, "تعداد کاراکتر حداکثر 30 تا"),
+    username: yup.string().required("این فیلد اجباریست👌👌"),
+    email: yup.string().required("این فیلد اجباریست👌👌").test((value) => {
+      const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (emailValidation.test(value)) return true
+      return false
+    }),
+    nationalCode: yup.string().required("این فیلد اجباریست👌👌").test((value) => {
+      const nationalCodeValidation = /^\d{10}$/
+      if (nationalCodeValidation.test(value)) return true
+      return false
+    }),
+    contact: yup.string().required("این فیلد اجباریست👌👌").test((value) => {
+      const phoneNumberValidation = /^09\d{9}$/
+      if (phoneNumberValidation.test(value)) return true
+      return false
+    })
+  });
 
   const formFields = [
     { id: "firstName", label: "نام", props: { md: 6, xs: 12 } },
@@ -32,26 +68,15 @@ const EditUserInfo = ({ show, setShow, refetch, submitUserUpdate }) => {
     { id: "email", label: "ایمیل", props: { md: 8, xs: 12 } },
   ];
 
-  // const initialValues = {
-  //   firstName: userDetails.fName,
-  //   lastName: userDetails.lName,
-  //   username: userDetails.userName,
-  //   birthDay: userDetails.birthDay,
-  //   email: userDetails.gmail,
-  //   gender: userDetails.gender,
-  //   nationalCode: userDetails.nationalCode,
-  //   contact: userDetails.phoneNumber,
-  // };
-
   const initialValues = {
-    firstName: "userDetails.fName",
-    lastName: "userDetails.lName",
-    username: "userDetails.userName",
-    birthDay: "userDetails.birthDay",
-    email: "userDetails.gmail",
-    gender: "userDetails.gender",
-    nationalCode: "userDetails.nationalCode",
-    contact: "userDetails.phoneNumber",
+    firstName: data?.fName,
+    lastName: data?.lName,
+    username: data?.userName,
+    birthDay: data?.birthDay,
+    email: data?.gmail,
+    gender: data?.gender,
+    nationalCode: data?.nationalCode,
+    contact: data?.phoneNumber,
   };
 
   return (
@@ -73,6 +98,7 @@ const EditUserInfo = ({ show, setShow, refetch, submitUserUpdate }) => {
           onSubmit={(event) => {
             handleSubmit(event);
           }}
+          validationSchema={validation}
         >
           <Form>
             <Row className="gy-1 pt-75">
@@ -82,6 +108,7 @@ const EditUserInfo = ({ show, setShow, refetch, submitUserUpdate }) => {
                     {item.label}
                   </Label>
                   <Field className="form-control" name={item.id} />
+                  <ErrorMessage component={"p"} name={item.id} />
                 </Col>
               ))}
               <Col md={4} xs={12}>
@@ -120,4 +147,4 @@ const EditUserInfo = ({ show, setShow, refetch, submitUserUpdate }) => {
   );
 };
 
-export default EditUserInfo;
+export default EditeUserInfoComp;

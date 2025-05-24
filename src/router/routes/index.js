@@ -98,13 +98,15 @@ const Routes = [
   {
     path: "/user-list",
     element: <UserList />,
+    access: ["Administrator"],
     // meta: {
     //   layout: "blank",
     // },
   },
   {
-    path: "apps/user/view/:id",
+    path: "/user/view/:id",
     element: <UserView />,
+    access: ["Administrator"],
     // meta: {
     //   layout: "blank",
     // },
