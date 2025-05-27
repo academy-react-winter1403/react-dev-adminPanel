@@ -26,19 +26,27 @@ const TemplateTitle = "%s - Vuexy React Admin Template";
 const DefaultRoute = "/home";
 
 const Home = lazy(() => import("../../pages/Home"));
-const SecondPage = lazy(() => import("../../pages/SecondPage"));
 const Login = lazy(() => import("../../pages/Login"));
 const Register = lazy(() => import("../../pages/Register"));
 const ForgotPassword = lazy(() => import("../../pages/ForgotPassword"));
 const Error = lazy(() => import("../../pages/Error"));
-const Sample = lazy(() => import("../../pages/Sample"));
-const UserList = lazy(() => import("../../pages/UserList"))
-const UserView = lazy(() => import("../../view/user/view/index"))
-const CareerRecords = lazy(() => import("../../view/user/view/CareerRecords"))
-const BlogManagement = lazy(() => import('../../view/news/list/BlogManagement'))
-const AddCatgory = lazy(() => import('../../view/news/addCatgory/list/AddCatgory'))
-const NewsDetails = lazy(() => import('./../../view/news/NewsDetails/list/NewsDetails'))
-const WizardHorizontal = lazy(() => import('../../@core/components/common/wizard/WizardHorizontal'))
+const UserList = lazy(() => import("../../pages/UserList"));
+const UserView = lazy(() => import("../../view/user/view/index"));
+const CareerRecords = lazy(() => import("../../view/user/view/CareerRecords"));
+const BlogManagement = lazy(() =>
+  import("../../view/news/list/BlogManagement")
+);
+const AddCatgory = lazy(() =>
+  import("../../view/news/addCatgory/list/AddCatgory")
+);
+const NewsDetails = lazy(() =>
+  import("./../../view/news/NewsDetails/list/NewsDetails")
+);
+const AddNews = lazy(() => import("../../view/news/addNews/list/AddNews"));
+const Comments = lazy(() => import("../../view/comments/list/Comments"));
+
+const CourseManagement = lazy(() => import("../../view/courses/list/CourseManagement"));
+const CreateCourse = lazy(() => import("../../view/courses/createCourse/list/CreateCourse"));
 
 // ** Merge Routes
 const Routes = [
@@ -53,20 +61,29 @@ const Routes = [
   },
   {
     path: "/blogs",
-    element:<BlogManagement />
+    element: <BlogManagement />,
   },
   {
     path: "/createBlog",
-    element:<WizardHorizontal />
+    element: <AddNews />,
   },
   {
-    path:"/blogCategories",
-    element:<AddCatgory />
+    path: "/blogCategories",
+    element: <AddCatgory />,
   },
   {
-    path:"/blogs/view",
+    path: "/blogs/view/:id",
     element: <NewsDetails />,
   },
+  {
+    path: "/Course",
+    element: <CourseManagement />,
+  },
+  {
+    path: "/createCourse",
+    element: <CreateCourse />,
+  },
+  { path: "/listComments", element: <Comments /> },
   {
     path: "/login",
     element: <Login />,

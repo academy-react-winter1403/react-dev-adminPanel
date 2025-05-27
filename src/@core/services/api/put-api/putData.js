@@ -1,6 +1,18 @@
-import { http } from "../../interceptor"
+import { useMutation } from "react-query";
+import { http } from "../../interceptor";
 
-export const putData = async (endUrl,data,config) => {
-    let response = await http.put(endUrl,data,config)
-    return response
-}
+export const usePutData = (key) => {
+  return useMutation({
+    mutationKey: key,
+    mutationFn: async (data) => {
+      const [endUrl, dataObj, config] = data;
+      console.log(dataObj);
+      const response = await http.put(endUrl, dataObj, {
+        headers: {
+          "Content-Type": config,
+        },
+      });
+      return response.data;
+    },
+  });
+};

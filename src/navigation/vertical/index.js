@@ -1,4 +1,13 @@
-import { Mail, Home, Airplay, Circle, Users, Book } from "react-feather";
+import {
+  Mail,
+  Home,
+  Airplay,
+  Circle,
+  Users,
+  Book,
+  FileText,
+  BookOpen,
+} from "react-feather";
 
 export default [
   {
@@ -6,12 +15,6 @@ export default [
     title: "داشبورد",
     icon: <Home size={20} />,
     navLink: "/home",
-  },
-  {
-    id: "secondPage",
-    title: "Second Page",
-    icon: <Mail size={20} />,
-    navLink: "/second-page",
   },
   {
     id: "smaplePage",
@@ -57,5 +60,30 @@ export default [
         navLink: "/blogCategories",
       },
     ],
+  },
+  {
+    id: "CourseManagement",
+    title: "مدیریت دوره ها",
+    icon: <BookOpen size={20} />,
+    children: [
+      {
+        id: "CourseList",
+        title: "لیست دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/Course",
+      },
+      {
+        id: "createCourse",
+        title: "افزودن دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/createCourse",
+      },
+    ],
+  },
+  {
+    id: "Comments",
+    title: "مدیریت کامنت ها",
+    icon: <FileText size={20} />,
+    navLink: "/listComments",
   },
 ];

@@ -1,43 +1,64 @@
 // ** React Imports
-import { useState } from 'react'
+import { useState } from "react";
 
 // ** Reactstrap Imports
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input } from 'reactstrap'
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Label,
+  Input,
+  Row,
+  Col,
+} from "reactstrap";
 
-const ModalForm = () => {
+const ModalForm = ({ title, children }) => {
   // ** States
-  const [formModal, setFormModal] = useState(false)
+  const [formModal, setFormModal] = useState(false);
 
   return (
-    <div className='demo-inline-spacing'>
+    <div>
       <div>
-        <Button color='primary' outline onClick={() => setFormModal(!formModal)}>
-          Login Form
+        <Button color="primary" onClick={() => setFormModal(!formModal)}>
+          {title}
         </Button>
-        <Modal isOpen={formModal} toggle={() => setFormModal(!formModal)} className='modal-dialog-centered'>
-          <ModalHeader toggle={() => setFormModal(!formModal)}>Login Form</ModalHeader>
+        <Modal
+          isOpen={formModal}
+          toggle={() => setFormModal(!formModal)}
+          className="modal-dialog-centered"
+        >
+          <ModalHeader toggle={() => setFormModal(!formModal)}>
+            {title}
+          </ModalHeader>
           <ModalBody>
-            <div className='mb-2'>
-              <Label className='form-label' for='email'>
-                Email:
-              </Label>
-              <Input type='email' id='email' placeholder='Email Address' />
-            </div>
-            <div className='mb-2'>
-              <Label className='form-label' for='password'>
-                Password:
-              </Label>
-              <Input type='password' id='password' placeholder='Password' />
-            </div>
+            {children}
+            <Row>
+              <Col>
+                <div className="mb-2">
+                  <Label className="form-label" for="email">
+                    Email:
+                  </Label>
+                  <Input type="email" id="email" placeholder="Email Address" />
+                </div>
+                <div className="mb-2">
+                  <Label className="form-label" for="password">
+                    Password:
+                  </Label>
+                  <Input type="password" id="password" placeholder="Password" />
+                </div>
+              </Col>
+            </Row>
           </ModalBody>
           <ModalFooter>
-            <Button color='primary' onClick={() => setFormModal(!formModal)}>
-              Login
-            </Button>{' '}
+            <Button color="primary" onClick={() => setFormModal(!formModal)}>
+              ثبت تغییرات
+            </Button>
           </ModalFooter>
         </Modal>
       </div>
     </div>
-  )
-}
-export default ModalForm
+  );
+};
+export default ModalForm;

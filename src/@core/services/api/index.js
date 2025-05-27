@@ -1,8 +1,9 @@
 import { getData } from "./get-api/getData";
-import { postData } from "./post-api/postData";
 import { deleteData } from "./delete-api/deleteData";
-import { putData } from "./put-api/putData";
+import { usePutData } from "./put-api/putData";
 import { getUserListData } from "./get-api/getUserListData";
 import { postLogin } from "./post-api/postLogin";
+import { usePostData } from './post-api/postData';
+import { getNewsDetailData } from "./get-api/getNewsDetailData";
 
-export { getData, getUserListData, postData, deleteData, putData, postLogin };
+export { getData, getUserListData, usePostData, deleteData, usePutData, postLogin, getNewsDetailData };

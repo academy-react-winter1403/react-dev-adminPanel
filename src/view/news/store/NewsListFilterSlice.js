@@ -1,20 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const NewsList = createSlice({
-  name: "NewsList",
+const NewsListFilterSlice = createSlice({
+  name: "NewsListFilterSlice",
   initialState: {
-    NewsListChanges: [],
     PageNumber: 1,
-    RowsOfPage: 15,
+    RowsOfPage: 12,
     SortingCol: null,
     SortType: null,
     Query: "",
     IsActive: true,
+    // totalCount
   },
   reducers: {
-    handleNewsListChanges: (state, action) => {
-      state.NewsListChanges = action.payload;
-    },
     handlePageNumber: (state, action) => {
       state.PageNumber = action.payload;
     },
@@ -37,13 +34,12 @@ const NewsList = createSlice({
 });
 
 export const {
-  handleNewsListChanges,
   handlePageNumber,
   handleRowsOfPage,
   handleSortingCol,
   handleSortType,
   handleQuery,
   handleIsActive,
-} = NewsList.actions;
+} = NewsListFilterSlice.actions;
 
-export default NewsList.reducer;
+export default NewsListFilterSlice.reducer;

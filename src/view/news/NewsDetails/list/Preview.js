@@ -1,33 +1,44 @@
 import { Col, Row } from "reactstrap";
-// import UserTabs from "../../../../@core/components/common/Tabs/UserTabs";
-import CardRoles from "../../../../@core/components/common/CardRoles/CardRoles";
+import CardDescription from "../../../../@core/components/common/CardDescription/CardDescription";
 
-const Preview = () => {
+const Preview = ({ filedPreview = [] }) => {
   return (
     <Row>
       <Col md={12}>
         <Row>
-          <Col>
-            <CardRoles />
-          </Col>
-          <Col>
-            <CardRoles />
-          </Col>
-          <Col>
-            <CardRoles />
-          </Col>
-          <Col>
-            <CardRoles />
-          </Col>
+          {filedPreview.slice(0, 4).map((item, index) => {
+            return (
+              <Col key={index}>
+                <CardDescription
+                  Title={[item.title]}
+                  describe={[item.describe]}
+                />
+              </Col>
+            );
+          })}
         </Row>
       </Col>
       <Col md={6}>
-        <CardRoles />
-        <CardRoles />
+        {filedPreview.slice(4, 6).map((item, index) => {
+          return (
+            <CardDescription
+              key={index + 4}
+              Title={[item.title]}
+              describe={[item.describe]}
+            />
+          );
+        })}
       </Col>
       <Col md={6}>
-        <CardRoles />
-        <CardRoles />
+        {filedPreview.slice(6, 8).map((item, index) => {
+          return (
+            <CardDescription
+              key={index + 6}
+              Title={[item.title]}
+              describe={[item.describe]}
+            />
+          );
+        })}
       </Col>
     </Row>
   );

@@ -1,7 +1,7 @@
 export const NumberCards = [
-  { value: "12 کارت", label: "12 کارت" },
-  { value: "15 کارت", label: "15 کارت" },
-  { value: "24 کارت", label: "24 کارت" },
+  { value: "12 کارت", label: 12 },
+  { value: "18 کارت", label: 18 },
+  { value: "24 کارت", label: 24 },
 ];
 export const SortType = [
   { value: "فعال", label: "فعال" },

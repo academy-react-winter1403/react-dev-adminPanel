@@ -12,7 +12,22 @@ import Preview from "../../../../view/news/NewsDetails/list/Preview";
 import Export from "../Export/Export";
 import Details from "../../../../view/news/NewsDetails/list/Details.";
 
-const UserTabs = ({ active, toggleTab }) => {
+const UserTabs = ({
+  active,
+  toggleTab,
+  filedPreview,
+  filedDetails,
+  headers,
+  fieldKeys,
+  dataMap,
+  titleField,
+  Btn
+}) => {
+
+  // const exportCardClickHandler = (id) => {
+  //   console.log(id)
+  // }
+
   return (
     <Fragment>
       <Nav pills className="mb-2">
@@ -37,13 +52,21 @@ const UserTabs = ({ active, toggleTab }) => {
       </Nav>
       <TabContent activeTab={active}>
         <TabPane tabId="1">
-          <Preview />
+          <Preview filedPreview={filedPreview} />
         </TabPane>
         <TabPane tabId="2">
-          <Details />
+          <Details filedDetails={filedDetails} />
         </TabPane>
         <TabPane tabId="3">
-          <Export />
+          <Export
+            headers={headers}
+            enableNavigate={false}
+            hasImage={false}
+            fieldKeys={fieldKeys}
+            dataMap={dataMap}
+            titleField={titleField}
+            Btn={Btn}
+          />
         </TabPane>
       </TabContent>
     </Fragment>

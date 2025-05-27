@@ -9,13 +9,22 @@ import {
   Label,
 } from "reactstrap";
 
-const Switch = ({Primary}) => {
-    const [checked, setChecked] = useState(Primary)
+const Switch = ({ Primary,checked }) => {
+
+  const handleChange = (change) => {
+    checked(change.target.checked);
+  };
   return (
     <Card>
       <div className="demo-inline-spacing">
         <div className="form-check form-switch">
-          <Input type="switch" name="customSwitch" id="exampleCustomSwitch" onChange={(change) => setChecked(change.target.checked)} checked={checked} />
+          <Input
+            type="switch"
+            name="customSwitch"
+            id="exampleCustomSwitch"
+            onChange={handleChange}
+            checked={!!Primary}
+          />
         </div>
       </div>
     </Card>

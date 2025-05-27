@@ -13,7 +13,6 @@ import {
 import CardRoles from "../../../@core/components/common/CardRoles/CardRoles";
 import SelectReact from "../../../@core/components/common/Selection/Selection";
 import InputGroupButtons from "../../../@core/components/common/InputGroupButtons/InputGroupButtons";
-// import Export from "../../../@core/components/common/Export/Export";
 import SeparatedPagination from "../../../@core/components/common/PaginationSeparated/PaginationSeparated";
 import {
   NumberCards,
@@ -21,20 +20,15 @@ import {
 } from "../../../@core/constants/filters/Filters";
 import { Activity, Book, XCircle, XOctagon } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  handleIsActive,
-  handlePageNumber,
-  handleQuery,
-  handleRowsOfPage,
-} from "../store/NewsListFilterSlice";
 import { useEffect } from "react";
-import { filterDataNews } from "./filterDataNews";
-import { handleNewsListChanges } from "../store/allDataNewsSlice";
 import { useNavigate } from "react-router-dom";
 import Export from "./../../../@core/components/common/Export/Export";
+import { filterDataCourse } from './filterDataCourse';
+import { setIsActive, setPageNumber, setQuery, setRowsOfPage } from "../store/CourseListFilterSlice";
+import { setCourseListChanges } from "../store/allDataCourseSlice";
 
-const BlogManagement = () => {
-  const headers = ["عنوان اخبار", "امتیاز", "تاریخ",""]
+const CourseManagement = () => {
+  const headers = ["عنوان دوره", "امتیاز", "تاریخ",""]
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -44,52 +38,56 @@ const BlogManagement = () => {
     // SortType,
     Query,
     IsActive,
-  } = useSelector((state) => state.NewsListFilterSlice);
-  const { NewsListChanges, totalCount } = useSelector(
-    (state) => state.allDataNewsSlice
+  } = useSelector((state) => state.CourseListFilterSlice);
+  const { CourseListChanges, totalCount } = useSelector(
+    (state) => state.allDataCourseSlice
   );
   // RowsOfPage
   const changeSelectRowsOfPage = (SelectNumber) => {
-    dispatch(handleRowsOfPage(SelectNumber.label));
+    console.log(SelectNumber.label)
+    dispatch(setRowsOfPage(SelectNumber.label));
   };
   // IsActive
   const changeSelectActive = (SelectActive) => {
+    console.log(SelectActive.value)
     if (SelectActive.value === "فعال") {
-      dispatch(handleIsActive(true));
+      dispatch(setIsActive(true));
     } else {
-      dispatch(handleIsActive(false));
+      dispatch(setIsActive(false));
     }
   };
   // searchQuery
   const changeSearchQuery = (searchQuery) => {
-    dispatch(handleQuery(searchQuery.target.value));
+    console.log(searchQuery.target.value)
+    dispatch(setQuery(searchQuery.target.value));
   };
   // PageNumber
   const changePageNumberPage = (pageNumber) => {
-    dispatch(handlePageNumber(pageNumber));
+    console.log(pageNumber)
+    dispatch(setPageNumber(pageNumber));
   };
   // get data
   useEffect(() => {
     const getAllData = async () => {
-      const news = await filterDataNews({
+      const course = await filterDataCourse({
         PageNumber,
         RowsOfPage,
         Query,
         IsActive,
       });
-      dispatch(handleNewsListChanges(news));
+      dispatch(setCourseListChanges(course));
     };
     getAllData();
   }, [PageNumber, RowsOfPage, Query, IsActive, dispatch]);
   // &SortingCol=InsertDate&SortType=DESC
 
-  const dataWithRatio = NewsListChanges.map((item) => ({
+  const dataWithRatio = CourseListChanges.map((item) => ({
     ...item,
     likeRatio: `${item.currentLikeCount}/${item.currentDissLikeCount}`,
   }));
   const exportCardClickHandler = async (id) => {
     console.log(id)
-    navigate(`/blogs/view/${id}`)    
+    // navigate(`/blogs/view/${id}`)    
   };
   return (
     <Container>
@@ -141,7 +139,7 @@ const BlogManagement = () => {
               </div>
               <div
                 className="demo-inline-spacing mb-1"
-                onClick={() => navigate("/createBlog")}
+                // onClick={() => navigate("")}
               >
                 <Button.Ripple color="primary">افزودن اخبار</Button.Ripple>
               </div>
@@ -174,4 +172,4 @@ const BlogManagement = () => {
   );
 };
 
-export default BlogManagement;
+export default CourseManagement;
