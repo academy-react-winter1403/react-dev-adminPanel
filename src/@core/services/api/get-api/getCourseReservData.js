@@ -1,7 +1,7 @@
 import { useQuery } from "react-query"
 import { http } from "../../interceptor"
 
-export const getUserListData = (key, endUrl) => {
+export const getCourseReservData = (key, endUrl) => {
     return useQuery({
         queryKey: key,
         queryFn: async () => {

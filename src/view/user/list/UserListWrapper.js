@@ -6,12 +6,13 @@ import UserTable from "./UserTable";
 import UserCard from "./UserCard";
 import {
   deleteUser,
-  getUserListData,
+  getUserListDataWithParams,
   getUserListDataByAction,
 } from "../../../@core/services/api";
 import { useDispatch, useSelector } from "react-redux";
 import SpinnerComponent from "../../../@core/components/spinner/Fallback-spinner";
 import {
+  addUserListTotalCount,
   changeAddFlag,
   changeUserFilterPageNumber,
   changeUserIdtUCF,
@@ -51,7 +52,7 @@ const UserListWrapper = () => {
   // stata distractior
 
   const createNewUserHandler = () => setSidebarOpen(!sidebarOpen);
-  const { data, isLoading, refetch } = getUserListData(
+  const { data, isLoading, refetch } = getUserListDataWithParams(
     "getUserList",
     "/User/UserMannage",
     {
@@ -70,6 +71,7 @@ const UserListWrapper = () => {
     console.log("user list data...", data);
     // if (addFlag) {
       dispatch(firstAddDataToUserList(data.listUser));
+      dispatch(addUserListTotalCount(data.totalCount))
     // }
     dispatch(changeAddFlag(false));
   }

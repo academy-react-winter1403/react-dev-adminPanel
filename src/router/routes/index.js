@@ -44,6 +44,7 @@ const BlogManagement = lazy(() => import('../../view/news/list/BlogManagement'))
 const AddCatgory = lazy(() => import('../../view/news/addCatgory/list/AddCatgory'))
 const NewsDetails = lazy(() => import('./../../view/news/NewsDetails/list/NewsDetails'))
 const WizardHorizontal = lazy(() => import('../../@core/components/common/wizard/WizardHorizontal'))
+const Dashboard = lazy(() => import("../../view/dashboard/index"))
 
 // ** Merge Routes
 const Routes = [
@@ -54,7 +55,7 @@ const Routes = [
   },
   {
     path: "/home",
-    element: <Home />,
+    element: <Dashboard />,
   },
   {
     path: "/blogs",

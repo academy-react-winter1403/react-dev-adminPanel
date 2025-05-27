@@ -1,0 +1,73 @@
+.dashboard-card-holder {
+    width: 386px;
+    display: flex;
+    flex-flow: row wrap;
+    // gap: 15px;
+}
+
+.mini-card {
+    width: 161px;
+    padding-block: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcome-card {
+    width: 380px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-radius: 10px;
+    position: relative;
+}
+
+// .text-absolute
+
+.text-absolte-control {
+    position: absolute;
+    // bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.bottom-1 {
+    bottom: 80px;
+}
+
+.bottom-2 {
+    bottom: 50px;
+}
+
+@font-face {
+    font-family: bYekan;
+    src: url(../../assets/fonts/BYekan+/BYekan+.ttf) format("woff");
+    font-weight: normal;  
+    font-style: normal;  
+}
+
+$bYekan-font: "bYekan", bYekan;
+
+.text-absolte {
+    // background: #fff;
+    // color: #000;
+    // border-radius: 8px;
+    // padding-inline: 12px;
+    // padding-block: 8px;
+    text-align: center;
+    color: #fff;
+    font-family: $bYekan-font;
+}
+
+.right-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+// .right-bottom-text-control {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 10px;
+// }

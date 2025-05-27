@@ -4,7 +4,7 @@ import { userInformationSlice } from "./userInformationSlice";
 import { userCommentFilterSlice } from "./userCommentFilterSlice";
 import { userCommentSlice } from "./userCommentSlice";
 
-export const { firstAddDataToUserList, changeAddFlag } = userListSlice.actions;
+export const { firstAddDataToUserList, changeAddFlag, addUserListTotalCount } = userListSlice.actions;
 
 export const {
   changeUserFilterIsActiveUser,

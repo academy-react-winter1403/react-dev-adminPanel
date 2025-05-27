@@ -5,7 +5,8 @@ export const userListSlice = createSlice({
 
     initialState: {
         userList: null,
-        addFlag: true
+        addFlag: true,
+        userListTotalCount: null
     },
 
     reducers: {
@@ -14,6 +15,9 @@ export const userListSlice = createSlice({
         },
         changeAddFlag: (state, action) => {
             state.addFlag = action.payload
+        },
+        addUserListTotalCount: (state, action) => {
+            state.userListTotalCount = action.payload
         }
     }
 })
