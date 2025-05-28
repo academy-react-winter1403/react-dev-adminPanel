@@ -88,7 +88,7 @@ const DashboardTop = () => {
       <div className="right right-flex">
         <div
           className="welcome-card"
-          style={{ backgroundImage: `url(${welcomePic})` }}
+          style={{ backgroundImage: `url(${welcomePic})`, height: "54%" }}
         >
           <Col className="w-100 text-absolte-control bottom-1">
             <label className="text-absolte w-50 text-22">{`${
@@ -101,7 +101,7 @@ const DashboardTop = () => {
             } تومان رسید`}</label>
           </Col>
         </div>
-        <Card className="p-3 pt-1 m-0">
+        <Card className="p-3 pt-1 m-0" style={{height: "38%"}}>
           <div className="top-control">
             <label> درصد کاربران فعال </label>
           </div>
@@ -122,6 +122,9 @@ const DashboardTop = () => {
               desc={item.title}
               key={index}
               item={item}
+              width={"190px"}
+              height={"220px"}
+              gap={"12px"}
             />
           );
         })}
@@ -135,6 +138,9 @@ const DashboardTop = () => {
               desc={item.title}
               key={index}
               item={item}
+              width={"190px"}
+              height={"220px"}
+              gap={"12px"}
             />
           );
         })}

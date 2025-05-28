@@ -56,7 +56,7 @@ const CategorizingUsersByRole = () => {
 //   console.log(usersRolesPercentArray)
 
   return (
-    <Card>
+    <Card style={{width: "48%"}}>
       <CardHeader className="d-flex justify-content-between align-items-sm-center align-items-start flex-sm-row flex-column">
         <CardTitle tag="h4">دسته‌بندی کاربران بر اساس نقش</CardTitle>
       </CardHeader>

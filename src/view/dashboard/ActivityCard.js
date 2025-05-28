@@ -67,7 +67,7 @@ const ActivityCard = ({ title, percentageNumber, bText1, bText2 }) => {
 
   return (
     // <Col style={{ display: "flex", justifyContent: "space-around" }}>
-    <Card className="p-1 px-0 pb-0" style={{ width: "30%" }}>
+    <Card className="p-1 px-0 pb-0" style={{ width: "32%" }}>
       <CardHeader>
         <label>{title}</label>
       </CardHeader>

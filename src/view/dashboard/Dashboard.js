@@ -14,9 +14,27 @@ import DashboardTop from "./DashboardTop";
 import { useDispatch } from "react-redux";
 import { adminInfoSlice } from "./store/adminInfoSlice";
 import { useGetItem } from "../../utility/hooks/useLocalStorage";
-import { getCourseListData, getCourseReservData, getTeacherList, getUserCommentByAdmin, getUserInfoData, getUserListData } from "../../@core/services/api";
-import { addCourseListData, addCourseReservListData, addCourseReservTotalCount, addCurseListTotalCount, addDataTheAdminInfoState, addTeacherListData, addTheacherTotalCount } from "./store/actions";
-import { addCommnetManagementData, addCommnetManagementTotalCount } from "../partialSlice/actions";
+import {
+  getCourseListData,
+  getCourseReservData,
+  getTeacherList,
+  getUserCommentByAdmin,
+  getUserInfoData,
+  getUserListData,
+} from "../../@core/services/api";
+import {
+  addCourseListData,
+  addCourseReservListData,
+  addCourseReservTotalCount,
+  addCurseListTotalCount,
+  addDataTheAdminInfoState,
+  addTeacherListData,
+  addTheacherTotalCount,
+} from "./store/actions";
+import {
+  addCommnetManagementData,
+  addCommnetManagementTotalCount,
+} from "../partialSlice/actions";
 import { addUserListTotalCount } from "../user/list/users/store/actions";
 
 const TowCard = ({ title, desc }) => {
@@ -45,7 +63,7 @@ const TowCard = ({ title, desc }) => {
 };
 
 export const Dashboard = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [activatyData, setActivatyData] = useState([
     {
       title: "درصد تکمیل پروفایل کاربران (بالای 70 درصد)",
@@ -59,6 +77,12 @@ export const Dashboard = () => {
     },
   ]);
 
+  const statusData = [
+    { title: "4", desc: "محصولات", num: "" },
+    { title: "4", desc: "محصولات", num: "" },
+    { title: "4", desc: "محصولات", num: "" },
+  ];
+
   const userId = useGetItem("id");
   console.log(userId);
   const { data: userInfoData, isLoading } = getUserInfoData(
@@ -69,72 +93,83 @@ export const Dashboard = () => {
 
   if (!isLoading) {
     console.log("userInfoData ==>", userInfoData);
-    dispatch(addDataTheAdminInfoState(userInfoData))
+    dispatch(addDataTheAdminInfoState(userInfoData));
   }
 
   // get comment data
-  const {data: commentData, isLoading: commentDataGetLoading} = getUserCommentByAdmin("userComment", "/Course/CommentManagment")
+  const { data: commentData, isLoading: commentDataGetLoading } =
+    getUserCommentByAdmin("userComment", "/Course/CommentManagment");
   if (!commentDataGetLoading) {
-    console.log("commentData ==>", commentData)
-    dispatch(addCommnetManagementData(commentData.comments))
-    dispatch(addCommnetManagementTotalCount(commentData.totalCount))
+    console.log("commentData ==>", commentData);
+    dispatch(addCommnetManagementData(commentData.comments));
+    dispatch(addCommnetManagementTotalCount(commentData.totalCount));
   }
 
-  const {data: teacherData, isLoading: getTeacherLoading} = getTeacherList("theacherListData", "/Home/GetTeachers")
+  const { data: teacherData, isLoading: getTeacherLoading } = getTeacherList(
+    "theacherListData",
+    "/Home/GetTeachers"
+  );
 
   if (!getTeacherLoading) {
-    console.log(teacherData)
-    dispatch(addTeacherListData(teacherData))
-    dispatch(addTheacherTotalCount(teacherData.length))
+    console.log(teacherData);
+    dispatch(addTeacherListData(teacherData));
+    dispatch(addTheacherTotalCount(teacherData.length));
   }
 
   // get course reserv list
-  const {data: courseReservData, isLoading: courseReservLoading} = getCourseReservData("courseReservList", "/CourseReserve")
+  const { data: courseReservData, isLoading: courseReservLoading } =
+    getCourseReservData("courseReservList", "/CourseReserve");
   if (!courseReservLoading) {
-    console.log("courseReservData ==>", courseReservData)
-    dispatch(addCourseReservListData(courseReservData))
-    dispatch(addCourseReservTotalCount(courseReservData.length))
+    console.log("courseReservData ==>", courseReservData);
+    dispatch(addCourseReservListData(courseReservData));
+    dispatch(addCourseReservTotalCount(courseReservData.length));
   }
 
   // get user list data
-  const {data: userListData, isLoading: getUserListLoading} = getUserListData("userListData", "/User/UserMannage")
+  const { data: userListData, isLoading: getUserListLoading } = getUserListData(
+    "userListData",
+    "/User/UserMannage"
+  );
   if (!getUserListLoading) {
-    console.log("userListData ==>", userListData)
-    dispatch(addUserListTotalCount(userListData.totalCount))
+    console.log("userListData ==>", userListData);
+    dispatch(addUserListTotalCount(userListData.totalCount));
   }
 
   // get cours list data
-  const {data: courseListData, isLoading: getCourseListLoading} = getCourseListData("courseListData", "/Course/CourseList")
+  const { data: courseListData, isLoading: getCourseListLoading } =
+    getCourseListData("courseListData", "/Course/CourseList");
   if (!getCourseListLoading) {
-    console.log("courseListData ==>", courseListData)
-    dispatch(addCurseListTotalCount(courseListData.totalCount))
+    console.log("courseListData ==>", courseListData);
+    dispatch(addCurseListTotalCount(courseListData.totalCount));
   }
 
   return (
     <div className="dashboard-control">
       <DashboardTop />
       <div
-        className="center-item-control w-100"
+        className="center-item-control w-100 mt-1"
         // style={{ display: "flex", justifyContent: "space-around" }}
       >
         <Col
-          className="w-100"
-          style={{ display: "flex", justifyContent: "space-around" }}
+          className="w-100 p-0 m-0"
+          style={{ display: "flex", justifyContent: "space-between" }}
         >
-          <Row style={{ width: "340px" }} className="m-0 p-0">
-            <TowCard title={"4"} desc={"محصولات"} />
-          </Row>
-          <Row style={{ width: "340px" }} className="m-0 p-0">
-            <TowCard title={"4"} desc={"محصولات"} />
-          </Row>
-          <Row style={{ width: "340px" }} className="m-0 p-0">
-            <TowCard title={"4"} desc={"محصولات"} />
-          </Row>
+          {statusData.map((item, index) => {
+            return (
+              <Row style={{ width: "32%" }} className="m-0 p-0">
+                <TowCard title={item.title} desc={item.desc} />
+              </Row>
+            );
+          })}
         </Col>
-        <Col style={{ display: "flex", justifyContent: "space-between" }}>
+        <Col
+          style={{ display: "flex", justifyContent: "space-between" }}
+          className="mt-1"
+        >
           {activatyData.map((item, index) => {
             return (
               <ActivityCard
+                // style={{}}
                 key={index}
                 title={item.title}
                 percentageNumber={item.percentageNumber}
@@ -146,17 +181,22 @@ export const Dashboard = () => {
           <AccordingToTheComment />
         </Col>
       </div>
-      <div
+      {/* <div
         className="bottom-item-control"
-        style={{ display: "flex", justifyContent: "space-around" }}
-      >
-        <Row style={{ width: "45%" }}>
+        style={{ display: "flex", justifyContent: "space-between" }}
+      > */}
+        <Col
+          className="bottom-item-control"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+        {/* <Row style={{ width: "45%", height: "400px" }}> */}
           <CourseBasedOnStatus />
-        </Row>
-        <Row style={{ width: "45%" }}>
+        {/* </Row> */}
+        {/* <Row style={{ width: "45%", height: "400px" }}> */}
           <CategorizingUsersByRole />
-        </Row>
-      </div>
+        {/* </Row> */}
+        </Col>
+      {/* </div> */}
     </div>
   );
 };

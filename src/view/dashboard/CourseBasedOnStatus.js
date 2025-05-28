@@ -66,7 +66,7 @@ const CourseBasedOnStatus = () => {
     ];
 
   return (
-    <Card className="card-revenue-budget">
+    <Card className="card-revenue-budget" style={{width: "48%"}}>
       <Row className="mx-0">
         <Col className="revenue-report-wrapper" md="12" xs="12">
           <div className="d-sm-flex justify-content-between align-items-center mb-3">

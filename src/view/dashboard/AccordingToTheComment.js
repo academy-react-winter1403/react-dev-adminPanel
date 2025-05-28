@@ -78,7 +78,7 @@ const AccordingToTheComment = () => {
     ];
 
   return (
-    <Card>
+    <Card style={{width: "32%"}}>
       <CardHeader className="d-flex justify-content-between align-items-start pb-1">
         <div>
           <CardTitle className="mb-25" tag="h4">

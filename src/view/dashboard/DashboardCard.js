@@ -1,9 +1,20 @@
 import { Card } from "reactstrap";
 import StatsVertical from "../../@core/components/widgets/stats/StatsVertical";
 
-export const DashboardCard = ({ color, title, desc, item }) => {
+export const DashboardCard = ({ color, title, desc, item, width, height, gap }) => {
   return (
-    <Card className="mini-card m-0 p-0" style={{width: "50%"}}>
+    <Card
+      className="mini-card m-0 p-0"
+      style={{
+        width: width,
+        height: height,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: gap
+      }}
+    >
       <StatsVertical
         color={color}
         icon={<item.icon size={20} className="m-0" />}

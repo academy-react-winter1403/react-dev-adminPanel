@@ -1,8 +1,11 @@
 .dashboard-card-holder {
-    width: 386px;
+    // width: 386px;
+    width: auto;
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
     flex-flow: row wrap;
-    // gap: 15px;
+    gap: 12px;
 }
 
 .mini-card {
@@ -61,9 +64,10 @@ $bYekan-font: "bYekan", bYekan;
 }
 
 .right-flex {
+    height: 443px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    justify-content: space-between;
 }
 
 // .right-bottom-text-control {
