@@ -7,8 +7,8 @@ import NewsListFilterSlice from "../view/news/store/NewsListFilterSlice";
 import allDataNewsSlice from "../view/news/store/allDataNewsSlice";
 import allDataAddNews from "../view/news/addNews/store/allDataAddNews";
 import NewDetailSlice from "../view/news/NewsDetails/store/NewDetailSlice";
-import CourseListFilterSlice from "../view/courses/store/CourseListFilterSlice";
-import allDataCourseSlice from "../view/courses/store/allDataCourseSlice";
+import CourseListFilterSlice from "../view/courseManagement/store/CourseListFilterSlice";
+import allDataCourseSlice from "../view/courseManagement/store/allDataCourseSlice";
 
 const rootReducer = {
   navbar,

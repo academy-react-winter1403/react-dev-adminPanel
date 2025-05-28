@@ -45,8 +45,8 @@ const NewsDetails = lazy(() =>
 const AddNews = lazy(() => import("../../view/news/addNews/list/AddNews"));
 const Comments = lazy(() => import("../../view/comments/list/Comments"));
 
-const CourseManagement = lazy(() => import("../../view/courses/list/CourseManagement"));
-const CreateCourse = lazy(() => import("../../view/courses/createCourse/list/CreateCourse"));
+const CourseManagement = lazy(() => import("../../view/courseManagement/list/CourseManagement"));
+const CreateCourse = lazy(() => import("../../view/courseManagement/createCourse/list/CreateCourse"));
 
 // ** Merge Routes
 const Routes = [
