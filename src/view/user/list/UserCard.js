@@ -1,31 +1,54 @@
 import React from "react";
-import { Row, CardImg, Card, Col, Badge, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
-import pic from "../../../@core/assets/photos/partial/woman.jpg";
+import {
+  Row,
+  CardImg,
+  Card,
+  Col,
+  Badge,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
+import picWoman from "../../../@core/assets/photos/partial/woman.jpg";
+import picMan from "../../../@core/assets/photos/partial/man.jpg";
 import Avatar from "@components/avatar";
 import AvatarIcons from "../../../@core/components/common/AvatarIcons/AvatarIcons";
 import { IconsPicAvatar } from "../../../@core/components/common";
 import { FileText, MoreVertical, Trash } from "react-feather";
+import { useNavigate } from "react-router-dom";
 
-const UserCard = ({userName, }) => {
+const UserCard = ({
+  userName,
+  id,
+  children,
+  emailAddress,
+  profileNum,
+  status,
+  picAddress,
+  gender,
+  cardClick,
+  handleDelete,
+  navigationName
+}) => {
+  const navigate = useNavigate()
+
   return (
     <tr className="text-center">
-      <td className="px-0" style={{ width: "80px" }}>
-        <IconsPicAvatar iconSrc={pic} />
+      <td className="px-0" style={{ width: "38px"}}>
+        <div className="w-100" style={{position: "relative", right: "30px"}}>
+          <IconsPicAvatar iconSrc={picAddress} auxiliaryPhoto={gender ? picWoman : picMan} />
+        </div>
       </td>
-      <td>مسیح</td>
-      <td className="p-0" >
-        <Row>
-          <Col className="m-0 p-0" md="3">ادمین</Col>
-          <Col className="m-0 p-0" md="3">استاد</Col>
-          <Col className="m-0 p-0" md="4">دانشجو</Col>
-        </Row>
+      <td onClick={cardClick}>{userName ? userName : "اسم نداره کاربر"}</td>
+      <td className="p-0">
+        {children}
       </td>
-      <td>6536masih@gmail.com</td>
-      <td>100</td>
+      <td>{emailAddress ? emailAddress : "ایمیل نداره کاربر"}</td>
+      <td>{profileNum}</td>
       <td>
-        <Badge color={"light-primary"} className="me-1">
-          {" "}
-          فعال{" "}
+        <Badge color={status === "True" ? "light-primary" : "btn btn-danger"} className="me-1">
+          {status === "True" ? "فعال" : "غیرفعال"}
         </Badge>
       </td>
 
@@ -41,23 +64,21 @@ const UserCard = ({userName, }) => {
           </DropdownToggle>
           <DropdownMenu className="d-flex flex-column p-0">
             <DropdownItem
-              href="/"
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/users/view/" + item.id);
+                navigate(navigationName + id);
               }}
             >
               <FileText className="me-50" size={15} />{" "}
               <span className="align-middle">جزئیات</span>
             </DropdownItem>
             <DropdownItem
-              href="/"
-              onClick={(e) => {
-                e.preventDefault();
-                handleDeleteUser(item.id);
+              onClick={(event) => {
+                event.preventDefault();
+                handleDelete()
               }}
             >
-              <Trash className="me-50" size={15} />{" "}
+              <Trash className="me-50" size={15} />
               <span className="align-middle">حذف</span>
             </DropdownItem>
           </DropdownMenu>

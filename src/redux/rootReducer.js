@@ -9,6 +9,14 @@ import allDataAddNews from "../view/news/addNews/store/allDataAddNews";
 import NewDetailSlice from "../view/news/NewsDetails/store/NewDetailSlice";
 import CourseListFilterSlice from "../view/courses/store/CourseListFilterSlice";
 import allDataCourseSlice from "../view/courses/store/allDataCourseSlice";
+import userInformationSlice from "../view/user/list/users/store/userInformationSlice";
+import userCommentFilterSlice from "../view/user/list/users/store/userCommentFilterSlice";
+import userCommentSlice from "../view/user/list/users/store/userCommentSlice";
+import adminInfoSlice from "../view/dashboard/store/adminInfoSlice"
+import commentManagementSlice from "../view/partialSlice/commentManagementSlice"
+import teacherListSlice from "../view/dashboard/store/theacherListSlice"
+import courseReservListSlice from "../view/dashboard/store/courseReservListSlice"
+import courseListSlice from "../view/dashboard/store/courseListSlice"
 
 const rootReducer = {
   navbar,
@@ -21,6 +29,14 @@ const rootReducer = {
   NewDetailSlice,
   CourseListFilterSlice,
   allDataCourseSlice,
+  userInformationSlice,
+  userCommentFilterSlice,
+  userCommentSlice,
+  adminInfoSlice,
+  commentManagementSlice,
+  teacherListSlice,
+  courseReservListSlice,
+  courseListSlice
 };
 
 export default rootReducer;

@@ -47,6 +47,11 @@ const Comments = lazy(() => import("../../view/comments/list/Comments"));
 
 const CourseManagement = lazy(() => import("../../view/courses/list/CourseManagement"));
 const CreateCourse = lazy(() => import("../../view/courses/createCourse/list/CreateCourse"));
+// const BlogManagement = lazy(() => import('../../view/news/list/BlogManagement'))
+// const AddCatgory = lazy(() => import('../../view/news/addCatgory/list/AddCatgory'))
+// const NewsDetails = lazy(() => import('./../../view/news/NewsDetails/list/NewsDetails'))
+// const WizardHorizontal = lazy(() => import('../../@core/components/common/wizard/WizardHorizontal'))
+const Dashboard = lazy(() => import("../../view/dashboard/index"))
 
 // ** Merge Routes
 const Routes = [
@@ -57,7 +62,7 @@ const Routes = [
   },
   {
     path: "/home",
-    element: <Home />,
+    element: <Dashboard />,
   },
   {
     path: "/blogs",
@@ -108,13 +113,15 @@ const Routes = [
   {
     path: "/user-list",
     element: <UserList />,
+    access: ["Administrator"],
     // meta: {
     //   layout: "blank",
     // },
   },
   {
-    path: "apps/user/view/:id",
+    path: "/user/view/:id",
     element: <UserView />,
+    access: ["Administrator"],
     // meta: {
     //   layout: "blank",
     // },

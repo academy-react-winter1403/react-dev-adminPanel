@@ -4,6 +4,7 @@ import { CustomPagination } from "../../../@core/components/common";
 import { ChevronDown } from "react-feather";
 import userPhotos from "../../../@core/assets/photos/01.jpg"
 import { CareerRecordsColumns } from "../../../@core/components/constant/user/CareerRecordsColumns";
+import { Card, CardBody, CardHeader } from "reactstrap";
 
 const CareerRecords = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -12,74 +13,34 @@ const CareerRecords = () => {
     setSearchValue(inputValue);
   };
 
-  const dataToRender = () => {
-    const users = [
-      {
-        id: 1,
-        fullName: "sjvnjksfv",
-        avatar: userPhotos,
-        rol: "acsv",
-        plan: "sfvsfv",
-      },
-      {
-        id: 2,
-        fullName: "sjvnjksfv",
-        avatar: userPhotos,
-        rol: "acsv",
-        plan: "sfvsfv",
-      },
-      {
-        id: 3,
-        fullName: "sjvnjksfv",
-        avatar: userPhotos,
-        rol: "acsv",
-        plan: "sfvsfv",
-      },
-      {
-        id: 4,
-        fullName: "sjvnjksfv",
-        avatar: userPhotos,
-        rol: "acsv",
-        plan: "sfvsfv",
-      },
-      {
-        id: 5,
-        fullName: "sjvnjksfv",
-        avatar: userPhotos,
-        rol: "acsv",
-        plan: "sfvsfv",
-      },
-    ];
-    return users;
-  };
+  const tabNames = [
+    "کاربر",
+    "نام شغل",
+    "درباره شغل",
+    "تاریخ شروع / پایان",
+    "شرکت",
+    "نمایش",
+    "وضعیت کار",
+    "اقدام",
+  ]
 
   return (
-    <DataTable
-      noHeader
-      subHeader
-      sortServer
-      pagination
-      responsive
-      paginationServer
-      columns={CareerRecordsColumns}
-      //   onSort={handleSort}
-      sortIcon={<ChevronDown />}
-      className="react-dataTable"
-      paginationComponent={CustomPagination}
-      data={dataToRender()}
-      //   subHeaderComponent={
-      //     <CustomHeader
-      //       //   store={store}
-      //       inputValue={searchValue}
-      //       searchTerm={searchValue}
-      //       changeSearchHandler={changeSearchHandler}
-      //       //   rowsPerPage={rowsPerPage}
-      //       //   handleFilter={handleFilter}
-      //       //   handlePerPage={handlePerPage}
-      //       toggleSidebar={toggleSidebar}
-      //     />
-      //   }
-    />
+    <table className="w-100">
+      <thead className="w-100">
+        <Card className="w-100">
+          <CardHeader className="w-100 py-1 m-0 flex flex-row justify-content-between">
+            {
+              tabNames.map((item, index) => (
+                <label key={index}>{item}</label>
+              ))
+            }
+          </CardHeader>
+        </Card>
+      </thead>
+      <tbody>
+          <td></td>
+      </tbody>
+    </table>
   );
 };
 

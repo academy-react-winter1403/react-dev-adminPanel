@@ -13,4 +13,8 @@
 @import 'react/index';
 
 // fonts
-@import './me-style/font.scss'
+@import './me-style/font.scss';
+
+// dashboard style
+@import '../scss/me-style/flexStyle.scss';
+@import '../scss/me-style/dashboard-style.scss'

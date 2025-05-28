@@ -1,18 +1,22 @@
 import { Button, InputGroup, Input, Row, Col } from "reactstrap";
 import { Search } from "react-feather";
 
-const InputGroupButtons = ({SearchQuery}) => {
+const InputGroupButtons = ({ onChange, placeholder }) => {
   const handleSearch = (search) => {
-    SearchQuery(search)
-  }
+    SearchQuery(search);
+  };
+
   return (
     <Row>
-      <Col lg={12} className="mb-1">
-        <InputGroup>
+      <Col lg={12} className="">
+        <InputGroup
+          onChange={(event) => onChange(event)}
+          placeholder={placeholder}
+        >
           <Button color="primary" outline>
             <Search size={12} />
           </Button>
-          <Input type="text" onChange={handleSearch}/>
+          <Input type="text" onChange={handleSearch} />
         </InputGroup>
       </Col>
     </Row>

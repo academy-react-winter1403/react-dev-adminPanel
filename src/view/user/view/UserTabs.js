@@ -3,6 +3,14 @@ import { Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 import { User, Lock, Link, BookOpen, Table } from "react-feather";
 import UserCourseList from "./UserCourseList";
 import UserReserveCourse from "./UserReserveCourse";
+import UserCoursesListCard from "../list/UserCoursesListCard";
+import UserComments from "../list/UserComments";
+import { getUserComment } from "../../../@core/services/api/get-api/getUserComment";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addUserCommnetData,
+  changeTotalCount,
+} from "../list/users/store/actions";
 
 // Tabs Components
 // import UserCourseList from "./UserCourseList";
@@ -19,6 +27,22 @@ const UserTabs = ({ active, toggleTab, userDetails }) => {
     { icon: Link, id: "4", title: "سایر اطاعات کاربر" },
   ];
 
+  const { userCommentFilterSlice } = useSelector((state) => state);
+
+  const {
+    PageNumber,
+    RowsOfPage,
+    SortingCol,
+    SortType,
+    Query,
+    Accept,
+    userId,
+  } = userCommentFilterSlice;
+
+  const dispatch = useDispatch();
+
+  const { mutate, data } = getUserComment("userComment");
+
   return (
     <Fragment>
       <Nav pills className="mb-2">
@@ -26,7 +50,33 @@ const UserTabs = ({ active, toggleTab, userDetails }) => {
           <NavItem key={item.id}>
             <NavLink
               active={active === item.id}
-              onClick={() => toggleTab(item.id)}
+              onClick={() => {
+                toggleTab(item.id);
+                console.log(item);
+                if (item.id === "3") {
+                  mutate(
+                    [
+                      "/Course/CommentManagment",
+                      {
+                        PageNumber,
+                        RowsOfPage,
+                        SortingCol,
+                        SortType,
+                        Query,
+                        Accept,
+                        userId,
+                      },
+                    ],
+                    {
+                      onSuccess: (data) => {
+                        console.log("comment data ==>", data);
+                        dispatch(addUserCommnetData(data.comments));
+                        dispatch(changeTotalCount(data.totalCount));
+                      },
+                    }
+                  );
+                }
+              }}
               className="px-1"
             >
               <item.icon className="font-medium-3 me-50" />
@@ -37,14 +87,14 @@ const UserTabs = ({ active, toggleTab, userDetails }) => {
       </Nav>
       <TabContent activeTab={active}>
         <TabPane tabId="1">
-          <UserCourseList />
+          {/* <UserCourseList /> */}
+          <UserCoursesListCard />
         </TabPane>
         <TabPane tabId="2">
           <UserReserveCourse />
         </TabPane>
         <TabPane tabId="3">
-          {/* <UserComments section="Active" />
-          <UserComments section="notActive" /> */}
+          <UserComments />
         </TabPane>
         <TabPane tabId="4" className="mb-4">
           {/* <MoreInfo /> */}

@@ -9,46 +9,39 @@ import {
   Row,
 } from "reactstrap";
 import Avatar from "@components/avatar";
-import { CustomPagination, InputCostume } from "../../../@core/components/common";
+import {
+  CustomPagination,
+  InputCostume,
+} from "../../../@core/components/common";
 import HeadLabelComp from "./HeadLabelComp";
+import { updateSearchParamsHook } from "../../../@core/hooks";
+import { useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  changeUserFilterQuery,
+  changeUserFilterRowsOfPage,
+} from "./users/store/actions";
+import InputGroupButtons from "../../../@core/components/common/InputGroupButtons/InputGroupButtons";
 // import pic from "../../../@core/assets/photos/partial/01.jpg"
 
-export const labelComp = () => {
-  return (
-    <CardHeader>
-      <Row>
-        <Col>
-          <label>کاربر</label>
-        </Col>
-        <Col>
-          <label>کاربر</label>
-        </Col>
-        <Col>
-          <label>کاربر</label>
-        </Col>
-        <Col>
-          <label>کاربر</label>
-        </Col>
-        <Col>
-          <label>کاربر</label>
-        </Col>
-        <Col>
-          <label>کاربر</label>
-        </Col>
-        <Col>
-          <label>کاربر</label>
-        </Col>
-      </Row>
-    </CardHeader>
-  );
-};
-
 const UserTable = ({ pic, fullName, createNewUserHandler }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
   const roleOptions = [
     { value: "", label: "انتخاب کنید" },
     { value: "admin", label: 10 },
     { value: "author", label: 20 },
     { value: "editor", label: 50 },
+  ];
+
+  const headLabelTextArray = [
+    " کاربر ",
+    " نام کاربر ",
+    " نقش ",
+    " ایمیل ",
+    " درصد تکمیل پروفایل ",
+    " وضعبت ",
+    " اقدام ",
   ];
 
   const [value, setValue] = useState({
@@ -57,10 +50,32 @@ const UserTable = ({ pic, fullName, createNewUserHandler }) => {
   });
 
   const changeHandler = (item) => {
+    console.log(item);
     setValue({
       ...value,
       label: item.label,
     });
+    console.log(item);
+    updateSearchParamsHook(
+      setSearchParams,
+      "RowsOfPage",
+      item.label,
+      dispatch,
+      changeUserFilterRowsOfPage
+    );
+  };
+
+  const queryInputChangeHandler = (value) => {
+    console.log(value.target.value);
+    if (value.target.value.length >= 3) {
+      updateSearchParamsHook(
+        setSearchParams,
+        "Query",
+        value.target.value,
+        dispatch,
+        changeUserFilterQuery
+      );
+    }
   };
 
   return (
@@ -84,16 +99,28 @@ const UserTable = ({ pic, fullName, createNewUserHandler }) => {
           <Col className="search-and-btn-control" md="5">
             <Row className="flex flex-row">
               <Col md="8">
-                <Input placeholder="جست و جو..." />
+                {/* <Input
+                  placeholder="جست و جو..."
+                  onChange={queryInputChangeHandler}
+                /> */}
+                <InputGroupButtons
+                  placeholder={"جست و جو..."}
+                  onChange={queryInputChangeHandler}
+                />
+                {/* <input type="text"/> */}
               </Col>
               <Col md="4">
-                <Button color="primary" onClick={createNewUserHandler}>افزودن کاربر جدید</Button>
+                <Button color="primary" onClick={createNewUserHandler}>
+                  افزودن کاربر جدید
+                </Button>
               </Col>
             </Row>
           </Col>
         </Row>
       </CardHeader>
-      <HeadLabelComp />
+      <HeadLabelComp>
+
+      </HeadLabelComp>
     </Card>
   );
 };

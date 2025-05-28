@@ -19,6 +19,8 @@ const EditUserInfo = ({ show, setShow, refetch, submitUserUpdate }) => {
       ...event,
       gender: event.gender === "true" ? true : false,
     });
+
+    console.log(event)
   };
 
   const formFields = [
