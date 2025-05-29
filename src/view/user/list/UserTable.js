@@ -24,7 +24,7 @@ import {
 import InputGroupButtons from "../../../@core/components/common/InputGroupButtons/InputGroupButtons";
 // import pic from "../../../@core/assets/photos/partial/01.jpg"
 
-const UserTable = ({ pic, fullName, createNewUserHandler }) => {
+const UserTable = ({ pic, fullName, createNewUserHandler, btnContentText }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const roleOptions = [
@@ -111,7 +111,7 @@ const UserTable = ({ pic, fullName, createNewUserHandler }) => {
               </Col>
               <Col md="4">
                 <Button color="primary" onClick={createNewUserHandler}>
-                  افزودن کاربر جدید
+                  {btnContentText}
                 </Button>
               </Col>
             </Row>

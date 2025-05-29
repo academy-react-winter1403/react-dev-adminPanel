@@ -40,7 +40,7 @@ const Export = ({
           return (
             <tr
               key={index}
-              onClick={() => onRowClick(item.id)}
+              onClick={() => onRowClick(item)}
             >
               {hasImage ? (
                 <>

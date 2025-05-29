@@ -22,6 +22,7 @@ import { getData } from "../../../../@core/services/api";
 import { useEffect, useState } from "react";
 import ButtonAction from "../../../../@core/components/common/ButtonAction/ButtonAction";
 import ModalForm from "../../../../@core/components/common/modals/ModalForm";
+import { paginationCalculator } from "../../../../@core/hooks";
 
 const AddCatgory = () => {
   const headers = ["عنوان دسته ها", "تاریخ", "وضعیت"];
@@ -30,6 +31,7 @@ const AddCatgory = () => {
   // const [totalCount, setTotalCount] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentData, setCurrentData] = useState(null);
   // get data
 
   const { data, isLoading } = getData(
@@ -37,12 +39,24 @@ const AddCatgory = () => {
     "/News/GetListNewsCategory"
   );
 
+  // const paginationCalculator = (data, pageNumber, rowsOfPage) => {
+  //   const startIndex = pageNumber * rowsOfPage;
+  //   const endIndex = startIndex + rowsOfPage;
+  //   const currentData = data.slice(startIndex, endIndex);
+  //   return currentData;
+  // };
+
   useEffect(() => {
+    setCurrentPage(0);
     if (!isLoading && data) {
       setDataCategory(data);
+      setCurrentData(paginationCalculator(data, currentPage, RowsOfPage))
     }
-    setCurrentPage(0);
   }, [isLoading, data]);
+
+  if (currentData) {
+    console.log("currentData ==>", currentData)
+  }
 
   // searchQuery
 
@@ -56,16 +70,22 @@ const AddCatgory = () => {
   };
 
   // Pagination
-  const startIndex = currentPage * RowsOfPage;
-  const endIndex = startIndex + RowsOfPage;
-  const currentData = filteredData.slice(startIndex, endIndex);
-  console.log(currentData);
+
+  // const startIndex = currentPage * RowsOfPage;
+  // const endIndex = startIndex + RowsOfPage;
+  // const currentData = filteredData.slice(startIndex, endIndex);
+  // console.log(currentData);
 
   //select page
 
   const changeSelectRowsOfPage = (SelectNumber) => {
     setRowsOfPage(SelectNumber.label);
     setCurrentPage(0);
+  };
+
+  const changePageHandler = (page) => {
+    setCurrentPage(page);
+    setCurrentData(paginationCalculator(data, currentPage, RowsOfPage))
   };
 
   return (
@@ -89,26 +109,26 @@ const AddCatgory = () => {
                 <InputGroupButtons SearchQuery={changeSearchQuery} />
               </div>
               <div className="demo-inline-spacing mb-1">
-              <ModalForm title={"افزودن دسته بندی"}/>
+                <ModalForm title={"افزودن دسته بندی"} />
               </div>
             </div>
           </CardHeader>
           <CardBody>
-            <Export
+            {currentData && <Export
               headers={headers}
               hasImage={false}
               dataMap={currentData}
               fieldKeys={["insertDate"]}
               titleField="categoryName"
               Btn={<ButtonAction />}
-            />
+            />}
           </CardBody>
           <CardFooter>
             <div className="d-flex justify-content-center">
               <SeparatedPagination
                 RowsOfPage={RowsOfPage}
                 totalCount={filteredData.length}
-                changePageNumber={(page) => setCurrentPage(page)}
+                changePageNumber={(page) => changePageHandler(page)}
               />
             </div>
           </CardFooter>

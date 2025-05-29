@@ -45,13 +45,25 @@ const NewsDetails = lazy(() =>
 const AddNews = lazy(() => import("../../view/news/addNews/list/AddNews"));
 const Comments = lazy(() => import("../../view/comments/list/Comments"));
 
-const CourseManagement = lazy(() => import("../../view/courses/list/CourseManagement"));
-const CreateCourse = lazy(() => import("../../view/courses/createCourse/list/CreateCourse"));
+// <<<<<<< HEAD
+// const CourseManagement = lazy(() => import("../../view/courses/list/CourseManagement"));
+// const CreateCourse = lazy(() => import("../../view/courses/createCourse/list/CreateCourse"));
 // const BlogManagement = lazy(() => import('../../view/news/list/BlogManagement'))
 // const AddCatgory = lazy(() => import('../../view/news/addCatgory/list/AddCatgory'))
 // const NewsDetails = lazy(() => import('./../../view/news/NewsDetails/list/NewsDetails'))
 // const WizardHorizontal = lazy(() => import('../../@core/components/common/wizard/WizardHorizontal'))
-const Dashboard = lazy(() => import("../../view/dashboard/index"))
+const Dashboard = lazy(() => import("../../view/dashboard/index"));
+// =======
+const CourseManagement = lazy(() =>
+  import("../../view/courseManagement/list/CourseManagement")
+);
+const CreateCourse = lazy(() =>
+  import("../../view/courseManagement/createCourse/list/CreateCourse")
+);
+const ClassesListWrapper = lazy(() =>
+  import("../../view/courseManagement/view/ClassesListWrapper")
+);
+// >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
 
 // ** Merge Routes
 const Routes = [
@@ -87,6 +99,14 @@ const Routes = [
   {
     path: "/createCourse",
     element: <CreateCourse />,
+  },
+  {
+    path: "/classesList",
+    element: <ClassesListWrapper />,
+    access: ["Administrator"],
+    // meta: {
+    //   layout: "blank",
+    // },
   },
   { path: "/listComments", element: <Comments /> },
   {

@@ -27,6 +27,8 @@ import { getTeacherList } from "./get-api/getTiacherList";
 import { getCourseReservData } from "./get-api/getCourseReservData";
 import { getUserListData } from "./get-api/getUserListData";
 import { getCourseListData } from "./get-api/getCourseListData";
+import { getClasseListData } from "./get-api/getClassesListData";
+import { getDeparmentData } from "./get-api/getDepartmentData";
 
 export {
   getData,
@@ -50,6 +52,8 @@ export {
   getUserListData,
   getCourseListData,
   usePutData,
-  getNewsDetailData
+  getNewsDetailData,
+  getClasseListData,
+  getDeparmentData
 };
 // >>>>>>> 4c3cb5376a24b28a724db4f5500ebde5651b6617

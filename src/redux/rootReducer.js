@@ -7,8 +7,9 @@ import NewsListFilterSlice from "../view/news/store/NewsListFilterSlice";
 import allDataNewsSlice from "../view/news/store/allDataNewsSlice";
 import allDataAddNews from "../view/news/addNews/store/allDataAddNews";
 import NewDetailSlice from "../view/news/NewsDetails/store/NewDetailSlice";
-import CourseListFilterSlice from "../view/courses/store/CourseListFilterSlice";
-import allDataCourseSlice from "../view/courses/store/allDataCourseSlice";
+// <<<<<<< HEAD
+// import CourseListFilterSlice from "../view/courses/store/CourseListFilterSlice";
+// import allDataCourseSlice from "../view/courses/store/allDataCourseSlice";
 import userInformationSlice from "../view/user/list/users/store/userInformationSlice";
 import userCommentFilterSlice from "../view/user/list/users/store/userCommentFilterSlice";
 import userCommentSlice from "../view/user/list/users/store/userCommentSlice";
@@ -17,6 +18,11 @@ import commentManagementSlice from "../view/partialSlice/commentManagementSlice"
 import teacherListSlice from "../view/dashboard/store/theacherListSlice"
 import courseReservListSlice from "../view/dashboard/store/courseReservListSlice"
 import courseListSlice from "../view/dashboard/store/courseListSlice"
+// =======
+import CourseListFilterSlice from "../view/courseManagement/store/CourseListFilterSlice";
+import allDataCourseSlice from "../view/courseManagement/store/allDataCourseSlice";
+import classesListSlice from "../view/courseManagement/store/classesListSlice"
+// >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
 
 const rootReducer = {
   navbar,
@@ -36,7 +42,8 @@ const rootReducer = {
   commentManagementSlice,
   teacherListSlice,
   courseReservListSlice,
-  courseListSlice
+  courseListSlice,
+  classesListSlice
 };
 
 export default rootReducer;

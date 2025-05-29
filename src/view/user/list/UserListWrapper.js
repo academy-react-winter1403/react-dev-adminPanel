@@ -150,7 +150,7 @@ const UserListWrapper = () => {
   return (
     <Card className="overflow-hidden p-0">
       <div className="react-dataTable">
-        <UserTable createNewUserHandler={createNewUserHandler} />
+        <UserTable createNewUserHandler={createNewUserHandler} btnContentText={"افزودن کاربر جدید"}/>
         <table className="flex flex-row table table-hover">
           <tbody>
             {isLoading ? (
