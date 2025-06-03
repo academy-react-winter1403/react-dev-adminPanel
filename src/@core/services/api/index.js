@@ -29,6 +29,14 @@ import { getUserListData } from "./get-api/getUserListData";
 import { getCourseListData } from "./get-api/getCourseListData";
 import { getClasseListData } from "./get-api/getClassesListData";
 import { getDeparmentData } from "./get-api/getDepartmentData";
+import { getClasesRoomDataWithId } from "./get-api/getClasesRoomDataWithId";
+import { useUpdateClasesRoom } from "./put-api/useUpdateClasesRoom";
+import { getBuildingData } from "./get-api/getBuildingData";
+import { getDepartmentDataWithId } from "./get-api/getDepartmentDataWithId";
+import { createClasesRoomPost } from "./post-api/createLasesRoomPost";
+import { useUpdateListOfSections } from "./put-api/useUpdateListOfSections";
+import { useDepartmentPost } from "./post-api/useDepartmentPost";
+import { useGetTermList } from "./get-api/useGetTermList";
 
 export {
   getData,
@@ -54,6 +62,14 @@ export {
   usePutData,
   getNewsDetailData,
   getClasseListData,
-  getDeparmentData
+  getDeparmentData,
+  getClasesRoomDataWithId,
+  useUpdateClasesRoom,
+  getBuildingData,
+  getDepartmentDataWithId,
+  createClasesRoomPost,
+  useUpdateListOfSections,
+  useDepartmentPost,
+  useGetTermList
 };
 // >>>>>>> 4c3cb5376a24b28a724db4f5500ebde5651b6617

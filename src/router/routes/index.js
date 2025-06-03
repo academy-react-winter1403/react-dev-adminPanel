@@ -63,6 +63,8 @@ const CreateCourse = lazy(() =>
 const ClassesListWrapper = lazy(() =>
   import("../../view/courseManagement/view/ClassesListWrapper")
 );
+const ListOfSectionsWrapper = lazy(() => import("../../view/courseManagement/view/ListOfSectionsWrapper"))
+const TermListWrapper = lazy(() => import("../../view/courseManagement/view/TermListWrapper"))
 // >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
 
 // ** Merge Routes
@@ -104,9 +106,16 @@ const Routes = [
     path: "/classesList",
     element: <ClassesListWrapper />,
     access: ["Administrator"],
-    // meta: {
-    //   layout: "blank",
-    // },
+  },
+  {
+    path: "/ListOfSections",
+    element: <ListOfSectionsWrapper />,
+    access: ["Administrator"],
+  },
+    {
+    path: "/termList",
+    element: <TermListWrapper />,
+    access: ["Administrator"],
   },
   { path: "/listComments", element: <Comments /> },
   {

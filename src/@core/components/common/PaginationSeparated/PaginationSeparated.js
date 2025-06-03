@@ -3,7 +3,7 @@ import ReactPaginate from "react-paginate";
 
 const SeparatedPagination = ({changePageNumber,totalCount,RowsOfPage}) => {
   const totalPages = Math.ceil(totalCount / RowsOfPage)
-  console.log(totalPages)
+  // console.log(totalPages)
   const handlePagination = (pageNumber) => {
     changePageNumber(pageNumber)
   }

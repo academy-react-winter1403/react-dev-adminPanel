@@ -9,7 +9,7 @@ const ButtonAction = () => {
           <MoreVertical size={14} className="cursor-pointer" />
         </DropdownToggle>
         <DropdownMenu>
-          {/* <DropdownItem
+          <DropdownItem
             // tag={Link}
             className="w-100"
             // to={`/apps/user/view/${row.id}`}
@@ -17,7 +17,7 @@ const ButtonAction = () => {
           >
             <FileText size={14} className="me-50" />
             <span className="align-middle">Details</span>
-          </DropdownItem> */}
+          </DropdownItem>
           <DropdownItem
             tag="a"
             href="/"

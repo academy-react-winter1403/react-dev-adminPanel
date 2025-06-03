@@ -22,6 +22,10 @@ import courseListSlice from "../view/dashboard/store/courseListSlice"
 import CourseListFilterSlice from "../view/courseManagement/store/CourseListFilterSlice";
 import allDataCourseSlice from "../view/courseManagement/store/allDataCourseSlice";
 import classesListSlice from "../view/courseManagement/store/classesListSlice"
+import departmentSlice  from "../view/courseManagement/store/departmentSlice";
+import buildingListSlice from "../view/courseManagement/store/buildingListSlice";
+import buildingSlice from "../view/partialSlice/buildingSlice";
+import termListSlice from "../view/courseManagement/store/TermListSlice";
 // >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
 
 const rootReducer = {
@@ -43,7 +47,11 @@ const rootReducer = {
   teacherListSlice,
   courseReservListSlice,
   courseListSlice,
-  classesListSlice
+  classesListSlice,
+  departmentSlice,
+  buildingListSlice,
+  buildingSlice,
+  termListSlice
 };
 
 export default rootReducer;

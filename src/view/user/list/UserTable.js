@@ -22,13 +22,23 @@ import {
   changeUserFilterRowsOfPage,
 } from "./users/store/actions";
 import InputGroupButtons from "../../../@core/components/common/InputGroupButtons/InputGroupButtons";
+import { SortType } from "../../../@core/constants/filters/Filters";
+import SelectReact from "../../../@core/components/common/Selection/Selection";
 // import pic from "../../../@core/assets/photos/partial/01.jpg"
 
-const UserTable = ({ pic, fullName, createNewUserHandler, btnContentText }) => {
+const UserTable = ({
+  pic,
+  fullName,
+  createNewUserHandler,
+  btnContentText,
+  inputOptionClick,
+  changeSearchInput,
+  addBtnClick
+}) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
-  const roleOptions = [
-    { value: "", label: "انتخاب کنید" },
+  const rowOfPageOption = [
+    // { value: "", label: "انتخاب کنید" },
     { value: "admin", label: 10 },
     { value: "author", label: 20 },
     { value: "editor", label: 50 },
@@ -52,10 +62,10 @@ const UserTable = ({ pic, fullName, createNewUserHandler, btnContentText }) => {
   const changeHandler = (item) => {
     console.log(item);
     setValue({
-      ...value,
+      value: "",
       label: item.label,
     });
-    console.log(item);
+    console.log(value);
     updateSearchParamsHook(
       setSearchParams,
       "RowsOfPage",
@@ -78,49 +88,57 @@ const UserTable = ({ pic, fullName, createNewUserHandler, btnContentText }) => {
     }
   };
 
+  const inputChangeHandler = (value) => {
+    changeSearchInput(value.target.value);
+  };
+
+  const changeSelectActive = (value) => {
+    inputOptionClick(value);
+  };
+
   return (
     <Card className="h-auto p-0">
       <CardHeader className="w-100 h-auto flex flex-row">
-        <Row className="w-100 flex-row justify-content-between">
+        <div
+          className="w-100"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
           <Col md="2">
             <Row className="flex flex-row align-items-center">
               <Col md="2">
                 <label>نمایش</label>
               </Col>
               <Col md="8">
-                <InputCostume
-                  option={roleOptions}
-                  value={value}
-                  onChange={changeHandler}
+                <SelectReact
+                  SelectFilter={rowOfPageOption}
+                  changeSelect={changeSelectActive}
                 />
               </Col>
             </Row>
           </Col>
-          <Col className="search-and-btn-control" md="5">
-            <Row className="flex flex-row">
-              <Col md="8">
-                {/* <Input
-                  placeholder="جست و جو..."
-                  onChange={queryInputChangeHandler}
-                /> */}
-                <InputGroupButtons
-                  placeholder={"جست و جو..."}
-                  onChange={queryInputChangeHandler}
-                />
-                {/* <input type="text"/> */}
-              </Col>
-              <Col md="4">
-                <Button color="primary" onClick={createNewUserHandler}>
-                  {btnContentText}
-                </Button>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+          <div className="d-flex gap-1">
+            <div className="mt-2">
+              <InputGroupButtons
+                // onChange={(event) => {
+                //   inputChangeHandler(event), queryInputChangeHandler(event);
+                // }}
+                onChange={inputChangeHandler}
+              />
+            </div>
+            <div
+              className="demo-inline-spacing mb-1"
+              // onClick={() => navigate("")}
+            >
+              <Button.Ripple color="primary" onClick={addBtnClick}>{btnContentText}</Button.Ripple>
+            </div>
+          </div>
+        </div>
       </CardHeader>
-      <HeadLabelComp>
-
-      </HeadLabelComp>
+      <HeadLabelComp></HeadLabelComp>
     </Card>
   );
 };

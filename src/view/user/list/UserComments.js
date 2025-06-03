@@ -256,12 +256,6 @@ const UserComments = () => {
             gap: "6px",
           }}
         >
-          <label> فیلتر براساس : </label>
-          <InputCostume
-            option={inputSortOption}
-            value={inputSortValue}
-            onChange={inputSortChangeHandler}
-          />
         </div>
 
         <div

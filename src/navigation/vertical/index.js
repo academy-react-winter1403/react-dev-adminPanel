@@ -84,6 +84,19 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/classesList",
       },
+      {
+        id: "ListOfSections",
+        title: " لیست بخش ها  ",
+        icon: <Circle size={20} />,
+        navLink: "/ListOfSections",
+      },
+      {
+        id: "ListOfSections",
+        title: " لیست  ترم ها  ",
+        icon: <Circle size={20} />,
+        navLink: "/termList",
+      },
+      
     ],
   },
   {
