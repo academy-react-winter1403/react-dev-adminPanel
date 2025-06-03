@@ -37,6 +37,8 @@ import { createClasesRoomPost } from "./post-api/createLasesRoomPost";
 import { useUpdateListOfSections } from "./put-api/useUpdateListOfSections";
 import { useDepartmentPost } from "./post-api/useDepartmentPost";
 import { useGetTermList } from "./get-api/useGetTermList";
+import { createTermPost } from "./post-api/createTermPost";
+import { updateTerm } from "./put-api/updateTerm";
 
 export {
   getData,
@@ -70,6 +72,8 @@ export {
   createClasesRoomPost,
   useUpdateListOfSections,
   useDepartmentPost,
-  useGetTermList
+  useGetTermList,
+  createTermPost,
+  updateTerm
 };
 // >>>>>>> 4c3cb5376a24b28a724db4f5500ebde5651b6617

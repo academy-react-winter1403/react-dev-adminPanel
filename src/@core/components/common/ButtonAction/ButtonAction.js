@@ -1,7 +1,19 @@
-import { Archive, Edit, FileText, MoreVertical, Trash, Trash2 } from "react-feather";
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
+import {
+  Archive,
+  Edit,
+  FileText,
+  MoreVertical,
+  Trash,
+  Trash2,
+} from "react-feather";
+import {
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+  UncontrolledDropdown,
+} from "reactstrap";
 
-const ButtonAction = () => {
+const ButtonAction = ({ dataArray, itemClickHandle }) => {
   return (
     <div className="column-action">
       <UncontrolledDropdown>
@@ -9,24 +21,20 @@ const ButtonAction = () => {
           <MoreVertical size={14} className="cursor-pointer" />
         </DropdownToggle>
         <DropdownMenu>
-          <DropdownItem
-            // tag={Link}
-            className="w-100"
-            // to={`/apps/user/view/${row.id}`}
-            // onClick={() => store.dispatch(getUser(row.id))}
-          >
-            <FileText size={14} className="me-50" />
-            <span className="align-middle">Details</span>
-          </DropdownItem>
-          <DropdownItem
-            tag="a"
-            href="/"
-            className="w-100"
-            // onClick={(e) => e.preventDefault()}
-          >
-            <Archive size={14} className="me-50" />
-            <span className="align-middle">ادیت</span>
-          </DropdownItem>
+          {dataArray.map((item, index) => {
+            return (
+              <DropdownItem
+                className="w-100"
+                onClick={() => itemClickHandle(item)}
+                key={index}
+              >
+                <span>
+                  {item.icon}
+                </span>
+                <span className="align-middle">{item.title}</span>
+              </DropdownItem>
+            );
+          })}
         </DropdownMenu>
       </UncontrolledDropdown>
     </div>

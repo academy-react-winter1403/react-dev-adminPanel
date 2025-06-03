@@ -33,7 +33,9 @@ const UserTable = ({
   btnContentText,
   inputOptionClick,
   changeSearchInput,
-  addBtnClick
+  addBtnClick,
+  secondBtnTextContent,
+  secondBtnClick
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
@@ -133,7 +135,14 @@ const UserTable = ({
               className="demo-inline-spacing mb-1"
               // onClick={() => navigate("")}
             >
-              <Button.Ripple color="primary" onClick={addBtnClick}>{btnContentText}</Button.Ripple>
+              <Button.Ripple color="primary" onClick={addBtnClick}>
+                {btnContentText}
+              </Button.Ripple>
+              {secondBtnTextContent && (
+                <Button.Ripple color="primary" onClick={secondBtnClick}>
+                  {secondBtnTextContent}
+                </Button.Ripple>
+              )}
             </div>
           </div>
         </div>
