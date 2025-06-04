@@ -78,7 +78,9 @@ const CourseStatusManagerWrapper = lazy(() =>
 const CourseLevelManagerWrapper = lazy(() =>
   import("../../view/courseManagement/view/CourseLevelManagerWrapper")
 );
-const YourTimeFrameWrapper = lazy(() => import("../../view/timeIntervalManagement/view/YourTimeFrameWrapper"))
+const YourTimeFrameWrapper = lazy(() =>
+  import("../../view/timeIntervalManagement/view/YourTimeFrameWrapper")
+);
 // >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
 
 // ** Merge Routes
@@ -148,7 +150,6 @@ const Routes = [
     element: <YourTimeFrameWrapper />,
     access: ["Administrator"],
   },
-  
   { path: "/listComments", element: <Comments /> },
   {
     path: "/login",

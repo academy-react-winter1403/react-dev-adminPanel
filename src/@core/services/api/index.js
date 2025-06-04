@@ -50,6 +50,7 @@ import { createStatusPost } from "./post-api/createStatus";
 import { getLevelData } from "./get-api/getLevelData";
 import { createLevelPost } from "./post-api/createLevelPost";
 import { updateLevel } from "./put-api/updateLevel";
+import { getStoreListData } from "./get-api/getStoreListData";
 
 export {
   getData,
@@ -96,6 +97,7 @@ export {
   createStatusPost,
   getLevelData,
   createLevelPost,
-  updateLevel
+  updateLevel,
+  getStoreListData
 };
 // >>>>>>> 4c3cb5376a24b28a724db4f5500ebde5651b6617

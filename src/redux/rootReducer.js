@@ -57,7 +57,7 @@ const rootReducer = {
   termListSlice,
   technologiDataSlice,
   statusDataSlice,
-  levelDataSlice
+  levelDataSlice,
 };
 
 export default rootReducer;

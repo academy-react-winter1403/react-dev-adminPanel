@@ -125,9 +125,6 @@ const UserTable = ({
           <div className="d-flex gap-1">
             <div className="mt-2">
               <InputGroupButtons
-                // onChange={(event) => {
-                //   inputChangeHandler(event), queryInputChangeHandler(event);
-                // }}
                 onChange={inputChangeHandler}
               />
             </div>

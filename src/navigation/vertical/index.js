@@ -129,7 +129,7 @@ export default [
         icon: <Circle size={20} />,
         navLink: "/yourTimeFrame",
       },
-    ]
+    ],
   },
   {
     id: "Comments",
