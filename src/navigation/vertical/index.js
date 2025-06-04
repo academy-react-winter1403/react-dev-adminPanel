@@ -118,6 +118,20 @@ export default [
     ],
   },
   {
+    id: "timeIntervalManagement",
+    title: "مدیریت بازه های زمانی",
+    icon: <FileText size={20} />,
+    navLink: "/timeIntervalManagement",
+    children: [
+      {
+        id: "yourTimeFrame",
+        title: "بازه زمانی شما",
+        icon: <Circle size={20} />,
+        navLink: "/yourTimeFrame",
+      },
+    ]
+  },
+  {
     id: "Comments",
     title: "مدیریت کامنت ها",
     icon: <FileText size={20} />,
