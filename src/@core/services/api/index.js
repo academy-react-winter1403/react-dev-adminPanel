@@ -39,6 +39,17 @@ import { useDepartmentPost } from "./post-api/useDepartmentPost";
 import { useGetTermList } from "./get-api/useGetTermList";
 import { createTermPost } from "./post-api/createTermPost";
 import { updateTerm } from "./put-api/updateTerm";
+import { createTermDate } from "./post-api/createTermDate";
+import { updateTermDate } from "./put-api/updateTermDate";
+import { getTechnologiData } from "./get-api/getTechnologiData";
+import { createTechnologi } from "./post-api/createTechnologi";
+import { updateTechnologi } from "./put-api/updateTechnologi";
+import { getStatusData } from "./get-api/getSatusData";
+import { updateStatus } from "./put-api/updateStatus";
+import { createStatusPost } from "./post-api/createStatus";
+import { getLevelData } from "./get-api/getLevelData";
+import { createLevelPost } from "./post-api/createLevelPost";
+import { updateLevel } from "./put-api/updateLevel";
 
 export {
   getData,
@@ -74,6 +85,17 @@ export {
   useDepartmentPost,
   useGetTermList,
   createTermPost,
-  updateTerm
+  updateTerm,
+  createTermDate,
+  updateTermDate,
+  getTechnologiData,
+  createTechnologi,
+  updateTechnologi,
+  getStatusData,
+  updateStatus,
+  createStatusPost,
+  getLevelData,
+  createLevelPost,
+  updateLevel
 };
 // >>>>>>> 4c3cb5376a24b28a724db4f5500ebde5651b6617

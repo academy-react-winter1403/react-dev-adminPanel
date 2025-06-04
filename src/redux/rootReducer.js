@@ -26,6 +26,9 @@ import departmentSlice  from "../view/courseManagement/store/departmentSlice";
 import buildingListSlice from "../view/courseManagement/store/buildingListSlice";
 import buildingSlice from "../view/partialSlice/buildingSlice";
 import termListSlice from "../view/courseManagement/store/TermListSlice";
+import technologiDataSlice from "../view/courseManagement/store/technologiDataSlice";
+import statusDataSlice from "../view/courseManagement/store/statusDataSlice";
+import levelDataSlice from "../view/courseManagement/store/levelDataSlice";
 // >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
 
 const rootReducer = {
@@ -51,7 +54,10 @@ const rootReducer = {
   departmentSlice,
   buildingListSlice,
   buildingSlice,
-  termListSlice
+  termListSlice,
+  technologiDataSlice,
+  statusDataSlice,
+  levelDataSlice
 };
 
 export default rootReducer;

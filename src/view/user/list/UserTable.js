@@ -99,8 +99,8 @@ const UserTable = ({
   };
 
   return (
-    <Card className="h-auto p-0">
-      <CardHeader className="w-100 h-auto flex flex-row">
+    <Card className="h-auto p-0 mb-0">
+      <CardHeader className="w-100 h-auto flex flex-row mb-0">
         <div
           className="w-100"
           style={{

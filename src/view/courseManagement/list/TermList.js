@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import TermReport from "./TermReport";
 import Export from "../../../@core/components/common/Export/Export";
 import {
+  createTermDate,
   createTermPost,
   getDeparmentData,
   updateTerm,
+  updateTermDate,
   useGetTermList,
 } from "../../../@core/services/api";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,6 +39,7 @@ const TermList = () => {
   const { termList } = termListSlice;
   const { departmentSliceData } = departmentSlice;
   const [fullData, setFullData] = useState("");
+  const [searchData, setSearchData] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
   const [rowsOfPage, setRowsOfPage] = useState(12);
   const [modalFlag, setModalFlag] = useState(false);
@@ -58,8 +61,6 @@ const TermList = () => {
   if (!isLoading) {
     dispatch(addDataToDepartmentSlice(data));
   }
-
-  //   console.log("departmentSliceData ==>", departmentSliceData)
 
   // header data
   const headerData = [
@@ -88,6 +89,16 @@ const TermList = () => {
     dispatch(addDataToTermList(termListData));
   }
 
+  console.log("searchData ==>", searchData)
+
+  // handle search
+  const searchHandler = (searchValue) => {
+    const filterData = searchData.filter(
+      el => el.termName.indexOf(searchValue) !== -1
+    );
+    setFullData(filterData);
+  };
+
   // change
   const changeData = () => {
     let startDate;
@@ -103,6 +114,7 @@ const TermList = () => {
     });
     let paginationData = paginationCalculator(data, pageNumber, rowsOfPage);
     setFullData(paginationData);
+    setSearchData(paginationData);
   };
 
   useEffect(() => {
@@ -157,14 +169,43 @@ const TermList = () => {
     }
   };
 
+  const { mutate: updateTermDateMutate } = updateTermDate("updateTermDate");
+  const { mutate: createTermDateMutate } = createTermDate("createTermDatePost");
   const form2SubmitHandler = (values) => {
-    // if () {
-
-    // }
+    let dataObj = {
+      startCloseDate: values.startDate,
+      endCloseDate: values.endDate,
+      termId: values.termId,
+      closeReason: values.closeReason,
+    };
+    if (modalBtnText === "تایید") {
+      const id = JSON.stringify(termFormData.id);
+      dataObj = { ...dataObj, id: id };
+      console.log(dataObj);
+      updateTermDateMutate(["/Term/UpdateTermCloseDate", dataObj], {
+        onSuccess: (data) => {
+          toast.success(data.message);
+          termGetDataRefetch();
+          setTermCloseDateFormShowFlag(false);
+        },
+        // onError: (error) => {
+        //     toast.error(error.message)
+        // }
+      });
+    } else {
+      createTermDateMutate(["/Term/AddTermCloseDate", dataObj], {
+        onSuccess: (data) => {
+          toast.success(data.message);
+          termGetDataRefetch();
+          setTermCloseDateFormShowFlag(false);
+        },
+      });
+    }
     console.log(values);
   };
 
   const editeBtnClickHandler = (item) => {
+    // setTermFormData(item)
     console.log("item ==>", item);
     if (item.title === "ویرایش") {
       setModalFlag(!modalFlag);
@@ -196,7 +237,7 @@ const TermList = () => {
             <UserTable
               createNewUserHandler={""}
               btnContentText={"افزودن ترم"}
-              // changeSearchInput={searchHandler}
+              changeSearchInput={searchHandler}
               inputOptionClick={(inputValue) => setRowsOfPage(inputValue.label)}
               addBtnClick={() => {
                 setModalFlag(!modalFlag);
@@ -269,6 +310,7 @@ const TermList = () => {
             btnTextContent={modalBtnText}
             formSubmitHandle={form2SubmitHandler}
             formData={termFormData}
+            termList={termList}
           />
         </Card>
       </div>

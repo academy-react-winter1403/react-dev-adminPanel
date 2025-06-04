@@ -65,6 +65,7 @@ export default [
     id: "CourseManagement",
     title: "مدیریت دوره ها",
     icon: <BookOpen size={20} />,
+    navLink: "CourseManagement",
     children: [
       {
         id: "CourseList",
@@ -79,6 +80,24 @@ export default [
         navLink: "/createCourse",
       },
       {
+        id: "courseTechnologiManager",
+        title: "مدیریت تکنولوژی دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courseTechnologiManager",
+      },
+      {
+        id: "courseStatusManager",
+        title: "مدیریت وضعیت دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courseStatusManager",
+      },
+      {
+        id: "courseLevelManager",
+        title: "مدیریت سطح دوره ها",
+        icon: <Circle size={20} />,
+        navLink: "/courseLevelManager",
+      },
+      {
         id: "classesList",
         title: " لیست کلاس ها ",
         icon: <Circle size={20} />,
@@ -91,12 +110,11 @@ export default [
         navLink: "/ListOfSections",
       },
       {
-        id: "ListOfSections",
+        id: "termList",
         title: " لیست  ترم ها  ",
         icon: <Circle size={20} />,
         navLink: "/termList",
       },
-      
     ],
   },
   {

@@ -63,8 +63,21 @@ const CreateCourse = lazy(() =>
 const ClassesListWrapper = lazy(() =>
   import("../../view/courseManagement/view/ClassesListWrapper")
 );
-const ListOfSectionsWrapper = lazy(() => import("../../view/courseManagement/view/ListOfSectionsWrapper"))
-const TermListWrapper = lazy(() => import("../../view/courseManagement/view/TermListWrapper"))
+const ListOfSectionsWrapper = lazy(() =>
+  import("../../view/courseManagement/view/ListOfSectionsWrapper")
+);
+const TermListWrapper = lazy(() =>
+  import("../../view/courseManagement/view/TermListWrapper")
+);
+const CourseTehcnologiManagerWrapper = lazy(() =>
+  import("../../view/courseManagement/view/CourseTehcnologiManagerWrapper")
+);
+const CourseStatusManagerWrapper = lazy(() =>
+  import("../../view/courseManagement/view/CourseStatusManagerWrapper")
+);
+const CourseLevelManagerWrapper = lazy(() =>
+  import("../../view/courseManagement/view/CourseLevelManagerWrapper")
+);
 // >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
 
 // ** Merge Routes
@@ -103,6 +116,18 @@ const Routes = [
     element: <CreateCourse />,
   },
   {
+    path: "/courseTechnologiManager",
+    element: <CourseTehcnologiManagerWrapper />,
+  },
+  {
+    path: "/courseStatusManager",
+    element: <CourseStatusManagerWrapper />,
+  },
+  {
+    path: "/courseLevelManager",
+    element: <CourseLevelManagerWrapper />,
+  },
+  {
     path: "/classesList",
     element: <ClassesListWrapper />,
     access: ["Administrator"],
@@ -112,7 +137,7 @@ const Routes = [
     element: <ListOfSectionsWrapper />,
     access: ["Administrator"],
   },
-    {
+  {
     path: "/termList",
     element: <TermListWrapper />,
     access: ["Administrator"],

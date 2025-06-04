@@ -17,6 +17,7 @@ import DateObject from "react-date-object";
 import gregorian_en from "react-date-object/locales/gregorian_en";
 import gregorian from "react-date-object/calendars/gregorian";
 import * as yup from "yup";
+import { useState } from "react";
 
 const TermCloseDateForm = ({
   isOpen,
@@ -27,9 +28,12 @@ const TermCloseDateForm = ({
   formSubmitHandle,
   termFieldFlag,
   formData,
+  termList,
 }) => {
+  const [termId, setTermId] = useState(null);
   const initialValues = {
     termName: formData ? formData.termName : "",
+    termId: termId ? termId.id : "",
     departmentId: formData ? formData.departmentId : "",
     startDate: formData ? formData.startDate : "",
     closeReason: formData ? formData.closeReason : "",
@@ -38,7 +42,7 @@ const TermCloseDateForm = ({
 
   const validation = yup.object({
     termName: yup.string().required("این فیلد اجباریست"),
-    departmentId: yup.string().required("این فیلد اجباریست"),
+    // departmentId: yup.string().required("این فیلد اجباریست"),
     startDate: yup.string().required("این فیلد اجباریست"),
     closeReason: yup.string().required("این فیلد اجباریست"),
     endDate: yup.string().required("این فیلد اجباریست"),
@@ -79,13 +83,27 @@ const TermCloseDateForm = ({
                   نام ترم
                 </Label>
                 <Input
-                  id="closeReason"
+                  type="select"
+                  id="termName"
                   placeholder="نام ترم"
-                  name="closeReason"
+                  name="termName"
                   onChange={formik.handleChange}
-                  value={formik.values.closeReason}
-                  invalid={!!formik.errors.closeReason}
-                />
+                  value={formik.values.termName}
+                  invalid={!!formik.errors.termName}
+                >
+                  <option value="">انتخاب کنید</option>
+                  {termList?.map((item) => {
+                    return (
+                      <option
+                        key={item.id}
+                        value={item.termName}
+                        onClick={() => setTermId(item)}
+                      >
+                        {item.termName}
+                      </option>
+                    );
+                  })}
+                </Input>
                 <FormFeedback>{formik.errors.closeReason}</FormFeedback>
               </Col>
             )}
@@ -94,14 +112,14 @@ const TermCloseDateForm = ({
                 دلیل بسته بودن
               </Label>
               <Input
-                id="termName"
+                id="closeReason"
                 placeholder="دلیل بسته بودن"
-                name="termName"
+                name="closeReason"
                 onChange={formik.handleChange}
-                value={formik.values.termName}
-                invalid={!!formik.errors.termName}
+                value={formik.values.closeReason}
+                invalid={!!formik.errors.closeReason}
               />
-              <FormFeedback>{formik.errors.termName}</FormFeedback>
+              <FormFeedback>{formik.errors.closeReason}</FormFeedback>
             </Col>
             <Col md="6" className="mb-1">
               <Label className="form-label" for="startDate">
