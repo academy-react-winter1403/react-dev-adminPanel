@@ -29,6 +29,9 @@ import termListSlice from "../view/courseManagement/store/TermListSlice";
 import technologiDataSlice from "../view/courseManagement/store/technologiDataSlice";
 import statusDataSlice from "../view/courseManagement/store/statusDataSlice";
 import levelDataSlice from "../view/courseManagement/store/levelDataSlice";
+import workDataSlice from "../view/courseManagement/store/workDdataSlice";
+import assistanceWorkDataSlice from "../view/courseManagement/store/assistanceWorkDataSlice";
+import allCourseAdminDataSlice from "../view/courseManagement/store/allCourseAdminDataSlice";
 // >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
 
 const rootReducer = {
@@ -57,7 +60,10 @@ const rootReducer = {
   termListSlice,
   technologiDataSlice,
   statusDataSlice,
-  levelDataSlice
+  levelDataSlice,
+  workDataSlice,
+  assistanceWorkDataSlice,
+  allCourseAdminDataSlice
 };
 
 export default rootReducer;

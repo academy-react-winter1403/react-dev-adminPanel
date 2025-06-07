@@ -7,6 +7,7 @@ import {
   Book,
   FileText,
   BookOpen,
+  Calendar
 } from "react-feather";
 
 export default [
@@ -114,6 +115,58 @@ export default [
         title: " لیست  ترم ها  ",
         icon: <Circle size={20} />,
         navLink: "/termList",
+      },
+      {
+        id: "userList",
+        title: "لیست کاربران دوره",
+        icon: <Circle size={20} />,
+        navLink: "/userList",
+      },
+    ],
+  },
+  {
+    id: "timeFrameManagement",
+    title: "مدیریت زمان بندی",
+    icon: <Calendar size={20} />,
+    navLink: "/timeFrameManagement",
+    children: [
+      {
+        id: "teacherSchedule",
+        title: "زمان بندی شما",
+        icon: <Circle size={20} />,
+        navLink: "/teacherSchedule",
+      },
+      {
+        id: "adminSchedule",
+        title: "زمان بندی شما",
+        icon: <Circle size={20} />,
+        navLink: "/adminSchedule",
+      },
+      {
+        id: "studentSchedule",
+        title: "زمان بندی شما",
+        icon: <Circle size={20} />,
+        navLink: "/studentSchedule",
+      },
+    ],
+  },
+  {
+    id: "tasksManagement",
+    title: "مدیریت تسک ها",
+    icon: <BookOpen size={20} />,
+    navLink: "CourseManagement",
+    children: [
+      {
+        id: "tasks",
+        title: "تسک ها",
+        icon: <Circle size={20} />,
+        navLink: "/tasks",
+      },
+      {
+        id: "createTasks",
+        title: "افزودن تسک",
+        icon: <Circle size={20} />,
+        navLink: "/createTasks",
       },
     ],
   },

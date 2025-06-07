@@ -17,6 +17,7 @@ const Export = ({
   btnOnClick,
   hover,
   statusName,
+  statusKey,
 }) => {
   const navigate = useNavigate();
   // const { mutate } = getNewsDetailData("getNewsDetailData");
@@ -69,19 +70,24 @@ const Export = ({
                   {fieldKeys.map((titleItem, index) => {
                     const typeOfStatus =
                       typeof titleItem === "object" ? true : false;
+                    const keyName = titleItem.keyName;
                     return (
                       <td key={index}>
                         {typeOfStatus ? (
                           item[statusName] ? (
-                            <span className="me-1 badge bg-light-danger">
-                              منقضی شده
+                            <span className="me-1 badge bg-light-primary px-1">
+                              {keyName
+                                ? statusKey[keyName].trueField
+                                : statusKey.trueField}
                             </span>
                           ) : (
-                            <span className="me-1 badge bg-light-primary">
-                              منقضی نشده
+                            <span className="me-1 badge bg-light-danger px-1">
+                              {keyName
+                                ? statusKey[keyName].falseField
+                                : statusKey.falseField}
                             </span>
                           )
-                        ) : item[titleItem] ? (
+                        ) : item[titleItem] || item[titleItem] == 0? (
                           item[titleItem]
                         ) : (
                           "ای بابا اسم نداره کهههه😒😒"
@@ -134,19 +140,24 @@ const Export = ({
                   {fieldKeys.map((titleItem, index) => {
                     const typeOfStatus =
                       typeof titleItem === "object" ? true : false;
+                    const keyName = titleItem.keyName;
                     return (
                       <td key={index}>
                         {typeOfStatus ? (
                           item[statusName] ? (
-                            <span className="me-1 badge bg-light-danger">
-                              منقضی شده
+                            <span className="me-1 badge bg-light-primary px-1">
+                              {keyName
+                                ? statusKey[keyName].trueField
+                                : statusKey.trueField}
                             </span>
                           ) : (
-                            <span className="me-1 badge bg-light-primary">
-                              منقضی نشده
+                            <span className="me-1 badge bg-light-danger px-1">
+                              {keyName
+                                ? statusKey[keyName].falseField
+                                : statusKey.falseField}
                             </span>
                           )
-                        ) : item[titleItem] ? (
+                        ) : item[titleItem] || item[titleItem] == 0 ? (
                           item[titleItem]
                         ) : (
                           "ای بابا اسم نداره کهههه😒😒"

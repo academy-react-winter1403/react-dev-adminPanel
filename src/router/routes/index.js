@@ -78,6 +78,9 @@ const CourseStatusManagerWrapper = lazy(() =>
 const CourseLevelManagerWrapper = lazy(() =>
   import("../../view/courseManagement/view/CourseLevelManagerWrapper")
 );
+const TasksWrapper = lazy(() => import("../../view/courseManagement/view/TasksWrapper"))
+const CreateTasks = lazy(() => import("../../view/courseManagement/list/CreateTasks"))
+const UserListWrapper = lazy(() => import("../../view/courseManagement/view/UserListWrapper"))
 // >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
 
 // ** Merge Routes
@@ -140,6 +143,21 @@ const Routes = [
   {
     path: "/termList",
     element: <TermListWrapper />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/userList",
+    element: <UserListWrapper />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/tasks",
+    element: <TasksWrapper />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/createTasks",
+    element: <CreateTasks />,
     access: ["Administrator"],
   },
   { path: "/listComments", element: <Comments /> },

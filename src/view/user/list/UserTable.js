@@ -135,9 +135,9 @@ const UserTable = ({
               className="demo-inline-spacing mb-1"
               // onClick={() => navigate("")}
             >
-              <Button.Ripple color="primary" onClick={addBtnClick}>
+              {btnContentText && <Button.Ripple color="primary" onClick={addBtnClick}>
                 {btnContentText}
-              </Button.Ripple>
+              </Button.Ripple>}
               {secondBtnTextContent && (
                 <Button.Ripple color="primary" onClick={secondBtnClick}>
                   {secondBtnTextContent}

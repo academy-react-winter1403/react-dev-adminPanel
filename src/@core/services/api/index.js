@@ -50,6 +50,16 @@ import { createStatusPost } from "./post-api/createStatus";
 import { getLevelData } from "./get-api/getLevelData";
 import { createLevelPost } from "./post-api/createLevelPost";
 import { updateLevel } from "./put-api/updateLevel";
+import { getWorkData } from "./get-api/getWorkData";
+import { getAssistanceWorkData } from "./get-api/getAssistanceWorkData";
+import { getCourseAssistanceWithId } from "./get-api/getCourseAssistanceWithId";
+import { createAssistanceWork } from "./post-api/createAssistanceWork";
+import { getWorkDataWithId } from "./get-api/getWorkDataWithId";
+import { updateTasks } from "./put-api/updateTasks";
+import { getAllCourseAdmin } from "./get-api/getAllCourseAdmin";
+import { getCourseAdminWithId } from "./get-api/getCourseAdminWithId";
+import { getCourseUserListData } from "./get-api/getCourseUserListData";
+import { getCourseGroupsWithId } from "./get-api/getCourseGroupsWithId";
 
 export {
   getData,
@@ -96,6 +106,16 @@ export {
   createStatusPost,
   getLevelData,
   createLevelPost,
-  updateLevel
+  updateLevel,
+  getWorkData,
+  getAssistanceWorkData,
+  getCourseAssistanceWithId,
+  createAssistanceWork,
+  getWorkDataWithId,
+  updateTasks,
+  getAllCourseAdmin,
+  getCourseAdminWithId,
+  getCourseUserListData,
+  getCourseGroupsWithId
 };
 // >>>>>>> 4c3cb5376a24b28a724db4f5500ebde5651b6617
