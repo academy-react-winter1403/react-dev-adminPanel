@@ -125,32 +125,6 @@ export default [
     ],
   },
   {
-    id: "timeFrameManagement",
-    title: "مدیریت زمان بندی",
-    icon: <Calendar size={20} />,
-    navLink: "/timeFrameManagement",
-    children: [
-      {
-        id: "teacherSchedule",
-        title: "زمان بندی شما",
-        icon: <Circle size={20} />,
-        navLink: "/teacherSchedule",
-      },
-      {
-        id: "adminSchedule",
-        title: "زمان بندی شما",
-        icon: <Circle size={20} />,
-        navLink: "/adminSchedule",
-      },
-      {
-        id: "studentSchedule",
-        title: "زمان بندی شما",
-        icon: <Circle size={20} />,
-        navLink: "/studentSchedule",
-      },
-    ],
-  },
-  {
     id: "tasksManagement",
     title: "مدیریت تسک ها",
     icon: <BookOpen size={20} />,
