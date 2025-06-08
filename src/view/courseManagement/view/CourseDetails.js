@@ -1,0 +1,185 @@
+// import { Col, Row } from "reactstrap";
+// import UserInfoCard from "../../../../@core/components/common/UserInfoCard/UserInfoCard";
+// import UserTabs from "../../../../@core/components/common/Tabs/UserTabs";
+// import { useEffect, useState } from "react";
+// import { getData,usePutData } from "../../../../@core/services/api";
+// import { useParams } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import { getNewsDetailData } from './../../../../@core/services/api/get-api/getNewsDetailData';
+// import { getNewsDetailData } from "../../../../@core/services/api";
+
+import { Col, Row } from "reactstrap";
+import UserInfoCard from "./../../../@core/components/common/UserInfoCard/UserInfoCard";
+import UserTabs from "./../../../@core/components/common/Tabs/UserTabs";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getData, usePutData } from "../../../@core/services/api";
+import ChildrenModalCourse from "./ChildrenModalCourse";
+
+const CourseDetails = () => {
+  const headers = ["عنوان", "تاریخ", "امتیاز", "وضعیت"];
+  const [active, setActive] = useState("1");
+  const toggleTab = (tab) => {
+    if (active !== tab) {
+      setActive(tab);
+    }
+  };
+  // const {
+  //   dataNewsDetails,
+  //   titleDetails,
+  //   avatarImg,
+  //   Switch,
+  //   filedPreview,
+  //   filedDetails,
+  //   listComments,
+  // } = useSelector((state) => state.NewDetailSlice);
+  // const dispatch = useDispatch();
+
+  const [titleDetails, setTitleDetails] = useState(null);
+  const [avatarImg, setAvatarImg] = useState(null);
+  const [Primary, setPrimary] = useState(null);
+  const [filedPreview, setFiledPreview] = useState([]);
+  const [filedDetails, setFiledDetails] = useState([]);
+  const [listComments, setListComments] = useState([]);
+
+  const { CourseId } = useParams();
+  console.log(CourseId);
+  const { data, isLoading } = getData("category", `/Course/${CourseId}`);
+  useEffect(() => {
+    if (!isLoading && data) {
+      console.log("it is data", data);
+      setTitleDetails(data.title);
+      setPrimary(data.isActive);
+      setAvatarImg(data.imageAddress);
+      //   setListComments(data);
+      const previewData = [
+        {
+          title: "تعداد خریداری ",
+          describe: data.paymentDoneTotal ?? "نامشخص",
+        },
+        {
+          title: "تعداد رزور ها",
+          describe: data.reserveUserTotal ?? "نامشخص",
+        },
+        {
+          title: "قیمت دوره",
+          describe: data.cost + " " + "ریال" ?? "نامشخص",
+        },
+        {
+          title: "تعداد کامنت ها",
+          describe: data.courseCommentTotal ?? "نامشخص",
+        },
+        {
+          title: "نوع شرکت در کلاس",
+          describe: data.courseTypeName ?? "نامشخص",
+        },
+        {
+          title: "تاریخ شروع دوره",
+          describe: data.startTime ?? "نامشخص",
+        },
+        {
+          title: "اسم استاد",
+          describe: data.teacherName ?? "نامشخص",
+        },
+        {
+          title: "تاریخ پایان دوره",
+          describe: data.endTime ?? "نامشخص",
+        },
+      ];
+      setFiledPreview(previewData);
+      const DetailsData = [
+        {
+          title: "عنوان دوره",
+          describe: data.title ?? "نامشخص",
+        },
+        {
+          title: "نوع شرکت در کلاس",
+          describe: (
+            <div className="gap-1 d-flex flex-wrap justify-content-start mt-1">
+              {data.courseSocialGroupDtos.map((item) => {
+                return <p className="text-capitalize cursor-pointer badge bg-light-primary">{item.groupName}</p>;
+              }) ?? "نامشخص"}
+            </div>
+          ),
+        },
+        {
+          title: "برنامه کلاس",
+          describe: data.courseLevelName ?? "نامشخص",
+        },
+        {
+          title: "مباحث تدریس شده",
+          describe: (
+            <div className="gap-1 d-flex flex-wrap justify-content-start mt-1">
+              {data.courseTeches.map((item) => {
+                return <p className="text-capitalize cursor-pointer badge bg-light-primary">{item}</p>;
+              }) ?? "نامشخص"}
+            </div>
+          ),
+        },
+        {
+          title: "توضیحات",
+          describe: data.describe ?? "نامشخص",
+        },
+      ];
+      setFiledDetails(DetailsData);
+    }
+    console.log({
+      titleDetails,
+      avatarImg,
+      Primary,
+      filedPreview,
+      filedDetails,
+    });
+  }, [isLoading, data]);
+  //   const dataWithRatio = listComments.map((item) => ({
+  //     ...item,
+  //     // likeRatio: `${item.likeCount}/${item.dissLikeCount}`,
+  //   }));
+  const { mutate: putDataMutate } = usePutData("postAllData");
+  const handleSwitchChange = async (newValue) => {
+    setPrimary(newValue);
+    const dataObj = {
+      active: newValue,
+      id: CourseId,
+    };
+    console.log(dataObj);
+    putDataMutate(["/Course/ActiveAndDeactiveCourse", dataObj], {
+      onSuccess: (data) => {
+        console.log("Success:", data);
+      },
+      onError: (error) => {
+        console.error("Error:", error);
+      },
+    });
+  };
+  return (
+    <Row>
+      <Col md={4} className="mt-5">
+        <UserInfoCard
+          TitleDetails={titleDetails}
+          avatarImg={avatarImg}
+          Primary={Primary}
+          title={"ادیت دوره"}
+          checked={handleSwitchChange}
+          children={<ChildrenModalCourse />}
+        />
+      </Col>
+      <Col md={8}>
+        <Row>
+          <UserTabs
+            active={active}
+            toggleTab={toggleTab}
+            filedPreview={filedPreview}
+            filedDetails={filedDetails}
+            // dataMap={dataWithRatio}
+            fieldKeys={["inserDate", "likeRatio"]}
+            headers={headers}
+            titleField="title"
+            // Btn={}
+          />
+        </Row>
+      </Col>
+    </Row>
+  );
+};
+export default CourseDetails;

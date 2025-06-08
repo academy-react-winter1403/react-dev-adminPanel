@@ -87,9 +87,9 @@ const BlogManagement = () => {
     ...item,
     likeRatio: `${item.currentLikeCount}/${item.currentDissLikeCount}`,
   }));
-  const exportCardClickHandler = async (id) => {
-    console.log(id)
-    navigate(`/blogs/view/${id}`)    
+  const exportCardClickHandler = async (item) => {
+    console.log(item.id)
+    navigate(`/blogs/view/${item.id}`)    
   };
   return (
     <Container>

@@ -8,7 +8,6 @@ import {
   Col,
   Container,
   Row,
-  Table,
 } from "reactstrap";
 import CardRoles from "../../../@core/components/common/CardRoles/CardRoles";
 import SelectReact from "../../../@core/components/common/Selection/Selection";
@@ -18,17 +17,22 @@ import {
   NumberCards,
   SortType,
 } from "../../../@core/constants/filters/Filters";
-import { Activity, Book, XCircle, XOctagon } from "react-feather";
+import { Activity, Book, XCircle } from "react-feather";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Export from "./../../../@core/components/common/Export/Export";
-import { filterDataCourse } from './filterDataCourse';
-import { setIsActive, setPageNumber, setQuery, setRowsOfPage } from "../store/CourseListFilterSlice";
+import Export from "../../../@core/components/common/Export/Export";
+import { filterDataCourse } from "../list/filterDataCourse";
+import {
+  setIsActive,
+  setPageNumber,
+  setQuery,
+  setRowsOfPage,
+} from "../store/CourseListFilterSlice";
 import { setCourseListChanges } from "../store/allDataCourseSlice";
 
 const CourseManagement = () => {
-  const headers = ["عنوان دوره", "امتیاز", "تاریخ",""]
+  const headers = ["عنوان دوره", "وضعیت کلاس", "تاریخ", "سطح کلاس", ""];
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
@@ -39,32 +43,36 @@ const CourseManagement = () => {
     Query,
     IsActive,
   } = useSelector((state) => state.CourseListFilterSlice);
-  const { CourseListChanges, totalCount } = useSelector(
-    (state) => state.allDataCourseSlice
+  const CourseListChanges = useSelector(
+    (state) => state.allDataCourseSlice.CourseListChanges
+  );
+  const totalCount = useSelector(
+    (state) => state.allDataCourseSlice.totalCount
   );
   // RowsOfPage
   const changeSelectRowsOfPage = (SelectNumber) => {
-    console.log(SelectNumber.label)
+    console.log(SelectNumber.label);
     dispatch(setRowsOfPage(SelectNumber.label));
+  };
+  // searchQuery
+  const changeSearchQuery = (searchQuery) => {
+    console.log(searchQuery.target.value);
+    dispatch(setQuery(searchQuery.target.value));
+  };
+  // PageNumber
+  const changePageNumberPage = (pageNumber) => {
+    console.log(pageNumber);
+    dispatch(setPageNumber(pageNumber));
   };
   // IsActive
   const changeSelectActive = (SelectActive) => {
-    console.log(SelectActive.value)
+    console.log(SelectActive.value);
     if (SelectActive.value === "فعال") {
       dispatch(setIsActive(true));
     } else {
       dispatch(setIsActive(false));
     }
-  };
-  // searchQuery
-  const changeSearchQuery = (searchQuery) => {
-    console.log(searchQuery.target.value)
-    dispatch(setQuery(searchQuery.target.value));
-  };
-  // PageNumber
-  const changePageNumberPage = (pageNumber) => {
-    console.log(pageNumber)
-    dispatch(setPageNumber(pageNumber));
+    // dispatch(setPageNumber(1));
   };
   // get data
   useEffect(() => {
@@ -73,21 +81,22 @@ const CourseManagement = () => {
         PageNumber,
         RowsOfPage,
         Query,
-        IsActive,
       });
-      dispatch(setCourseListChanges(course));
+      const filtered = course.data.filter((element) =>
+        IsActive ? element.isActive === true : element.isActive === false
+      );
+      dispatch(
+        setCourseListChanges({
+          data: filtered,
+          totalCount: course.totalCount,
+        })
+      );
     };
     getAllData();
   }, [PageNumber, RowsOfPage, Query, IsActive, dispatch]);
-  // &SortingCol=InsertDate&SortType=DESC
-
-  const dataWithRatio = CourseListChanges.map((item) => ({
-    ...item,
-    likeRatio: `${item.currentLikeCount}/${item.currentDissLikeCount}`,
-  }));
-  const exportCardClickHandler = async (id) => {
-    console.log(id)
-    // navigate(`/blogs/view/${id}`)    
+  const exportCardClickHandler = async (item) => {
+    console.log(item.courseId);
+    navigate(`/Course/Details/${item.courseId}`);
   };
   return (
     <Container>
@@ -139,9 +148,9 @@ const CourseManagement = () => {
               </div>
               <div
                 className="demo-inline-spacing mb-1"
-                // onClick={() => navigate("")}
+                onClick={() => navigate("/createCourse")}
               >
-                <Button.Ripple color="primary">افزودن اخبار</Button.Ripple>
+                <Button.Ripple color="primary">افزودن دوره</Button.Ripple>
               </div>
             </div>
           </CardHeader>
@@ -149,10 +158,10 @@ const CourseManagement = () => {
             <Export
               headers={headers}
               hasImage={true}
-              dataMap={dataWithRatio}
+              dataMap={CourseListChanges}
               titleField="title"
-              imageField="currentImageAddressTumb"
-              fieldKeys={["likeRatio", "insertDate"]}
+              imageField="tumbImageAddress"
+              fieldKeys={["typeName", "lastUpdate", "levelName"]}
               enableNavigate={true}
               clickHandle={(itemId) => exportCardClickHandler(itemId)}
             />

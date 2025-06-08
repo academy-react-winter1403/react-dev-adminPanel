@@ -11,14 +11,3 @@ export const getData = (key,endUrl) => {
         }
     })
 }
-
-// export const getNewsDetailData = (key) => {
-//     return useMutation({
-//         mutationKey: key,
-//         mutationFn: async (data) => {
-//             const [endUrl] = data
-//             const response = await http.get(endUrl)
-//             return response
-//         }
-//     })
-// }

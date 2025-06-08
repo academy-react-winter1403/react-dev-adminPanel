@@ -15,11 +15,6 @@ const Export = ({
   clickHandle,
 }) => {
   const navigate = useNavigate();
-  // const { mutate } = getNewsDetailData("getNewsDetailData");
-
-  // const { id } = useParams()
-  // const { PageNumber, RowsOfPage, SortingCol, SortType, Query, IsActive } =
-  //   useSelector((state) => state.NewsListFilterSlice);
 
   const onRowClick = (itemId) => {
     // console.log(itemId)
@@ -40,7 +35,7 @@ const Export = ({
           return (
             <tr
               key={index}
-              onClick={() => onRowClick(item.id)}
+              onClick={() => onRowClick(item)}
             >
               {hasImage ? (
                 <>

@@ -9,7 +9,8 @@ const NewDetailSlice = createSlice({
     Switch:null, 
     filedPreview:[],
     filedDetails:[],
-    listComments:[]
+    listComments:[],
+    Category:null,
   },
   reducers:{
     setDataNewsDetails:(state,action) => {
@@ -33,6 +34,9 @@ const NewDetailSlice = createSlice({
     setListComments:(state,action) => {
         state.listComments = action.payload;
     },
+    setCategory:(state,action) => {
+        state.Category = action.payload;
+    }
   }
 });
 
@@ -44,6 +48,7 @@ export const {
   setFiledPreview,
   setFiledDetails,
   setListComments,
+  setCategory
 } = NewDetailSlice.actions;
 
 export default NewDetailSlice.reducer;

@@ -9,7 +9,9 @@ import allDataAddNews from "../view/news/addNews/store/allDataAddNews";
 import NewDetailSlice from "../view/news/NewsDetails/store/NewDetailSlice";
 import CourseListFilterSlice from "../view/courseManagement/store/CourseListFilterSlice";
 import allDataCourseSlice from "../view/courseManagement/store/allDataCourseSlice";
-
+import createCourseFilterSlice from "../view/courseManagement/store/createCourseFilterSlice";
+import allDataAddCourse from "../view/courseManagement/store/allDataAddCourse";
+// ** Reducers
 const rootReducer = {
   navbar,
   layout,
@@ -21,6 +23,8 @@ const rootReducer = {
   NewDetailSlice,
   CourseListFilterSlice,
   allDataCourseSlice,
+  createCourseFilterSlice,
+  allDataAddCourse,
 };
 
 export default rootReducer;

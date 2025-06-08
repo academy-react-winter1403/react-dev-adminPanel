@@ -40,6 +40,8 @@ const UserInfoCard = ({
   TitleDetails,
   Primary,
   checked,
+  title,
+  children
 }) => {
   // ** State
 
@@ -56,7 +58,7 @@ const UserInfoCard = ({
             {TitleDetails}
           </h4>
           <div className="d-flex justify-content-center gap-1 align-items-center pt-2 pb-2">
-            <ModalForm title={"اخبار"} />
+            <ModalForm title={title} children={children}/>
             <Switch Primary={Primary} checked={checked} />
           </div>
         </CardBody>

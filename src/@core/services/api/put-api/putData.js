@@ -12,7 +12,7 @@ export const usePutData = (key) => {
           "Content-Type": config,
         },
       });
-      return response.data;
+      return response;
     },
   });
 };

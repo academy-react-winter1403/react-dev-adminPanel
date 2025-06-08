@@ -7,7 +7,6 @@ const allDataAddNews = createSlice({
         Image:null,
         mainInfo:{},
         additionalInfo:{},
-        allForm:{}
     },
     reducers:{
         setImage:(state,action) => {

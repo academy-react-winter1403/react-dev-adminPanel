@@ -6,18 +6,17 @@ export const filterDataCourse = async ({
   Query,
   IsActive,
 }) => {
-  const response = await http.get("/News/AdminNewsFilterList", {
+  const response = await http.get("/Course/CourseList", {
     params: {
       PageNumber,
       RowsOfPage,
       Query,
-      IsActive,
     },
   });
-  console.log(response.news)
+  console.log(response.courseDtos)
   console.log(response.totalCount)
   return{
-    data: response.news,
+    data: response.courseDtos,
     totalCount: response.totalCount
   }
 };

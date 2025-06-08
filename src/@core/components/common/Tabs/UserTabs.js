@@ -8,9 +8,11 @@ import { Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 import { User, MessageSquare, FileText } from "react-feather";
 
 // ** User Components
-import Preview from "../../../../view/news/NewsDetails/list/Preview";
+
 import Export from "../Export/Export";
-import Details from "../../../../view/news/NewsDetails/list/Details.";
+import Details from "../Details/Details";
+import Preview from "../Preview/Preview";
+
 
 const UserTabs = ({
   active,
@@ -23,11 +25,6 @@ const UserTabs = ({
   titleField,
   Btn
 }) => {
-
-  // const exportCardClickHandler = (id) => {
-  //   console.log(id)
-  // }
-
   return (
     <Fragment>
       <Nav pills className="mb-2">

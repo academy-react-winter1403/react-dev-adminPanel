@@ -22,30 +22,26 @@ import { getData } from "../../../../@core/services/api";
 import { useEffect, useState } from "react";
 import ButtonAction from "../../../../@core/components/common/ButtonAction/ButtonAction";
 import ModalForm from "../../../../@core/components/common/modals/ModalForm";
+import ChildrenModalCategory from "./ChildrenModalCategory";
 
 const AddCatgory = () => {
   const headers = ["عنوان دسته ها", "تاریخ", "وضعیت"];
   const [dataCategory, setDataCategory] = useState([]);
   const [RowsOfPage, setRowsOfPage] = useState(12);
-  // const [totalCount, setTotalCount] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   // get data
-
   const { data, isLoading } = getData(
     "AddCategory",
     "/News/GetListNewsCategory"
   );
-
   useEffect(() => {
     if (!isLoading && data) {
       setDataCategory(data);
     }
     setCurrentPage(0);
   }, [isLoading, data]);
-
   // searchQuery
-
   const filteredData = dataCategory.filter((item) => {
     return item.categoryName.toLowerCase().includes(searchQuery.toLowerCase());
   });
@@ -54,15 +50,12 @@ const AddCatgory = () => {
     setSearchQuery(Query.target.value);
     setCurrentPage(0);
   };
-
   // Pagination
   const startIndex = currentPage * RowsOfPage;
   const endIndex = startIndex + RowsOfPage;
   const currentData = filteredData.slice(startIndex, endIndex);
   console.log(currentData);
-
   //select page
-
   const changeSelectRowsOfPage = (SelectNumber) => {
     setRowsOfPage(SelectNumber.label);
     setCurrentPage(0);
@@ -89,7 +82,10 @@ const AddCatgory = () => {
                 <InputGroupButtons SearchQuery={changeSearchQuery} />
               </div>
               <div className="demo-inline-spacing mb-1">
-              <ModalForm title={"افزودن دسته بندی"}/>
+                <ModalForm
+                  title={"افزودن دسته بندی"}
+                  children={<ChildrenModalCategory />}
+                />
               </div>
             </div>
           </CardHeader>
