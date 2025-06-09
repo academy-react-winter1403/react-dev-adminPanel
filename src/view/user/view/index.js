@@ -14,81 +14,44 @@ import { useDispatch, useSelector } from "react-redux";
 // import { handleDetails } from "../store/UserInfoSlice";
 
 // Api
-// import { UserDetails } from "../../../@core/services/api/get-api";
-// import { UpdateUser } from "../../../@core/services/api/put-api";
-// import { useMutation } from "@tanstack/react-query";
-// import { useQueryWithDependencies } from "../../../utility/hooks/useCustomQuery";
 import ComponentSpinner from "../../../@core/components/spinner/Loading-spinner.js";
 
 // ** Styles
 import "@styles/react/apps/app-users.scss";
 import UserTabs from "./UserTabs.js";
+import SpinnerComponent from "../../../@core/components/spinner/Fallback-spinner.js";
+import { getUserInfoData } from "../../../@core/services/api/index.js";
+import { addUserInfoData } from "../list/users/store/actions.js";
 
 const UserView = () => {
+  const state = useSelector((state) => state);
+  const { userInfoData } = state.userInformationSlice;
+
+  console.log(userInfoData);
+
   const [active, setActive] = useState("1");
-//   const userDetails = useSelector((state) => state.UserInfoSlice.details);
+  //   const userDetails = useSelector((state) => state.UserInfoSlice.details);
   const { id } = useParams();
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
+
+  const { data, isLoading } = getUserInfoData(
+    "userInfoData",
+    "/User/UserDetails/",
+    id
+  );
+  if (!isLoading) {
+    dispatch(addUserInfoData(data));
+  }
+  if (isLoading) {
+    return <SpinnerComponent />
+  }
 
   const toggleTab = (tab) => {
     if (active !== tab) {
       setActive(tab);
     }
   };
-
-//   const { data, isSuccess, refetch, isRefetching, isLoading } =
-//     useQueryWithDependencies("GET_USER-DETAILS", UserDetails, id, id);
-
-//   useEffect(() => {
-//     if (isSuccess) {
-//       dispatch(handleDetails(data));
-//     }
-//   }, [isSuccess, isRefetching]);
-
-//   const { mutate } = useMutation({
-//     mutationKey: ["UPDATE_USER_DETAILS"],
-//     mutationFn: (values) => {
-//       const userInfo = {
-//         id: userDetails.id,
-//         fName: values.firstName,
-//         lName: values.lastName,
-//         userName: values.username,
-//         gmail: values.email,
-//         active: userDetails.active,
-//         nationalCode: values.nationalCode,
-//         phoneNumber: values.contact,
-//         isDelete: userDetails.isDelete ?? false,
-//         isTecher: userDetails.isTecher ?? false,
-//         isStudent: userDetails.isStudent ?? false,
-//         recoveryEmail: userDetails.recoveryEmail ?? "",
-//         twoStepAuth: userDetails.twoStepAuth ?? false,
-//         userAbout: userDetails.userAbout ?? "",
-//         currentPictureAddress: userDetails.currentPictureAddress ?? "",
-//         linkdinProfile: userDetails.linkdinProfile ?? "",
-//         telegramLink: userDetails.telegramLink ?? "",
-//         receiveMessageEvent: userDetails.receiveMessageEvent ?? "",
-//         homeAdderess: userDetails.homeAdderess ?? "",
-//         gender: values.gender,
-//         latitude: userDetails.latitude ?? "",
-//         longitude: userDetails.longitude ?? "",
-//         insertDate: userDetails.insertDate ?? undefined,
-//         birthDay: userDetails.birthDay ?? undefined,
-//         roles: userDetails.roles ?? [],
-//         courses: userDetails.courses ?? [],
-//         coursesReseves: userDetails.coursesReseves ?? [],
-//         userProfileId: userDetails.userProfileId ?? undefined
-//       };
-//       UpdateUser(userInfo, refetch);
-//     },
-//     onSuccess: () => {
-//       setShow(false);
-//     }
-//   });
-
-//   if (isLoading) {
-//     return <ComponentSpinner />;
-//   }
 
   return (
     <div className="app-user-view">
@@ -111,5 +74,6 @@ const UserView = () => {
       </Row>
     </div>
   );
+
 };
 export default UserView;

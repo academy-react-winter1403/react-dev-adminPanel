@@ -4,12 +4,20 @@ export const userListSlice = createSlice({
     name: "useListSlice",
 
     initialState: {
-        userList: []
+        userList: null,
+        addFlag: true,
+        userListTotalCount: null
     },
 
     reducers: {
         firstAddDataToUserList: (state, action) => {
             state.userList = action.payload
+        },
+        changeAddFlag: (state, action) => {
+            state.addFlag = action.payload
+        },
+        addUserListTotalCount: (state, action) => {
+            state.userListTotalCount = action.payload
         }
     }
 })

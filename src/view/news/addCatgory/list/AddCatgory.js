@@ -7,6 +7,7 @@ import {
   CardText,
   Col,
   Container,
+  Modal,
   Row,
   Table,
 } from "reactstrap";
@@ -23,6 +24,8 @@ import { useEffect, useState } from "react";
 import ButtonAction from "../../../../@core/components/common/ButtonAction/ButtonAction";
 import ModalForm from "../../../../@core/components/common/modals/ModalForm";
 import ChildrenModalCategory from "./ChildrenModalCategory";
+import { MapButtonAction } from "../filterMap/MapButtonAction";
+import EditFormModal from "./EditFormModal";
 
 const AddCatgory = () => {
   const headers = ["عنوان دسته ها", "تاریخ", "وضعیت"];
@@ -30,16 +33,31 @@ const AddCatgory = () => {
   const [RowsOfPage, setRowsOfPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentData, setCurrentData] = useState(null);
+  const [editModalFlag, setEditModalFlag] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+
   // get data
   const { data, isLoading } = getData(
     "AddCategory",
     "/News/GetListNewsCategory"
   );
+  // Pagination
+  const paginationCalculator = (data, pageNumber, rowsOfPage) => {
+    const startIndex = pageNumber * rowsOfPage;
+    const endIndex = startIndex + rowsOfPage;
+    const currentData = data.slice(startIndex, endIndex);
+    return currentData;
+  };
+
   useEffect(() => {
+    setCurrentPage(0);
     if (!isLoading && data) {
       setDataCategory(data);
+      setCurrentData(paginationCalculator(data, currentPage, RowsOfPage));
+      console.log(data.map((elem) => elem.id));
+      setSelectedId(data.map((elem) => elem.id));
     }
-    setCurrentPage(0);
   }, [isLoading, data]);
   // searchQuery
   const filteredData = dataCategory.filter((item) => {
@@ -50,17 +68,31 @@ const AddCatgory = () => {
     setSearchQuery(Query.target.value);
     setCurrentPage(0);
   };
-  // Pagination
-  const startIndex = currentPage * RowsOfPage;
-  const endIndex = startIndex + RowsOfPage;
-  const currentData = filteredData.slice(startIndex, endIndex);
-  console.log(currentData);
   //select page
   const changeSelectRowsOfPage = (SelectNumber) => {
     setRowsOfPage(SelectNumber.label);
     setCurrentPage(0);
   };
 
+  const changePageHandler = (page) => {
+    setCurrentPage(page);
+    setCurrentData(paginationCalculator(data, currentPage, RowsOfPage));
+  };
+
+  const handleButtonActionId = (elem) => {
+    console.log("this is id card:",elem.id)
+    setSelectedId(elem.id);
+  }
+
+  // Button Action
+  const handleButtonAction = (item) => {
+    console.log(item);
+    if (item.title === "جزئیات") {
+    }
+    if (item.title === "ویرایش") {
+      setEditModalFlag(true);
+    }
+  };
   return (
     <Container>
       <Row>
@@ -90,23 +122,36 @@ const AddCatgory = () => {
             </div>
           </CardHeader>
           <CardBody>
-            <Export
-              headers={headers}
-              hasImage={false}
-              dataMap={currentData}
-              fieldKeys={["insertDate"]}
-              titleField="categoryName"
-              Btn={<ButtonAction />}
-            />
+            {currentData && (
+              <Export
+                headers={headers}
+                hasImage={false}
+                dataMap={currentData}
+                fieldKeys={["insertDate"]}
+                titleField="categoryName"
+                btnOnClick={handleButtonActionId}
+                Btn={
+                  <ButtonAction
+                    dataArray={MapButtonAction}
+                    itemClickHandle={handleButtonAction}
+                  />
+                }
+              />
+            )}
           </CardBody>
           <CardFooter>
             <div className="d-flex justify-content-center">
               <SeparatedPagination
                 RowsOfPage={RowsOfPage}
                 totalCount={filteredData.length}
-                changePageNumber={(page) => setCurrentPage(page)}
+                changePageNumber={(page) => changePageHandler(page)}
               />
             </div>
+            <EditFormModal
+              isOpen={editModalFlag}
+              toggleFunction={() => setEditModalFlag(false)}
+              selectedId={selectedId}
+            />
           </CardFooter>
         </Card>
       </Row>

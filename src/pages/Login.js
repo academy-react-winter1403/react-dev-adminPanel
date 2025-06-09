@@ -50,6 +50,7 @@ const Login = () => {
         console.log(data)
         toast.success(data.message)
         useSetItem("token", data.token)
+        useSetItem("id", data.id)
         navigate("/")
       },
       onError: (data) => {

@@ -1,16 +1,16 @@
 import ReactPaginate from "react-paginate";
 
-const CustomPagination = () => {
-//   const count = Number(Math.ceil(store.total / rowsPerPage));
+const CustomPagination = ({ total, current, rowsPerPage, handleClickFunc }) => {
+  const count = Number(Math.ceil(total / rowsPerPage));
 
   return (
     <ReactPaginate
       previousLabel={""}
       nextLabel={""}
-      pageCount={10 || 1}
+      pageCount={count || 1}
       activeClassName="active"
-      forcePage={10 !== 0 ? 5 - 1 : 0}
-      onPageChange={(page) => handlePagination(page)}
+      forcePage={current !== 0 ? current - 1 : 0}
+      onPageChange={(page) => handleClickFunc(page)}
       pageClassName={"page-item"}
       nextLinkClassName={"page-link"}
       nextClassName={"page-item next"}

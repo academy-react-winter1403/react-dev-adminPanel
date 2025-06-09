@@ -52,6 +52,29 @@ const CourseManagement = lazy(() =>
 const CreateCourse = lazy(() =>
   import("../../view/courseManagement/view/CreateCourse")
 );
+const Dashboard = lazy(() => import("../../view/dashboard/index"));
+
+const ClassesListWrapper = lazy(() =>
+  import("../../view/courseManagement/view/ClassesListWrapper")
+);
+const ListOfSectionsWrapper = lazy(() =>
+  import("../../view/courseManagement/view/ListOfSectionsWrapper")
+);
+const TermListWrapper = lazy(() =>
+  import("../../view/courseManagement/view/TermListWrapper")
+);
+const CourseTehcnologiManagerWrapper = lazy(() =>
+  import("../../view/courseManagement/view/CourseTehcnologiManagerWrapper")
+);
+const CourseStatusManagerWrapper = lazy(() =>
+  import("../../view/courseManagement/view/CourseStatusManagerWrapper")
+);
+const CourseLevelManagerWrapper = lazy(() =>
+  import("../../view/courseManagement/view/CourseLevelManagerWrapper")
+);
+const TasksWrapper = lazy(() => import("../../view/courseManagement/view/TasksWrapper"))
+const CreateTasks = lazy(() => import("../../view/courseManagement/list/CreateTasks"))
+const UserListWrapper = lazy(() => import("../../view/courseManagement/view/UserListWrapper"))
 
 // ** Merge Routes
 const Routes = [
@@ -62,7 +85,7 @@ const Routes = [
   },
   {
     path: "/home",
-    element: <Home />,
+    element: <Dashboard />,
   },
   {
     path: "/blogs",
@@ -98,6 +121,49 @@ const Routes = [
     // element:<TableFilter /> 
   },
   {
+    path: "/courseTechnologiManager",
+    element: <CourseTehcnologiManagerWrapper />,
+  },
+  {
+    path: "/courseStatusManager",
+    element: <CourseStatusManagerWrapper />,
+  },
+  {
+    path: "/courseLevelManager",
+    element: <CourseLevelManagerWrapper />,
+  },
+  {
+    path: "/classesList",
+    element: <ClassesListWrapper />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/ListOfSections",
+    element: <ListOfSectionsWrapper />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/termList",
+    element: <TermListWrapper />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/userList",
+    element: <UserListWrapper />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/tasks",
+    element: <TasksWrapper />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/createTasks",
+    element: <CreateTasks />,
+    access: ["Administrator"],
+  },
+  { path: "/listComments", element: <Comments /> },
+  {
     path: "/login",
     element: <Login />,
     meta: {
@@ -121,10 +187,18 @@ const Routes = [
   {
     path: "/user-list",
     element: <UserList />,
+    access: ["Administrator"],
+    // meta: {
+    //   layout: "blank",
+    // },
   },
   {
-    path: "apps/user/view/:id",
+    path: "/user/view/:id",
     element: <UserView />,
+    access: ["Administrator"],
+    // meta: {
+    //   layout: "blank",
+    // },
   },
   {
     path: "/job",
