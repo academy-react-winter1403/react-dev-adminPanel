@@ -34,28 +34,7 @@ const ModalForm = ({ title, children }) => {
           </ModalHeader>
           <ModalBody>
             {children}
-            <Row>
-              <Col>
-                <div className="mb-2">
-                  <Label className="form-label" for="email">
-                    Email:
-                  </Label>
-                  <Input type="email" id="email" placeholder="Email Address" />
-                </div>
-                <div className="mb-2">
-                  <Label className="form-label" for="password">
-                    Password:
-                  </Label>
-                  <Input type="password" id="password" placeholder="Password" />
-                </div>
-              </Col>
-            </Row>
           </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={() => setFormModal(!formModal)}>
-              ثبت تغییرات
-            </Button>
-          </ModalFooter>
         </Modal>
       </div>
     </div>

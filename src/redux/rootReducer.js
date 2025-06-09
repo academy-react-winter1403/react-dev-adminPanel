@@ -21,6 +21,7 @@ import courseListSlice from "../view/dashboard/store/courseListSlice"
 // =======
 import CourseListFilterSlice from "../view/courseManagement/store/CourseListFilterSlice";
 import allDataCourseSlice from "../view/courseManagement/store/allDataCourseSlice";
+// <<<<<<< HEAD
 import classesListSlice from "../view/courseManagement/store/classesListSlice"
 import departmentSlice  from "../view/courseManagement/store/departmentSlice";
 import buildingListSlice from "../view/courseManagement/store/buildingListSlice";
@@ -35,6 +36,11 @@ import allCourseAdminDataSlice from "../view/courseManagement/store/allCourseAdm
 import adminSheduleSlice from "../view/scheduleManagement/store/adminSheduleSlice";
 // >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
 
+// =======
+import createCourseFilterSlice from "../view/courseManagement/store/createCourseFilterSlice";
+import allDataAddCourse from "../view/courseManagement/store/allDataAddCourse";
+// ** Reducers
+// >>>>>>> 39ce923acbadf83d248a4d20ae59361e81172796
 const rootReducer = {
   navbar,
   layout,
@@ -65,7 +71,9 @@ const rootReducer = {
   workDataSlice,
   assistanceWorkDataSlice,
   allCourseAdminDataSlice,
-  adminSheduleSlice
+  adminSheduleSlice,
+  createCourseFilterSlice,
+  allDataAddCourse,
 };
 
 export default rootReducer;

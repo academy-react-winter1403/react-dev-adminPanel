@@ -12,6 +12,8 @@ import PublicRoute from "@components/routes/PublicRoute";
 
 // ** Utils
 import { isObjEmpty } from "@utils";
+import CourseDetails from "../../view/courseManagement/view/CourseDetails";
+import TableFilter from "../../@core/components/common/Filter/TableFilter";
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -45,20 +47,13 @@ const NewsDetails = lazy(() =>
 const AddNews = lazy(() => import("../../view/news/addNews/list/AddNews"));
 const Comments = lazy(() => import("../../view/comments/list/Comments"));
 
-// <<<<<<< HEAD
-// const CourseManagement = lazy(() => import("../../view/courses/list/CourseManagement"));
-// const CreateCourse = lazy(() => import("../../view/courses/createCourse/list/CreateCourse"));
-// const BlogManagement = lazy(() => import('../../view/news/list/BlogManagement'))
-// const AddCatgory = lazy(() => import('../../view/news/addCatgory/list/AddCatgory'))
-// const NewsDetails = lazy(() => import('./../../view/news/NewsDetails/list/NewsDetails'))
-// const WizardHorizontal = lazy(() => import('../../@core/components/common/wizard/WizardHorizontal'))
 const Dashboard = lazy(() => import("../../view/dashboard/index"));
-// =======
+
 const CourseManagement = lazy(() =>
-  import("../../view/courseManagement/list/CourseManagement")
+  import("../../view/courseManagement/view/CourseManagement")
 );
 const CreateCourse = lazy(() =>
-  import("../../view/courseManagement/createCourse/list/CreateCourse")
+  import("../../view/courseManagement/view/CreateCourse")
 );
 const ClassesListWrapper = lazy(() =>
   import("../../view/courseManagement/view/ClassesListWrapper")
@@ -84,7 +79,8 @@ const UserListWrapper = lazy(() => import("../../view/courseManagement/view/User
 const TeacherScheduleWrapper = lazy(() => import("../../view/scheduleManagement/view/teacherScheduleWrpper"))
 const StudentShceduleWrapper = lazy(() => import("../../view/scheduleManagement/view/studentScheduleWrapper"))
 const AdminScheduleWrapper = lazy(() => import("../../view/scheduleManagement/view/AdminScheduleWrapper"))
-// >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
+
+
 
 // ** Merge Routes
 const Routes = [
@@ -118,9 +114,14 @@ const Routes = [
     element: <CourseManagement />,
   },
   {
+    path: "/Course/Details/:CourseId",
+    element: <CourseDetails />,
+  },
+  {
     path: "/createCourse",
     element: <CreateCourse />,
   },
+
   {
     path: "/courseTechnologiManager",
     element: <CourseTehcnologiManagerWrapper />,
@@ -219,9 +220,6 @@ const Routes = [
   {
     path: "/job",
     element: <CareerRecords />,
-    // meta: {
-    //   layout: "blank",
-    // },
   },
   {
     path: "/error",

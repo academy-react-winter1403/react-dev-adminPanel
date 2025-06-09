@@ -1,5 +1,4 @@
 import { Col, Row } from "reactstrap";
-import CardRoles from "../../../../@core/components/common/CardRoles/CardRoles";
 import CardDescription from "./../../../../@core/components/common/CardDescription/CardDescription";
 
 const Details = ({ filedDetails = [] }) => {

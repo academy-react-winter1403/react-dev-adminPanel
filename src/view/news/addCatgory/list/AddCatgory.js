@@ -22,22 +22,25 @@ import { getData } from "../../../../@core/services/api";
 import { useEffect, useState } from "react";
 import ButtonAction from "../../../../@core/components/common/ButtonAction/ButtonAction";
 import ModalForm from "../../../../@core/components/common/modals/ModalForm";
+<<<<<<< HEAD
 import { paginationCalculator } from "../../../../@core/hooks";
+=======
+import ChildrenModalCategory from "./ChildrenModalCategory";
+>>>>>>> 39ce923acbadf83d248a4d20ae59361e81172796
 
 const AddCatgory = () => {
   const headers = ["عنوان دسته ها", "تاریخ", "وضعیت"];
   const [dataCategory, setDataCategory] = useState([]);
   const [RowsOfPage, setRowsOfPage] = useState(12);
-  // const [totalCount, setTotalCount] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentData, setCurrentData] = useState(null);
   // get data
-
   const { data, isLoading } = getData(
     "AddCategory",
     "/News/GetListNewsCategory"
   );
+<<<<<<< HEAD
 
   // const paginationCalculator = (data, pageNumber, rowsOfPage) => {
   //   const startIndex = pageNumber * rowsOfPage;
@@ -46,6 +49,8 @@ const AddCatgory = () => {
   //   return currentData;
   // };
 
+=======
+>>>>>>> 39ce923acbadf83d248a4d20ae59361e81172796
   useEffect(() => {
     setCurrentPage(0);
     if (!isLoading && data) {
@@ -53,13 +58,15 @@ const AddCatgory = () => {
       setCurrentData(paginationCalculator(data, currentPage, RowsOfPage))
     }
   }, [isLoading, data]);
+<<<<<<< HEAD
 
   if (currentData) {
     console.log("currentData ==>", currentData)
   }
 
+=======
+>>>>>>> 39ce923acbadf83d248a4d20ae59361e81172796
   // searchQuery
-
   const filteredData = dataCategory.filter((item) => {
     return item.categoryName.toLowerCase().includes(searchQuery.toLowerCase());
   });
@@ -68,16 +75,21 @@ const AddCatgory = () => {
     setSearchQuery(Query.target.value);
     setCurrentPage(0);
   };
-
   // Pagination
+<<<<<<< HEAD
 
   // const startIndex = currentPage * RowsOfPage;
   // const endIndex = startIndex + RowsOfPage;
   // const currentData = filteredData.slice(startIndex, endIndex);
   // console.log(currentData);
 
+=======
+  const startIndex = currentPage * RowsOfPage;
+  const endIndex = startIndex + RowsOfPage;
+  const currentData = filteredData.slice(startIndex, endIndex);
+  console.log(currentData);
+>>>>>>> 39ce923acbadf83d248a4d20ae59361e81172796
   //select page
-
   const changeSelectRowsOfPage = (SelectNumber) => {
     setRowsOfPage(SelectNumber.label);
     setCurrentPage(0);
@@ -109,7 +121,14 @@ const AddCatgory = () => {
                 <InputGroupButtons SearchQuery={changeSearchQuery} />
               </div>
               <div className="demo-inline-spacing mb-1">
+<<<<<<< HEAD
                 <ModalForm title={"افزودن دسته بندی"} />
+=======
+                <ModalForm
+                  title={"افزودن دسته بندی"}
+                  children={<ChildrenModalCategory />}
+                />
+>>>>>>> 39ce923acbadf83d248a4d20ae59361e81172796
               </div>
             </div>
           </CardHeader>
