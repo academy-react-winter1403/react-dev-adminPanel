@@ -264,6 +264,7 @@ const Tasks = () => {
               dataMap={workFullDate}
               titleField="courseName"
               fieldKeys={["assistanceName", "workDate"]}
+              
               Btn={clickBtn}
               btnOnClick={workBtnClickHandler}
             />

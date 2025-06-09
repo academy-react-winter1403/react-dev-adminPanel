@@ -20,6 +20,7 @@ import {
 } from "../store/actions";
 import { addedDataToObject } from "../../../@core/hooks";
 import { http } from "../../../@core/services/interceptor";
+import CourseModal from "../../partialComp/CourseModal";
 
 const UserList = () => {
   const dispatch = useDispatch();
@@ -126,6 +127,8 @@ const UserList = () => {
     dispatch(addDataToCourseUserList(courseUserListData));
   }
 
+  console.log("allCourseAminData ==>", allCourseAminData)
+
   useEffect(() => {
     if (productId) {
       courseUserListRefetch();
@@ -133,6 +136,7 @@ const UserList = () => {
   }, [productId, PageNumber, RowsOfPage, Query]);
 
   const courseBtnClickHandler = (item) => {
+    console.log("item ==>", item)
     setProductId(item.courseId);
     setModalFlag(!modalFlag);
   };
@@ -174,7 +178,7 @@ const UserList = () => {
           changePageNumber={(pageNum) => setPageNumber(pageNum)}
         />
       </Card>
-      <Modal
+      {/* <Modal
         isOpen={modalFlag}
         toggle={() => setModalFlag(!modalFlag)}
         className="w-100 modal-dialog modal-dialog-centered modal-lg"
@@ -195,9 +199,9 @@ const UserList = () => {
               dataMap={allCourseAminData.courseDtos}
               hasImage={"tumbImageAddress"}
               imageField="tumbImageAddress"
-              fieldKeys={[status]}
-              statusName={"isActive"}
-              statusKey={{ trueField: "فعال", falseField: "غیرفعال" }}
+              fieldKeys={[{keyName: "isActive"}]}
+              // statusName={"isActive"}
+              statusKey={{isActive: { trueField: "فعال", falseField: "غیرفعال" }}}
               hover={true}
               Btn={btn}
               btnOnClick={courseBtnClickHandler}
@@ -211,7 +215,8 @@ const UserList = () => {
             dispatch(changeAllCourseAdminPageNumber(pageNum))
           }
         />
-      </Modal>
+      </Modal> */}
+      <CourseModal isOpen={modalFlag} toggle={() => setModalFlag(!modalFlag)} btnOnClick={courseBtnClickHandler}/>
     </div>
   );
 };

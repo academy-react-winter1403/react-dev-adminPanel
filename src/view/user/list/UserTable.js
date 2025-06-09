@@ -110,7 +110,7 @@ const UserTable = ({
           }}
         >
           <Col md="2">
-            <Row className="flex flex-row align-items-center">
+            <Row className="flex flex-row align-items-center gap-1">
               <Col md="2">
                 <label>نمایش</label>
               </Col>
@@ -122,20 +122,21 @@ const UserTable = ({
               </Col>
             </Row>
           </Col>
-          <div className="d-flex gap-1">
-            <div className="mt-2">
+          <div style={{display: "flex", alignItems: "center", gap: "10px"}}>
+            <div className="">
               <InputGroupButtons
                 // onChange={(event) => {
                 //   inputChangeHandler(event), queryInputChangeHandler(event);
                 // }}
+                placeholder={"جستجوی کاربر"}
                 onChange={inputChangeHandler}
               />
             </div>
             <div
-              className="demo-inline-spacing mb-1"
+              className="demo-inline-spacing"
               // onClick={() => navigate("")}
             >
-              {btnContentText && <Button.Ripple color="primary" onClick={addBtnClick}>
+              {btnContentText && <Button.Ripple color="primary m-0" onClick={addBtnClick}>
                 {btnContentText}
               </Button.Ripple>}
               {secondBtnTextContent && (

@@ -59,7 +59,9 @@ import { updateTasks } from "./put-api/updateTasks";
 import { getAllCourseAdmin } from "./get-api/getAllCourseAdmin";
 import { getCourseAdminWithId } from "./get-api/getCourseAdminWithId";
 import { getCourseUserListData } from "./get-api/getCourseUserListData";
-import { getCourseGroupsWithId } from "./get-api/getCourseGroupsWithId";
+import { getCourseGroupsWithId, getCourseGroupsWithIdMutation } from "./get-api/getCourseGroupsWithId";
+import { getScheduleData } from "./get-api/getScheduleData";
+import { getCourseDetailAdmin } from "./get-api/getCourseDetailAdmin";
 
 export {
   getData,
@@ -116,6 +118,9 @@ export {
   getAllCourseAdmin,
   getCourseAdminWithId,
   getCourseUserListData,
-  getCourseGroupsWithId
+  getCourseGroupsWithId,
+  getScheduleData,
+  getCourseDetailAdmin,
+  getCourseGroupsWithIdMutation,
 };
 // >>>>>>> 4c3cb5376a24b28a724db4f5500ebde5651b6617

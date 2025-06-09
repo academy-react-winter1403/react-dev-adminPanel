@@ -13,3 +13,16 @@ export const getCourseGroupsWithId = (key, endUrl, params, getFlag) => {
         enabled: getFlag
     })
 }
+
+export const getCourseGroupsWithIdMutation = (key) => {
+    return useMutation({
+        mutationKey: key,
+        mutationFn: async (data) => {
+            const [endUrl, params] = data
+            const response = await http.get(endUrl, {
+                params: params
+            })
+            return response
+        },
+    })
+}

@@ -4,6 +4,7 @@ import ButtonAction from "../ButtonAction/ButtonAction";
 import { getNewsDetailData } from "../../../services/api";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import "../../../../@core/scss/me-style/font.scss";
 
 const Export = ({
   hasImage,
@@ -38,7 +39,11 @@ const Export = ({
           <thead className="w-100">
             <tr className="w-100">
               {headers.map((nameItem, index) => {
-                return <th key={index}>{nameItem}</th>;
+                return (
+                  <th key={index} className="text">
+                    {nameItem}
+                  </th>
+                );
               })}
             </tr>
           </thead>
@@ -62,9 +67,19 @@ const Export = ({
                     </>
                   ) : (
                     <td>
-                      {item[titleField]
-                        ? item[titleField]
-                        : "ای بابا اسم نداره کهههه😒😒"}
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <span>
+                          {item[titleField]
+                            ? item[titleField]
+                            : "ای بابا اسم نداره کهههه😒😒"}
+                        </span>
+                      </div>
                     </td>
                   )}
                   {fieldKeys.map((titleItem, index) => {
@@ -74,7 +89,7 @@ const Export = ({
                     return (
                       <td key={index}>
                         {typeOfStatus ? (
-                          item[statusName] ? (
+                          item[statusKey[keyName].statusName] ? (
                             <span className="me-1 badge bg-light-primary px-1">
                               {keyName
                                 ? statusKey[keyName].trueField
@@ -87,7 +102,7 @@ const Export = ({
                                 : statusKey.falseField}
                             </span>
                           )
-                        ) : item[titleItem] || item[titleItem] == 0? (
+                        ) : item[titleItem] || item[titleItem] == 0 ? (
                           item[titleItem]
                         ) : (
                           "ای بابا اسم نداره کهههه😒😒"
@@ -108,7 +123,15 @@ const Export = ({
           <thead className="w-100">
             <tr className="w-100">
               {headers.map((nameItem, index) => {
-                return <th key={index}>{nameItem}</th>;
+                return (
+                  <th
+                    key={index}
+                    className="text"
+                    style={{ textAlign: "center" }}
+                  >
+                    {nameItem}
+                  </th>
+                );
               })}
             </tr>
           </thead>
@@ -144,7 +167,7 @@ const Export = ({
                     return (
                       <td key={index}>
                         {typeOfStatus ? (
-                          item[statusName] ? (
+                          item[statusKey[keyName].statusName] ? (
                             <span className="me-1 badge bg-light-primary px-1">
                               {keyName
                                 ? statusKey[keyName].trueField

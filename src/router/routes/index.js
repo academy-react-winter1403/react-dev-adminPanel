@@ -81,6 +81,9 @@ const CourseLevelManagerWrapper = lazy(() =>
 const TasksWrapper = lazy(() => import("../../view/courseManagement/view/TasksWrapper"))
 const CreateTasks = lazy(() => import("../../view/courseManagement/list/CreateTasks"))
 const UserListWrapper = lazy(() => import("../../view/courseManagement/view/UserListWrapper"))
+const TeacherScheduleWrapper = lazy(() => import("../../view/scheduleManagement/view/teacherScheduleWrpper"))
+const StudentShceduleWrapper = lazy(() => import("../../view/scheduleManagement/view/studentScheduleWrapper"))
+const AdminScheduleWrapper = lazy(() => import("../../view/scheduleManagement/view/AdminScheduleWrapper"))
 // >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
 
 // ** Merge Routes
@@ -148,6 +151,21 @@ const Routes = [
   {
     path: "/userList",
     element: <UserListWrapper />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/teacherSchedule",
+    element: <TeacherScheduleWrapper />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/studentSchedule",
+    element: <StudentShceduleWrapper />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/adminSchedule",
+    element: <AdminScheduleWrapper />,
     access: ["Administrator"],
   },
   {

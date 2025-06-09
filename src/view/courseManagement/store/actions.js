@@ -1,6 +1,7 @@
 import { allCourseAdminDataSlice } from "./allCourseAdminDataSlice";
 import { assistanceWorkDataSlice } from "./assistanceWorkDataSlice";
 import { classesListSlice } from "./classesListSlice";
+import { courseGroupSlice } from "./courseGroupSlice";
 import { departmentSlice } from "./departmentSlice";
 import { levelDataSlice } from "./levelDataSlice";
 import { statusDataSlice } from "./statusDataSlice";
@@ -33,3 +34,5 @@ export const {
   changeAllCourseAdminQuery,
   addDataToCourseUserList
 } = allCourseAdminDataSlice.actions;
+
+export const { addDataToCourseGroupState } = courseGroupSlice.actions

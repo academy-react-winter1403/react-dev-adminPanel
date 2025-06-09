@@ -125,6 +125,32 @@ export default [
     ],
   },
   {
+    id: "scheduleManagement",
+    title: "مدیریت بازه زمانی استاد",
+    icon: <Calendar size={20} />,
+    navLink: "scheduleManagement",
+    children: [
+      {
+        id: "teacherSchedule",
+        title: "بازه زمانی شما",
+        icon: <Circle size={20} />,
+        navLink: "/teacherSchedule",
+      },
+      {
+        id: "adminSchedule",
+        title: "بازه زمانی ادمین",
+        icon: <Circle size={20} />,
+        navLink: "/adminSchedule",
+      },
+      {
+        id: "studentSchedule",
+        title: "بازه زمانی کاربر",
+        icon: <Circle size={20} />,
+        navLink: "/studentSchedule",
+      },
+    ],
+  },
+  {
     id: "tasksManagement",
     title: "مدیریت تسک ها",
     icon: <BookOpen size={20} />,

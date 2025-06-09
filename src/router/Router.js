@@ -1,5 +1,6 @@
 // ** Router imports
 import { useRoutes } from "react-router-dom";
+import "../@core/scss/me-style/textStyle.scss"
 
 // ** GetRoutes
 import { getRoutes } from "./routes";

@@ -32,6 +32,7 @@ import levelDataSlice from "../view/courseManagement/store/levelDataSlice";
 import workDataSlice from "../view/courseManagement/store/workDdataSlice";
 import assistanceWorkDataSlice from "../view/courseManagement/store/assistanceWorkDataSlice";
 import allCourseAdminDataSlice from "../view/courseManagement/store/allCourseAdminDataSlice";
+import adminSheduleSlice from "../view/scheduleManagement/store/adminSheduleSlice";
 // >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
 
 const rootReducer = {
@@ -63,7 +64,8 @@ const rootReducer = {
   levelDataSlice,
   workDataSlice,
   assistanceWorkDataSlice,
-  allCourseAdminDataSlice
+  allCourseAdminDataSlice,
+  adminSheduleSlice
 };
 
 export default rootReducer;
