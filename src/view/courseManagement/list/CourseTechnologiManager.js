@@ -22,7 +22,7 @@ const CourseTechnologiManager = () => {
   const state = useSelector((state) => state);
   const { technologiDataSlice } = state;
   const { technologiData, tehcnologiSingelData } = technologiDataSlice;
-  const headerData = ["نام سطح", "توضیحات سطح", "اقدام"];
+  const headerData = ["", "نام سطح", "توضیحات سطح", "اقدام"];
   const [fullData, setFullData] = useState(null);
   const [searchData, setSearchData] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
@@ -155,6 +155,7 @@ const CourseTechnologiManager = () => {
           <Export
             headers={headerData}
             dataMap={fullData}
+            // titleField=""
             hasImage={"iconAddress"}
             fieldKeys={["techName", "describe"]}
             Btn={editeElem}

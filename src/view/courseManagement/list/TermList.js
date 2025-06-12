@@ -247,7 +247,7 @@ const TermList = () => {
                 setTermFormData(null);
                 // dispatch(addDataToDepartmentDetail(null));
               }}
-              secondBtnTextContent={"افزودن زمان"}
+              // secondBtnTextContent={"افزودن زمان"}
               secondBtnClick={() => {
                 // setModalFlag(!modalFlag);
                 setTermCloseDateFormShowFlag(!termCloseDateFormShowFlag);
@@ -265,7 +265,13 @@ const TermList = () => {
                 headers={headerData}
                 dataMap={fullData}
                 titleField="id"
-                fieldKeys={["termName", "fullDate", "departmentName", status]}
+                fieldKeys={["termName", "fullDate", "departmentName", { keyName: "expire" }]}
+                statusKey={{
+                  expire: {
+                    trueField: "فعال",
+                    falseField: "غیر فعال",
+                  },
+                }}
                 statusName={"expire"}
                 hover={true}
                 exportProperty={"hover"}
@@ -280,6 +286,7 @@ const TermList = () => {
                   setModalBtnText("تایید");
                 }}
                 clickHandle={cardClickHadnler}
+                btnKeys={{ flag: false }}
               />
             )}
           </Col>

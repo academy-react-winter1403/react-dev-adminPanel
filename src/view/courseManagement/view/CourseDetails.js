@@ -12,11 +12,25 @@ import { Col, Row } from "reactstrap";
 import UserInfoCard from "./../../../@core/components/common/UserInfoCard/UserInfoCard";
 import UserTabs from "./../../../@core/components/common/Tabs/UserTabs";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getData, usePutData } from "../../../@core/services/api";
+import { useParams, useSearchParams } from "react-router-dom";
+import {
+  getData,
+  getGroupsData,
+  usePutData,
+} from "../../../@core/services/api";
 import ChildrenModalCourse from "./ChildrenModalCourse";
+import VirtualGroups from "../list/courseGroupManage/VirtualGroups";
+import Groups from "../list/courseGroupManage/Groups";
+import { useDispatch } from "react-redux";
+import { addDataToCourseGroupState } from "../store/actions";
+import { setTeacherId } from "../store/allDataCourseSlice";
+import Mentor from "../list/mentorManagement/MentorList";
+import CourseMentorList from "../list/courseMentorListManagement/CourseMentorList";
+import { CourseDetailCommentPage } from "../list/CourseDetailCommentPage";
 
 const CourseDetails = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
   const headers = ["عنوان", "تاریخ", "امتیاز", "وضعیت"];
   const [active, setActive] = useState("1");
   const toggleTab = (tab) => {
@@ -48,77 +62,85 @@ const CourseDetails = () => {
   useEffect(() => {
     if (!isLoading && data) {
       console.log("it is data", data);
-      setTitleDetails(data.title);
-      setPrimary(data.isActive);
-      setAvatarImg(data.imageAddress);
+      setTitleDetails(data?.title);
+      setPrimary(data?.isActive);
+      setAvatarImg(data?.imageAddress);
       //   setListComments(data);
       const previewData = [
         {
           title: "تعداد خریداری ",
-          describe: data.paymentDoneTotal ?? "نامشخص",
+          describe: data?.paymentDoneTotal ?? "نامشخص",
         },
         {
           title: "تعداد رزور ها",
-          describe: data.reserveUserTotal ?? "نامشخص",
+          describe: data?.reserveUserTotal ?? "نامشخص",
         },
         {
           title: "قیمت دوره",
-          describe: data.cost + " " + "ریال" ?? "نامشخص",
+          describe: data?.cost + " " + "ریال" ?? "نامشخص",
         },
         {
           title: "تعداد کامنت ها",
-          describe: data.courseCommentTotal ?? "نامشخص",
+          describe: data?.courseCommentTotal ?? "نامشخص",
         },
         {
           title: "نوع شرکت در کلاس",
-          describe: data.courseTypeName ?? "نامشخص",
+          describe: data?.courseTypeName ?? "نامشخص",
         },
         {
           title: "تاریخ شروع دوره",
-          describe: data.startTime ?? "نامشخص",
+          describe: data?.startTime ?? "نامشخص",
         },
         {
           title: "اسم استاد",
-          describe: data.teacherName ?? "نامشخص",
+          describe: data?.teacherName ?? "نامشخص",
         },
         {
           title: "تاریخ پایان دوره",
-          describe: data.endTime ?? "نامشخص",
+          describe: data?.endTime ?? "نامشخص",
         },
       ];
       setFiledPreview(previewData);
       const DetailsData = [
         {
           title: "عنوان دوره",
-          describe: data.title ?? "نامشخص",
+          describe: data?.title ?? "نامشخص",
         },
         {
           title: "نوع شرکت در کلاس",
           describe: (
             <div className="gap-1 d-flex flex-wrap justify-content-start mt-1">
-              {data.courseSocialGroupDtos.map((item) => {
-                return <p className="text-capitalize cursor-pointer badge bg-light-primary">{item.groupName}</p>;
+              {data?.courseSocialGroupDtos.map((item) => {
+                return (
+                  <p className="text-capitalize cursor-pointer badge bg-light-primary">
+                    {item.groupName}
+                  </p>
+                );
               }) ?? "نامشخص"}
             </div>
           ),
         },
         {
           title: "برنامه کلاس",
-          describe: data.courseLevelName ?? "نامشخص",
+          describe: data?.courseLevelName ?? "نامشخص",
         },
         {
           title: "مباحث تدریس شده",
           describe: (
             <div className="gap-1 d-flex flex-wrap justify-content-start mt-1">
-              {data.courseTeches.map((item) => {
-                return <p className="text-capitalize cursor-pointer badge bg-light-primary">{item}</p>;
+              {data?.courseTeches.map((item) => {
+                return (
+                  <p className="text-capitalize cursor-pointer badge bg-light-primary">
+                    {item}
+                  </p>
+                );
               }) ?? "نامشخص"}
             </div>
           ),
         },
         {
           title: "توضیحات",
-          describe: data.describe ?? "نامشخص",
+          describe: data?.describe ?? "نامشخص",
         },
       ];
       setFiledDetails(DetailsData);
@@ -135,6 +157,24 @@ const CourseDetails = () => {
   //     ...item,
   //     // likeRatio: `${item.likeCount}/${item.dissLikeCount}`,
   //   }));
+  // if (!isLoading && data) {
+  //   // setSearchParams((params) => {
+  //   //   params.set("teacherId", data.teacherId)
+  //   //   return params
+  //   // })
+  //   searchParams.set("teacherId", data.teacherId)
+  //   // dispatch(setTeacherId(data.teacherId))
+  // }
+  useEffect(() => {
+    const teacherIdValidation = searchParams.get("teacherId");
+    if (!isLoading && data && !teacherIdValidation) {
+      setSearchParams((params) => {
+        params.set("teacherId", data.teacherId);
+        return params;
+      });
+      dispatch(setTeacherId(data.teacherId));
+    }
+  }, [isLoading, data]);
   const { mutate: putDataMutate } = usePutData("postAllData");
   const handleSwitchChange = async (newValue) => {
     setPrimary(newValue);
@@ -152,6 +192,7 @@ const CourseDetails = () => {
       },
     });
   };
+
   return (
     <Row>
       <Col md={4} className="mt-5">
@@ -176,6 +217,11 @@ const CourseDetails = () => {
             headers={headers}
             titleField="title"
             // Btn={}
+            tab3Children={<CourseDetailCommentPage />}
+            children={<Groups />}
+            children1={<VirtualGroups />}
+            mentorChildren={<CourseMentorList />}
+            // btnKeys={{ flag: false }}
           />
         </Row>
       </Col>

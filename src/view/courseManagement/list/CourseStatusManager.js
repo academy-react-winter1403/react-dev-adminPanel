@@ -33,7 +33,7 @@ const CourseStatusManager = () => {
   const [modalFlag, setModalFlag] = useState(false);
   const [categoryDetail, setCategoryDetail] = useState(null);
   const [formBtnTextContent, setFormBtnTextContent] = useState("");
-  const headerData = ["نام وضعیت", "توضیحات وضعیت", "اقدام"];
+  const headerData = ["", "نام وضعیت", "توضیحات وضعیت", "اقدام"];
 
   const userReport = {
     title: "مجموع وضعیت ها ",

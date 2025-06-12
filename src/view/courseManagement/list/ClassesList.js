@@ -233,6 +233,7 @@ const ClassesList = ({ refetchs }) => {
               clickHandle={cardClickHandler}
               Btn={<p style={{ cursor: "pointer" }}> ویرایش </p>}
               btnOnClick={editBtnClickHandler}
+              btnKeys={{ flag: false }}
             />
           )}
         </Col>

@@ -156,6 +156,7 @@ const ListOfSections = () => {
               // clickHandle={""}
               Btn={<p style={{ cursor: "pointer" }}> ویرایش </p>}
               btnOnClick={editeClickHandler}
+              btnKeys={{ flag: false }}
             />
           )}
         </Col>

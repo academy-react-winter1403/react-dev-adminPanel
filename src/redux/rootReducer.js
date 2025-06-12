@@ -7,9 +7,6 @@ import NewsListFilterSlice from "../view/news/store/NewsListFilterSlice";
 import allDataNewsSlice from "../view/news/store/allDataNewsSlice";
 import allDataAddNews from "../view/news/addNews/store/allDataAddNews";
 import NewDetailSlice from "../view/news/NewsDetails/store/NewDetailSlice";
-// <<<<<<< HEAD
-// import CourseListFilterSlice from "../view/courses/store/CourseListFilterSlice";
-// import allDataCourseSlice from "../view/courses/store/allDataCourseSlice";
 import userInformationSlice from "../view/user/list/users/store/userInformationSlice";
 import userCommentFilterSlice from "../view/user/list/users/store/userCommentFilterSlice";
 import userCommentSlice from "../view/user/list/users/store/userCommentSlice";
@@ -18,10 +15,11 @@ import commentManagementSlice from "../view/partialSlice/commentManagementSlice"
 import teacherListSlice from "../view/dashboard/store/theacherListSlice"
 import courseReservListSlice from "../view/dashboard/store/courseReservListSlice"
 import courseListSlice from "../view/dashboard/store/courseListSlice"
-// =======
 import CourseListFilterSlice from "../view/courseManagement/store/CourseListFilterSlice";
 import allDataCourseSlice from "../view/courseManagement/store/allDataCourseSlice";
-// <<<<<<< HEAD
+import createCourseFilterSlice from "../view/courseManagement/store/createCourseFilterSlice";
+import allDataAddCourse from "../view/courseManagement/store/allDataAddCourse";
+// ** Reducers
 import classesListSlice from "../view/courseManagement/store/classesListSlice"
 import departmentSlice  from "../view/courseManagement/store/departmentSlice";
 import buildingListSlice from "../view/courseManagement/store/buildingListSlice";
@@ -34,13 +32,14 @@ import workDataSlice from "../view/courseManagement/store/workDdataSlice";
 import assistanceWorkDataSlice from "../view/courseManagement/store/assistanceWorkDataSlice";
 import allCourseAdminDataSlice from "../view/courseManagement/store/allCourseAdminDataSlice";
 import adminSheduleSlice from "../view/scheduleManagement/store/adminSheduleSlice";
-// >>>>>>> 09dfb81eb33478d1fddc33bf176052c9a82fa83e
+import courseReservDataSlice from "../view/courseManagement/store/courseReservDataSlice";
+import coursePaymentSlice from "../view/courseManagement/store/coursePaymentSlice";
+import courseGroupSlice from "../view/courseManagement/store/courseGroupSlice";
+import virtualGroupsSlice from "../view/courseManagement/store/virtualGroupsSlice";
+import mentorSliceData from "../view/courseManagement/store/mentorSliceData";
+import allCourseCommentManagementSlice from "../view/courseManagement/store/allCourseCommentManagementSlice";
 
-// =======
-import createCourseFilterSlice from "../view/courseManagement/store/createCourseFilterSlice";
-import allDataAddCourse from "../view/courseManagement/store/allDataAddCourse";
-// ** Reducers
-// >>>>>>> 39ce923acbadf83d248a4d20ae59361e81172796
+
 const rootReducer = {
   navbar,
   layout,
@@ -52,6 +51,8 @@ const rootReducer = {
   NewDetailSlice,
   CourseListFilterSlice,
   allDataCourseSlice,
+  createCourseFilterSlice,
+  allDataAddCourse,
   userInformationSlice,
   userCommentFilterSlice,
   userCommentSlice,
@@ -74,6 +75,13 @@ const rootReducer = {
   adminSheduleSlice,
   createCourseFilterSlice,
   allDataAddCourse,
+  allCourseAdminDataSlice,
+  courseReservDataSlice,
+  coursePaymentSlice,
+  courseGroupSlice,
+  virtualGroupsSlice,
+  mentorSliceData,
+  allCourseCommentManagementSlice
 };
 
 export default rootReducer;

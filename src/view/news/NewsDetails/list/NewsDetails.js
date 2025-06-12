@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getNewsDetailData } from "../../../../@core/services/api";
 import { setAvatarImg, setDataNewsDetails, setFiledDetails, setFiledPreview, setListComments, setSwitch, setTitleDetails } from "../store/NewDetailSlice";
 import ChildrenModal from "./ChildrenModal";
+import NewsDetailCommentPage from "../../list/NewsDetailCommentPage";
 
 const NewsDetails = () => {
   const headers = ["عنوان", "تاریخ", "امتیاز", "وضعیت"];
@@ -34,51 +35,51 @@ const NewsDetails = () => {
   useEffect(() => {
     if (!isLoading && data) {
       console.log("it is data", data);
-      dispatch(setDataNewsDetails(data.detailsNewsDto))
-      dispatch(setTitleDetails(data.detailsNewsDto?.title))
-      dispatch(setSwitch(data.detailsNewsDto?.active))
-      dispatch(setAvatarImg(data.detailsNewsDto?.currentImageAddress));
-      dispatch(setListComments(data.commentDtos));
+      dispatch(setDataNewsDetails(data?.detailsNewsDto))
+      dispatch(setTitleDetails(data?.detailsNewsDto?.title))
+      dispatch(setSwitch(data?.detailsNewsDto?.active))
+      dispatch(setAvatarImg(data?.detailsNewsDto?.currentImageAddress));
+      dispatch(setListComments(data?.commentDtos));
       const previewData = [
         {
           // key: "currentView",
           title: "تعداد بازدید ها",
-          describe: data.detailsNewsDto.currentView ?? "نامشخص",
+          describe: data?.detailsNewsDto?.currentView ?? "نامشخص",
         },
         {
           // key: "commentsCont",
           title: "تعداد کامنت ها",
-          describe: data.detailsNewsDto?.commentsCount ?? "نامشخص",
+          describe: data?.detailsNewsDto?.commentsCount ?? "نامشخص",
         },
         {
           // key: "likesCount",
           title: "تعداد پسندیده ها",
-          describe: data.detailsNewsDto?.currentLikeCount ?? "نامشخص",
+          describe: data?.detailsNewsDto?.currentLikeCount ?? "نامشخص",
         },
         {
           // key: "currentLikeCount",
           title: "تعداد ناپسندیده ها",
-          describe: data.detailsNewsDto?.currentLikeCount ?? "نامشخص",
+          describe: data?.detailsNewsDto?.currentLikeCount ?? "نامشخص",
         },
         {
           // key: "isCurrentUserFavorite",
           title: "علاقمندی",
-          describe: data.detailsNewsDto?.isCurrentUserFavorite ? "بله" : "خیر",
+          describe: data?.detailsNewsDto?.isCurrentUserFavorite ? "بله" : "خیر",
         },
         {
           // key: "insertDate",
           title: "تاریخ ثبت",
-          describe: data.detailsNewsDto?.insertDate ?? "نامشخص",
+          describe: data?.detailsNewsDto?.insertDate ?? "نامشخص",
         },
         {
           // key: "inUsersFavoriteCount",
           title: "تعداد علاقمند ها",
-          describe: data.detailsNewsDto?.inUsersFavoriteCount ?? "نامشخص",
+          describe: data?.detailsNewsDto?.inUsersFavoriteCount ?? "نامشخص",
         },
         {
           // key: "updateDate",
           title: "تاریخ تغییرات",
-          describe: data.detailsNewsDto?.updateDate ?? "نامشخص",
+          describe: data?.detailsNewsDto?.updateDate ?? "نامشخص",
         },
       ];
       dispatch(setFiledPreview(previewData));
@@ -86,27 +87,27 @@ const NewsDetails = () => {
         {
           // key: "title",
           title: "عنوان اخبار",
-          describe: data.detailsNewsDto?.title ?? "نامشخص",
+          describe: data?.detailsNewsDto?.title ?? "نامشخص",
         },
         {
           // key: "addUserFullName",
           title: "ساخته شده توسط",
-          describe: data.detailsNewsDto?.addUserFullName ?? "نامشخص",
+          describe: data?.detailsNewsDto?.addUserFullName ?? "نامشخص",
         },
         {
           // key: "newsCatregoryName",
           title: "دستبندی با اسم",
-          describe: data.detailsNewsDto?.newsCatregoryName ?? "نامشخص",
+          describe: data?.detailsNewsDto?.newsCatregoryName ?? "نامشخص",
         },
         {
           // key: "googleTitle",
           title: "سئو عنوان اخبار",
-          describe: data.detailsNewsDto?.googleTitle ?? "نامشخص",
+          describe: data?.detailsNewsDto?.googleTitle ?? "نامشخص",
         },
         {
           // key: "describe",
           title: "توضیحات ",
-          describe: data.detailsNewsDto?.describe ?? "نامشخص",
+          describe: data?.detailsNewsDto?.describe ?? "نامشخص",
         },
       ];
       dispatch(setFiledDetails(DetailsData))
@@ -167,6 +168,7 @@ const NewsDetails = () => {
             fieldKeys={["inserDate", "likeRatio"]}
             headers={headers}
             titleField="title"
+            tab3Children={<NewsDetailCommentPage />}
             // Btn={}
           />
         </Row>

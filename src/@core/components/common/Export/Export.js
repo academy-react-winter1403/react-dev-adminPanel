@@ -13,6 +13,7 @@ const Export = ({
   imageField = "image",
   titleField = "title",
   Btn,
+  btnKeys,
   clickHandle,
   btnOnClick,
   hover,
@@ -20,14 +21,8 @@ const Export = ({
   statusKey,
 }) => {
   const navigate = useNavigate();
-  // const { mutate } = getNewsDetailData("getNewsDetailData");
-
-  // const { id } = useParams()
-  // const { PageNumber, RowsOfPage, SortingCol, SortType, Query, IsActive } =
-  //   useSelector((state) => state.NewsListFilterSlice);
 
   const onRowClick = (itemId) => {
-    // console.log(itemId)
     clickHandle(itemId);
   };
 
@@ -61,7 +56,7 @@ const Export = ({
                       </td>
                     </>
                   ) : (
-                    <td>
+                    <td style={{ maxWidth: "160px" }} title={item[titleField]}>
                       {item[titleField]
                         ? item[titleField]
                         : "ای بابا اسم نداره کهههه😒😒"}
@@ -72,7 +67,16 @@ const Export = ({
                       typeof titleItem === "object" ? true : false;
                     const keyName = titleItem.keyName;
                     return (
-                      <td key={index}>
+                      <td
+                        key={index}
+                        style={{
+                          maxWidth: "160px",
+                          textOverflow: "ellipsis",
+                          overflow: "hidden",
+                          whiteSpace: "nowrap",
+                        }}
+                        title={item[titleItem]}
+                      >
                         {typeOfStatus ? (
                           item[statusName] ? (
                             <span className="me-1 badge bg-light-primary px-1">
@@ -87,7 +91,7 @@ const Export = ({
                                 : statusKey.falseField}
                             </span>
                           )
-                        ) : item[titleItem] || item[titleItem] == 0? (
+                        ) : item[titleItem] || item[titleItem] == 0 ? (
                           item[titleItem]
                         ) : (
                           "ای بابا اسم نداره کهههه😒😒"
@@ -131,7 +135,7 @@ const Export = ({
                       </td>
                     </>
                   ) : (
-                    <td>
+                    <td style={{ maxWidth: "160px" }} title={item[titleField]}>
                       {item[titleField]
                         ? item[titleField]
                         : "ای بابا اسم نداره کهههه😒😒"}
@@ -141,10 +145,20 @@ const Export = ({
                     const typeOfStatus =
                       typeof titleItem === "object" ? true : false;
                     const keyName = titleItem.keyName;
+                    console.log("titleItem ==>", item[keyName]);
                     return (
-                      <td key={index}>
+                      <td
+                        key={index}
+                        style={{
+                          maxWidth: "160px",
+                          textOverflow: "ellipsis",
+                          overflow: "hidden",
+                          whiteSpace: "nowrap",
+                        }}
+                        title={item[titleItem]}
+                      >
                         {typeOfStatus ? (
-                          item[statusName] ? (
+                          item[keyName] ? (
                             <span className="me-1 badge bg-light-primary px-1">
                               {keyName
                                 ? statusKey[keyName].trueField
@@ -165,9 +179,25 @@ const Export = ({
                       </td>
                     );
                   })}
-                  <td>
-                    <div onClick={() => btnOnClick(item)}>{Btn}</div>
-                  </td>
+                  {btnKeys.flag ? (
+                    item[btnKeys.keyName] ? (
+                      <td>
+                        <div onClick={() => btnOnClick(item)}>
+                          {btnKeys.trueField}
+                        </div>
+                      </td>
+                    ) : (
+                      <td>
+                        <div onClick={() => btnOnClick(item)}>
+                          {btnKeys.falseField}
+                        </div>
+                      </td>
+                    )
+                  ) : (
+                    <td>
+                      <div onClick={() => btnOnClick(item)}>{Btn}</div>
+                    </td>
+                  )}
                 </tr>
               );
             })}

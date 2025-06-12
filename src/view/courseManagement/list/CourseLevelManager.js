@@ -21,6 +21,7 @@ import toast from "react-hot-toast";
 import CreateStatus from "./CreateStatus";
 import CreateLevel from "./CreateLevel";
 
+
 const CourseLevelManager = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -33,7 +34,7 @@ const CourseLevelManager = () => {
   const [modalFlag, setModalFlag] = useState(false);
   const [categoryDetail, setCategoryDetail] = useState(null);
   const [formBtnTextContent, setFormBtnTextContent] = useState("");
-  const headerData = ["نام وضعیت", "توضیحات وضعیت", "اقدام"];
+  const headerData = ["", "نام وضعیت", "توضیحات وضعیت", "اقدام"];
 
   const userReport = {
     title: "مجموع سطح های دوره",

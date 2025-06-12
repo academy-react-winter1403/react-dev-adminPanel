@@ -6,4 +6,10 @@ export const NumberCards = [
 export const SortType = [
   { value: "فعال", label: "فعال" },
   { value: "غیر فعال", label: "غیر فعال" },
-]
+];
+
+export const headerData = [
+  { value: "", label: "نام دانشجو" },
+  { value: "", label: "نام دوره" },
+  { value: "", label: "وضعیت" },
+];

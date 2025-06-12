@@ -62,6 +62,24 @@ import { getCourseUserListData } from "./get-api/getCourseUserListData";
 import { getCourseGroupsWithId, getCourseGroupsWithIdMutation } from "./get-api/getCourseGroupsWithId";
 import { getScheduleData } from "./get-api/getScheduleData";
 import { getCourseDetailAdmin } from "./get-api/getCourseDetailAdmin";
+import { getGroupsData } from "./get-api/getGroupsData";
+import { createCourseGroupPost } from "./post-api/createCourseGroupPost";
+import { getCourseGroupWithId } from "./get-api/getCourseGroupWithId";
+import { updateCourseGroup } from "./put-api/updateCourseGroup";
+import { deleteCourseGroup } from "./delete-api/deleteCourseGroup";
+import { getCourseSocialGroup } from "./get-api/getCourseSocialGroup";
+import { createCourseSocialGroup } from "./post-api/createCourseSocialGroup";
+import { getSocialGroupWithId } from "./get-api/getSocialGroupWithId";
+import { getMentorListData } from "./get-api/getMentorListData";
+import { getMentorWithId } from "./get-api/gteMentorWithId";
+import { updateMentor } from "./put-api/updateMentor";
+import { getCourseAllComment } from "./get-api/getCourseAllComment";
+import { acceptComment } from "./post-api/acceptComment";
+import { rejectComment } from "./post-api/rejectComment";
+import { getCommentReplaySingel } from "./get-api/getCommentReplaySingel";
+import { postReplayToComment } from "./post-api/postReplayToComment";
+import { getCourseCommentSingel } from "./get-api/getCourseCommentSingel";
+import { getNewsCommentSingelData } from "./get-api/getNewsCommentSingelData";
 
 export {
   getData,
@@ -122,5 +140,22 @@ export {
   getScheduleData,
   getCourseDetailAdmin,
   getCourseGroupsWithIdMutation,
+  getGroupsData,
+  createCourseGroupPost,
+  getCourseGroupWithId,
+  updateCourseGroup,
+  deleteCourseGroup,
+  getCourseSocialGroup,
+  createCourseSocialGroup,
+  getSocialGroupWithId,
+  getMentorListData,
+  getMentorWithId,
+  updateMentor,
+  getCourseAllComment,
+  acceptComment,
+  rejectComment,
+  postReplayToComment,
+  getCourseCommentSingel,
+  getNewsCommentSingelData
 };
 // >>>>>>> 4c3cb5376a24b28a724db4f5500ebde5651b6617

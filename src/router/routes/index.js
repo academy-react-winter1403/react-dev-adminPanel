@@ -55,6 +55,7 @@ const CourseManagement = lazy(() =>
 const CreateCourse = lazy(() =>
   import("../../view/courseManagement/view/CreateCourse")
 );
+
 const ClassesListWrapper = lazy(() =>
   import("../../view/courseManagement/view/ClassesListWrapper")
 );
@@ -80,7 +81,13 @@ const TeacherScheduleWrapper = lazy(() => import("../../view/scheduleManagement/
 const StudentShceduleWrapper = lazy(() => import("../../view/scheduleManagement/view/studentScheduleWrapper"))
 const AdminScheduleWrapper = lazy(() => import("../../view/scheduleManagement/view/AdminScheduleWrapper"))
 
-
+const CourseReservedWrapper = lazy(() => import("../../view/courseManagement/view/CourseReservedWrapper"))
+const CoursePaymentWrapper = lazy(() => import("../../view/courseManagement/view/CoursePaymentWrapper"))
+const VirtualGroupsWrapper = lazy(() => import("../../view/courseManagement/view/VirtualGroupsWrapper"))
+const GroupsWrapper = lazy(() => import("../../view/courseManagement/view/GroupsWrapper"))
+const MentorList = lazy(() => import("../../view/courseManagement/list/mentorManagement/MentorList"))
+const CreateMentor = lazy(() => import("../../view/courseManagement/list/mentorManagement/CreateMentor"))
+const CommentManagementWrapper = lazy(() => import("../../view/courseManagement/view/CommentManagementWrapper"))
 
 // ** Merge Routes
 const Routes = [
@@ -121,7 +128,19 @@ const Routes = [
     path: "/createCourse",
     element: <CreateCourse />,
   },
-
+  {
+    path: "/mentorList",
+    element: <MentorList />,
+  },
+  {
+    path: "/createMentor",
+    element: <CreateMentor />,
+  },
+  { 
+    path: "/listComments",
+    element: <Comments />
+    // element:<TableFilter /> 
+  },
   {
     path: "/courseTechnologiManager",
     element: <CourseTehcnologiManagerWrapper />,
@@ -135,8 +154,29 @@ const Routes = [
     element: <CourseLevelManagerWrapper />,
   },
   {
+    path: "/reservedCourses",
+    element: <CourseReservedWrapper />,
+  },
+  {
+    path: "/coursePayment",
+    element: <CoursePaymentWrapper />,
+  },
+  {
+    path: "/virtualGroups",
+    element: <VirtualGroupsWrapper />,
+  },
+  {
+    path: "/groups",
+    element: <GroupsWrapper />,
+  },
+  {
     path: "/classesList",
     element: <ClassesListWrapper />,
+    access: ["Administrator"],
+  },
+  {
+    path: "/commentManagement",
+    element: <CommentManagementWrapper />,
     access: ["Administrator"],
   },
   {
@@ -210,7 +250,7 @@ const Routes = [
     // },
   },
   {
-    path: "/user/view/:id",
+    path: "/user-list/view/:id",
     element: <UserView />,
     access: ["Administrator"],
     // meta: {

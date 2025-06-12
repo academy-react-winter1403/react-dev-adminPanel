@@ -1,12 +1,17 @@
 import { allCourseAdminDataSlice } from "./allCourseAdminDataSlice";
+import { allCourseCommentManagementSlice } from "./allCourseCommentManagementSlice";
 import { assistanceWorkDataSlice } from "./assistanceWorkDataSlice";
 import { classesListSlice } from "./classesListSlice";
 import { courseGroupSlice } from "./courseGroupSlice";
+import { coursePaymentSlice } from "./coursePaymentSlice";
+import { courseReservDataSlice } from "./courseReservDataSlice";
 import { departmentSlice } from "./departmentSlice";
 import { levelDataSlice } from "./levelDataSlice";
+import { mentorSliceData } from "./mentorSliceData";
 import { statusDataSlice } from "./statusDataSlice";
 import { technologiDataSlice } from "./technologiDataSlice";
 import { termListSlice } from "./TermListSlice";
+import { virtualGroupsSlice } from "./virtualGroupsSlice";
 import { workDataSlice } from "./workDdataSlice";
 
 export const { addClassesListData, addClasesRoomDetail } =
@@ -32,7 +37,47 @@ export const {
   changeAllCourseAdminPageNumber,
   changeAllCourseAdminRowsOfPage,
   changeAllCourseAdminQuery,
-  addDataToCourseUserList
+  addDataToCourseUserList,
 } = allCourseAdminDataSlice.actions;
 
-export const { addDataToCourseGroupState } = courseGroupSlice.actions
+export const {
+  addDataToCourseGroupState,
+  addDataToCourseVirtualGroupState,
+  changeGroupPageNumber,
+  changeGroupRowsOfPage,
+  changeVirtualGroupPageNumber,
+  changeVirtualGroupRowsOfPage,
+} = courseGroupSlice.actions;
+export const {
+  addDataToCourseReservData,
+  changeCourseReservRowsOfPage,
+  changeCourseReservPageNumber,
+  changeCourseReservQuery,
+} = courseReservDataSlice.actions;
+
+export const { addDataToCoursePaymentState } = coursePaymentSlice.actions;
+
+export const {
+  addDataToVirtualGroupsState,
+  changeVirtualGroupsPageNumber,
+  changeVirtualGroupsRowsOfPage,
+  changeVirtualGroupsQuery,
+} = virtualGroupsSlice.actions;
+
+export const {
+  addDataToMentorList,
+  addDataToMentorSingel,
+  changeMentorDataPageNumber,
+  changeMentorDataRowsOfPage,
+} = mentorSliceData.actions;
+
+export const {
+  addDataToCommentManagementState,
+  addDataToCommentManagementReplayState,
+  changeAllCourseCommentManagementAccept,
+  changeAllCourseCommentManagementPageNumber,
+  changeAllCourseCommentManagementRowsOfPage,
+  changeAllCourseCommentManagementQuery,
+  changeAllCourseCommentManagementSortingCol,
+  changeAllCourseCommentManagementSortingType,
+} = allCourseCommentManagementSlice.actions;

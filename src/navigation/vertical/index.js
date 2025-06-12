@@ -7,7 +7,7 @@ import {
   Book,
   FileText,
   BookOpen,
-  Calendar
+  Calendar,
 } from "react-feather";
 
 export default [
@@ -71,8 +71,54 @@ export default [
       {
         id: "CourseList",
         title: "لیست دوره ها",
-        icon: <Circle size={20} />,
+        icon: <BookOpen size={50} />,
         navLink: "/Course",
+        children: [
+          {
+            id: "CourseList",
+            title: "همه دوره ها",
+            icon: <Circle size={20} />,
+            navLink: "/Course",
+          },
+          {
+            id: "reservedCourses",
+            title: "دوره های رزرو شده",
+            icon: <Circle size={20} />,
+            navLink: "/reservedCourses",
+          },
+          {
+            id: "coursePayment",
+            title: "پرداختی دوره ها",
+            icon: <Circle size={20} />,
+            navLink: "/coursePayment",
+          },
+          {
+            id: "MyCourses",
+            title: "دوره های من",
+            icon: <Circle size={20} />,
+            navLink: "/MyCourses",
+          },
+        ],
+      },
+      {
+        id: "mentorManagement",
+        title: "مدیریت منتورها",
+        icon: <BookOpen size={50} />,
+        navLink: "/Course",
+        children: [
+          {
+            id: "mentorList",
+            title: "لیست منتورها",
+            icon: <Circle size={20} />,
+            navLink: "/mentorList",
+          },
+          {
+            id: "createMentor",
+            title: "افزودن منتور",
+            icon: <Circle size={20} />,
+            navLink: "/createMentor",
+          },
+        ]
       },
       {
         id: "createCourse",
@@ -103,6 +149,12 @@ export default [
         title: " لیست کلاس ها ",
         icon: <Circle size={20} />,
         navLink: "/classesList",
+      },
+      {
+        id: "commentManagement",
+        title: "مدیریت کامنت ها",
+        icon: <Circle size={20} />,
+        navLink: "/commentManagement",
       },
       {
         id: "ListOfSections",

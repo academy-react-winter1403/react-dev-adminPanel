@@ -7,6 +7,7 @@ export const getCourseReservData = (key, endUrl) => {
         queryFn: async () => {
             const data = await http.get(endUrl)
             return data
-        }
+        },
+        refetchOnReconnect: true
     })
 }

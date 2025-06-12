@@ -47,6 +47,7 @@ const UserList = () => {
     "وضعیت",
     "حذف شده",
     "فعال / غیرفعال",
+    ""
   ];
   const courseModalHeaderData = ["نام دوره", "وضعیت", "عملیات"];
 
@@ -170,6 +171,7 @@ const UserList = () => {
               isDeletedElem: { falseField: "غیرحذف شده", trueField: "حذف شده" },
               isActiveElem: { falseField: "غیرفعال", trueField: "فعال" },
             }}
+            btnKeys={{ flag: false }}
           />
         )}
         <SeparatedPagination

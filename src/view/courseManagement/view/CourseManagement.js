@@ -95,7 +95,7 @@ const CourseManagement = () => {
     getAllData();
   }, [PageNumber, RowsOfPage, Query, IsActive, dispatch]);
   const exportCardClickHandler = async (item) => {
-    console.log(item.courseId);
+    console.log("teacherId ==>", item);
     navigate(`/Course/Details/${item.courseId}`);
   };
   return (
@@ -155,7 +155,7 @@ const CourseManagement = () => {
             </div>
           </CardHeader>
           <CardBody>
-            <Export
+            {CourseListChanges &&<Export
               headers={headers}
               hasImage={true}
               dataMap={CourseListChanges}
@@ -164,7 +164,8 @@ const CourseManagement = () => {
               fieldKeys={["typeName", "lastUpdate", "levelName"]}
               enableNavigate={true}
               clickHandle={(itemId) => exportCardClickHandler(itemId)}
-            />
+              btnKeys={{ flag: false }}
+            />}
           </CardBody>
           <CardFooter>
             <div className="d-flex justify-content-center">

@@ -6,7 +6,9 @@ export const deleteComment = (key) => {
         mutationKey: key,
         mutationFn: async (data) => {
             const [endUrl, dataObj] = data
-            const response = await http.delete(endUrl, dataObj)
+            const response = await http.delete(endUrl, {
+                params: dataObj
+            })
             return response
         }
     })

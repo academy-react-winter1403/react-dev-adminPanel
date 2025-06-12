@@ -157,6 +157,7 @@ const BlogManagement = () => {
               fieldKeys={["likeRatio", "insertDate"]}
               enableNavigate={true}
               clickHandle={(itemId) => exportCardClickHandler(itemId)}
+              btnKeys={{ flag: false }}
             />
           </CardBody>
           <CardFooter>

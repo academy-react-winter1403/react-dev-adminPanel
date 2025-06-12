@@ -42,7 +42,7 @@ const ButtonAction = ({ dataArray, itemClickHandle, leftPosNum }) => {
           {dataArray.map((item, index) => {
             return (
               <DropdownItem
-                className="w-100"
+                className="w-100 d-flex gap-1"
                 onClick={() => itemClickHandle(item)}
                 key={index}
                 style={{display: "flex", gap: "10px"}}

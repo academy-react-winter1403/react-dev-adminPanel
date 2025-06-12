@@ -66,7 +66,7 @@ const UserCard = ({
             <DropdownItem
               onClick={(e) => {
                 e.preventDefault();
-                navigate(navigationName + id);
+                navigate(`/user-list/view/${id}`);
               }}
             >
               <FileText className="me-50" size={15} />{" "}
