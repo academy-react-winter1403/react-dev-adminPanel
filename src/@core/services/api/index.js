@@ -80,6 +80,9 @@ import { getCommentReplaySingel } from "./get-api/getCommentReplaySingel";
 import { postReplayToComment } from "./post-api/postReplayToComment";
 import { getCourseCommentSingel } from "./get-api/getCourseCommentSingel";
 import { getNewsCommentSingelData } from "./get-api/getNewsCommentSingelData";
+import { getReportData } from "./get-api/getReportData";
+import { getUserProfileInfo } from "./get-api/getUserProfileInfo";
+import { getTechnologiReport } from "./get-api/getTechnologiReport";
 
 export {
   getData,
@@ -156,6 +159,9 @@ export {
   rejectComment,
   postReplayToComment,
   getCourseCommentSingel,
-  getNewsCommentSingelData
+  getNewsCommentSingelData,
+  getReportData,
+  getUserProfileInfo,
+  getTechnologiReport
 };
 // >>>>>>> 4c3cb5376a24b28a724db4f5500ebde5651b6617
