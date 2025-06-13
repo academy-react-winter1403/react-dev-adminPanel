@@ -28,12 +28,6 @@ const StatsCard = ({ cols, number }) => {
       color: 'light-danger',
       icon: <Box size={24} />
     },
-    // {
-    //   title: '$9745',
-    //   subtitle: 'Revenue',
-    //   color: 'light-success',
-    //   icon: <DollarSign size={24} />
-    // }
   ]
 
   const renderData = () => {

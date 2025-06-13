@@ -10,20 +10,12 @@ import StatsWithAreaChart from "@components/widgets/stats/StatsWithAreaChart";
 import { name } from "react-date-object/calendars/julian";
 
 const UserActiveCard = ({ title, counter }) => {
-  // ** State
-  //   const [data, setData] = useState(null)
-
-  //   useEffect(() => {
-  //     axios.get('/card/card-statistics/subscribers').then(res => setData(res.data))
-  //     return () => setData(null)
-  //   }, [])
-
   const data = {
     analyticsData: {
         subscribers: counter,
     },
     series: [
-        {name: "Subscribers", data: [28, 40, 36, 52, 38, 60, 55]}
+        {name: "کاربران", data: [28, 40, 36, 52, 38, 60, 55]}
     ],
   };
 
