@@ -11,11 +11,7 @@ export const getUserListDataWithParams = (key, endUrl, queryParams) => {
             })
             return data
         },
-        // refetchOnReconnect: true,
-        // refetchInterval,
-        // refetchIntervalInBackground,
         refetchOnMount: true
-        // refetchOnWindowFocus
     })
 }
 

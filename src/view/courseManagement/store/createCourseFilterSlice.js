@@ -10,6 +10,8 @@ const createCourseFilterSlice = createSlice({
     teachers: [],
     term: [],
     prerequisite: [],
+    courseStatus:[],
+    CourseTechnology:[]
   },
   reducers: {
     setCourseType: (state, action) => {
@@ -33,6 +35,12 @@ const createCourseFilterSlice = createSlice({
     setPrerequisite: (state, action) => {
       state.prerequisite = action.payload;
     },
+    setCourseStatus:(state,action) => {
+      state.courseStatus = action.payload;
+    },
+    setCourseTechnology:(state,action) => {
+      state.CourseTechnology = action.payload
+    }
   },
 });
 
@@ -44,5 +52,7 @@ export const {
   setTeachers,
   setTerm,
   setPrerequisite,
+  setCourseStatus,
+  setCourseTechnology
 } = createCourseFilterSlice.actions;
 export default createCourseFilterSlice.reducer;

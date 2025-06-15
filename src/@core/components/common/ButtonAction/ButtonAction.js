@@ -13,7 +13,7 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 
-const ButtonAction = ({ dataArray, itemClickHandle }) => {
+const ButtonAction = ({ dataArray, itemClickHandle,ActionData}) => {
   return (
     <div className="column-action">
       <UncontrolledDropdown>
@@ -25,7 +25,7 @@ const ButtonAction = ({ dataArray, itemClickHandle }) => {
             return (
               <DropdownItem
                 className="w-100 d-flex gap-1"
-                onClick={() => itemClickHandle(item)}
+                onClick={() => itemClickHandle(item,ActionData)}
                 key={index}
               >
                 <span>

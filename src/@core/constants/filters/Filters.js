@@ -7,3 +7,7 @@ export const SortType = [
   { value: "فعال", label: "فعال" },
   { value: "غیر فعال", label: "غیر فعال" },
 ]
+export const NewNumberCards = [
+  { value: "5 کارت", label: 5 },
+  { value: "3 کارت", label: 3 },
+];

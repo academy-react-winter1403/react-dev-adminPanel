@@ -12,8 +12,8 @@ import PublicRoute from "@components/routes/PublicRoute";
 
 // ** Utils
 import { isObjEmpty } from "@utils";
-import CourseDetails from "../../view/courseManagement/view/CourseDetails";
 import TableFilter from "../../@core/components/common/Filter/TableFilter";
+import AdminChat from "../../view/chat/chat";
 
 const getLayout = {
   blank: <BlankLayout />,
@@ -72,9 +72,24 @@ const CourseStatusManagerWrapper = lazy(() =>
 const CourseLevelManagerWrapper = lazy(() =>
   import("../../view/courseManagement/view/CourseLevelManagerWrapper")
 );
-const TasksWrapper = lazy(() => import("../../view/courseManagement/view/TasksWrapper"))
-const CreateTasks = lazy(() => import("../../view/courseManagement/list/CreateTasks"))
-const UserListWrapper = lazy(() => import("../../view/courseManagement/view/UserListWrapper"))
+const TasksWrapper = lazy(() =>
+  import("../../view/courseManagement/view/TasksWrapper")
+);
+const CreateTasks = lazy(() =>
+  import("../../view/courseManagement/list/CreateTasks")
+);
+const UserListWrapper = lazy(() =>
+  import("../../view/courseManagement/view/UserListWrapper")
+);
+const CourseDetails = lazy(() =>
+  import("../../view/courseManagement/view/CourseDetails")
+);
+const MyCourses = lazy(() =>
+  import("../../view/courseManagement/list/MyCourses")
+);
+const BuildingList = lazy(() =>
+  import("../../view/Building/list/BuildingList")
+);
 
 // ** Merge Routes
 const Routes = [
@@ -112,13 +127,17 @@ const Routes = [
     element: <CourseDetails />,
   },
   {
+    path: "/MyCourses",
+    element: <MyCourses />,
+  },
+  {
     path: "/createCourse",
     element: <CreateCourse />,
   },
-  { 
+  {
     path: "/listComments",
-    element: <Comments />
-    // element:<TableFilter /> 
+    element: <Comments />,
+    // element:<TableFilter />
   },
   {
     path: "/courseTechnologiManager",
@@ -163,6 +182,8 @@ const Routes = [
     access: ["Administrator"],
   },
   { path: "/listComments", element: <Comments /> },
+  { path: "/Building", element: <BuildingList /> },
+  { path: "/Chat", element: <AdminChat /> },
   {
     path: "/login",
     element: <Login />,

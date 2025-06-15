@@ -4,7 +4,7 @@ import { deleteData } from "./delete-api/deleteData";
 import { usePutData } from "./put-api/putData";
 // import { getUserListData } from "./get-api/getUserListData";
 // import { postLogin } from "./post-api/postLogin";
-import { usePostData } from './post-api/postData';
+import { usePostData } from "./post-api/postData";
 import { getNewsDetailData } from "./get-api/getNewsDetailData";
 
 // export { getData, getUserListData, usePostData, deleteData, usePutData, postLogin, getNewsDetailData };
@@ -60,6 +60,10 @@ import { getAllCourseAdmin } from "./get-api/getAllCourseAdmin";
 import { getCourseAdminWithId } from "./get-api/getCourseAdminWithId";
 import { getCourseUserListData } from "./get-api/getCourseUserListData";
 import { getCourseGroupsWithId } from "./get-api/getCourseGroupsWithId";
+import { usePostDataTechnology } from "./post-api/usePostDataTechnology";
+import { getCoursePaymentIdData } from "./get-api/getCoursePaymentId";
+import { useDeleteData } from "./delete-api/useDeleteData";
+import { useGetDataWithParams } from "./get-api/useGetDataWithParams";
 
 export {
   getData,
@@ -116,6 +120,9 @@ export {
   getAllCourseAdmin,
   getCourseAdminWithId,
   getCourseUserListData,
-  getCourseGroupsWithId
+  getCourseGroupsWithId,
+  usePostDataTechnology,
+  getCoursePaymentIdData,
+  useDeleteData,
+  useGetDataWithParams
 };
-// >>>>>>> 4c3cb5376a24b28a724db4f5500ebde5651b6617

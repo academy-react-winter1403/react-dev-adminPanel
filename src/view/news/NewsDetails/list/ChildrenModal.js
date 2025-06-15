@@ -116,7 +116,6 @@ const ChildrenModal = () => {
   );
   useEffect(() => {
     if (!isLoadingCategory && dataCategory) {
-      console.log("dataCategory", dataCategory);
       dispatch(
         setCategory(
           dataCategory.map((item) => ({
@@ -132,6 +131,7 @@ const ChildrenModal = () => {
       setCurrentCategory(Category[0]);
     }
   }, [Category]);
+  
   const { mutate: postDataMutate } = usePutData("postAllData");
   const onSubmit = (data) => {
     const file = data.CurrentImageAddress[0];
@@ -140,16 +140,15 @@ const ChildrenModal = () => {
       file,
       NewsCatregoryId: currentCategory.value,
     };
-    console.log(AllData);
     postDataMutate(["/News/UpdateNews", AllData, "multipart/form-data"], {
       onSuccess: (data) => {
         console.log("Success:", data);
+        toggleFunction();
       },
       onError: (error) => {
         console.error("Error:", error);
       },
     });
-    console.log(AllData);
     reset();
   };
 

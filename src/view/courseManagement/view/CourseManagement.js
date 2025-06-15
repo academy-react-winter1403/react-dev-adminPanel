@@ -30,6 +30,7 @@ import {
   setRowsOfPage,
 } from "../store/CourseListFilterSlice";
 import { setCourseListChanges } from "../store/allDataCourseSlice";
+import SearchQuery from "../../../@core/components/common/InputGroupButtons/SearchQuery";
 
 const CourseManagement = () => {
   const headers = ["عنوان دوره", "وضعیت کلاس", "تاریخ", "سطح کلاس", ""];
@@ -94,6 +95,7 @@ const CourseManagement = () => {
     };
     getAllData();
   }, [PageNumber, RowsOfPage, Query, IsActive, dispatch]);
+
   const exportCardClickHandler = async (item) => {
     console.log(item.courseId);
     navigate(`/Course/Details/${item.courseId}`);
@@ -138,7 +140,7 @@ const CourseManagement = () => {
             </div>
             <div className="d-flex gap-1">
               <div className="mt-2">
-                <InputGroupButtons SearchQuery={changeSearchQuery} />
+                <SearchQuery onChange={changeSearchQuery} />
               </div>
               <div className="mt-2">
                 <SelectReact

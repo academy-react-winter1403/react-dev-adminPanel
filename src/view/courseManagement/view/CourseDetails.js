@@ -1,13 +1,3 @@
-// import { Col, Row } from "reactstrap";
-// import UserInfoCard from "../../../../@core/components/common/UserInfoCard/UserInfoCard";
-// import UserTabs from "../../../../@core/components/common/Tabs/UserTabs";
-// import { useEffect, useState } from "react";
-// import { getData,usePutData } from "../../../../@core/services/api";
-// import { useParams } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getNewsDetailData } from './../../../../@core/services/api/get-api/getNewsDetailData';
-// import { getNewsDetailData } from "../../../../@core/services/api";
-
 import { Col, Row } from "reactstrap";
 import UserInfoCard from "./../../../@core/components/common/UserInfoCard/UserInfoCard";
 import UserTabs from "./../../../@core/components/common/Tabs/UserTabs";
@@ -15,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getData, usePutData } from "../../../@core/services/api";
 import ChildrenModalCourse from "./ChildrenModalCourse";
+import ChildrenModalCourseData from "./ChildrenModalCourseData";
+import ChildrenModalCourseTotal from "./ChildrenModalCourseTotal";
 
 const CourseDetails = () => {
   const headers = ["عنوان", "تاریخ", "امتیاز", "وضعیت"];
@@ -24,17 +16,6 @@ const CourseDetails = () => {
       setActive(tab);
     }
   };
-  // const {
-  //   dataNewsDetails,
-  //   titleDetails,
-  //   avatarImg,
-  //   Switch,
-  //   filedPreview,
-  //   filedDetails,
-  //   listComments,
-  // } = useSelector((state) => state.NewDetailSlice);
-  // const dispatch = useDispatch();
-
   const [titleDetails, setTitleDetails] = useState(null);
   const [avatarImg, setAvatarImg] = useState(null);
   const [Primary, setPrimary] = useState(null);
@@ -43,15 +24,14 @@ const CourseDetails = () => {
   const [listComments, setListComments] = useState([]);
 
   const { CourseId } = useParams();
-  console.log(CourseId);
-  const { data, isLoading } = getData("category", `/Course/${CourseId}`);
+  // console.log(CourseId);
+  const { data, isLoading } = getData("CourseDetails", `/Course/${CourseId}`);
   useEffect(() => {
     if (!isLoading && data) {
       console.log("it is data", data);
       setTitleDetails(data.title);
       setPrimary(data.isActive);
       setAvatarImg(data.imageAddress);
-      //   setListComments(data);
       const previewData = [
         {
           title: "تعداد خریداری ",
@@ -97,7 +77,11 @@ const CourseDetails = () => {
           describe: (
             <div className="gap-1 d-flex flex-wrap justify-content-start mt-1">
               {data.courseSocialGroupDtos.map((item) => {
-                return <p className="text-capitalize cursor-pointer badge bg-light-primary">{item.groupName}</p>;
+                return (
+                  <p className="text-capitalize cursor-pointer badge bg-light-primary">
+                    {item.groupName}
+                  </p>
+                );
               }) ?? "نامشخص"}
             </div>
           ),
@@ -111,7 +95,11 @@ const CourseDetails = () => {
           describe: (
             <div className="gap-1 d-flex flex-wrap justify-content-start mt-1">
               {data.courseTeches.map((item) => {
-                return <p className="text-capitalize cursor-pointer badge bg-light-primary">{item}</p>;
+                return (
+                  <p className="text-capitalize cursor-pointer badge bg-light-primary">
+                    {item}
+                  </p>
+                );
               }) ?? "نامشخص"}
             </div>
           ),
@@ -123,18 +111,7 @@ const CourseDetails = () => {
       ];
       setFiledDetails(DetailsData);
     }
-    console.log({
-      titleDetails,
-      avatarImg,
-      Primary,
-      filedPreview,
-      filedDetails,
-    });
   }, [isLoading, data]);
-  //   const dataWithRatio = listComments.map((item) => ({
-  //     ...item,
-  //     // likeRatio: `${item.likeCount}/${item.dissLikeCount}`,
-  //   }));
   const { mutate: putDataMutate } = usePutData("postAllData");
   const handleSwitchChange = async (newValue) => {
     setPrimary(newValue);
@@ -159,14 +136,20 @@ const CourseDetails = () => {
           TitleDetails={titleDetails}
           avatarImg={avatarImg}
           Primary={Primary}
-          title={"ادیت دوره"}
           checked={handleSwitchChange}
+          title={"ادیت دوره"}
           children={<ChildrenModalCourse />}
+          Modals={false}
+          titleData={"تغییر وضعیت"}
+          childrenData={<ChildrenModalCourseData />}
+          titleTotal={"افزودن کتگوری"}
+          childrenTotal={<ChildrenModalCourseTotal />}
         />
       </Col>
       <Col md={8}>
         <Row>
           <UserTabs
+            course={true}
             active={active}
             toggleTab={toggleTab}
             filedPreview={filedPreview}

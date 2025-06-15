@@ -39,7 +39,7 @@ const validationSchema = Yup.object().shape({
     .typeError("تعداد اقساط باید عدد باشد")
     .notRequired(),
 
-  UniqueUrlString: Yup.string()
+  UniqeUrlString: Yup.string()
     .matches(/^[a-zA-Z0-9-]+$/, "فقط حروف انگلیسی، عدد و خط تیره مجاز است.")
     .required("وارد کردن آدرس یکتا الزامی است.")
     .min(5, "حداقل ۵ کاراکتر"),
@@ -50,7 +50,7 @@ const defaultValues = {
   StartTime: "",
   EndTime: "",
   CurrentCoursePaymentNumber: "",
-  UniqueUrlString: "",
+  UniqeUrlString: "",
   // CoursePrerequisiteId: "",
 };
 
@@ -137,22 +137,22 @@ const ThirdStageCourse = ({ stepper, onFinalSubmit }) => {
         </Row>
         <Row>
           <Col md="6" className="mb-1">
-            <Label className="form-label" for="UniqueUrlString">
+            <Label className="form-label" for="UniqeUrlString">
               شناسه دوره
             </Label>
             <Controller
-              name="UniqueUrlString"
+              name="UniqeUrlString"
               control={control}
               render={({ field }) => (
                 <Input
                   placeholder="شناسه دوره"
-                  invalid={!!errors.UniqueUrlString}
+                  invalid={!!errors.UniqeUrlString}
                   {...field}
                 />
               )}
             />
-            {errors.UniqueUrlString && (
-              <FormFeedback>{errors.UniqueUrlString.message}</FormFeedback>
+            {errors.UniqeUrlString && (
+              <FormFeedback>{errors.UniqeUrlString.message}</FormFeedback>
             )}
           </Col>
           <Col md="6" className="mb-1">

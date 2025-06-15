@@ -77,12 +77,12 @@ const ChildrenModalCategory = () => {
     formData.append("GoogleTitle", data.GoogleTitle);
     formData.append("GoogleDescribe", data.GoogleDescribe);
     formData.append("Image", data.Image[0]);
-    console.log(formData);
     postDataMutate(
       ["/News/CreateNewsCategory", formData, "multipart/form-data"],
       {
         onSuccess: (data) => {
           console.log("Success:", data);
+          toggleFunction();
         },
         onError: (error) => {
           console.error("Error:", error);

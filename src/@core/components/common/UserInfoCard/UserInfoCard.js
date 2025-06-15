@@ -41,26 +41,38 @@ const UserInfoCard = ({
   Primary,
   checked,
   title,
-  children
+  titleData,
+  titleTotal,
+  children,
+  childrenData,
+  childrenTotal,
+  Modals,
 }) => {
-  // ** State
-
   return (
     <Fragment>
       <Card>
         <CardBody>
           <div className="user-avatar-section pb-4">
             <div className="d-flex align-items-center flex-column p-1">
-              <Avatar img={avatarImg} className="w-[100px]" size="xl" />
+              <img src={avatarImg} className="w-50"/>
             </div>
           </div>
           <h4 className="fw-bolder border-bottom pb-2 mb-1 d-flex justify-content-center">
             {TitleDetails}
           </h4>
-          <div className="d-flex justify-content-center gap-1 align-items-center pt-2 pb-2">
-            <ModalForm title={title} children={children}/>
-            <Switch Primary={Primary} checked={checked} />
-          </div>
+            {Modals ? (
+              <div className="d-flex justify-content-center gap-1 align-items-center pt-2 pb-2">
+                <ModalForm title={title} children={children} />
+                <Switch Primary={Primary} checked={checked} />
+              </div>
+            ) : (
+              <div className="d-flex justify-content-center flex-wrap gap-1 align-items-center pt-2 pb-2">
+                <ModalForm title={title} children={children} />
+                <ModalForm title={titleData} children={childrenData} />
+                <ModalForm title={titleTotal} children={childrenTotal} />
+                <Switch Primary={Primary} checked={checked} />
+              </div>
+            )}
         </CardBody>
       </Card>
     </Fragment>

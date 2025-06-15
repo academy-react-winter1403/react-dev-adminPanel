@@ -71,7 +71,7 @@ const PersonalInfo = ({ stepper }) => {
 
   const onSubmit = (data) => {
     dispatch(setMainInfo(data))
-    console.log("fileImage",image)
+    // console.log("fileImage",image)
     stepper.next();
   };
 

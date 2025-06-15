@@ -67,13 +67,13 @@ const ChildrenModalCourse = () => {
     Capacity: Yup.string().required("ظریفت دوره الزامی است"),
     SessionNumber: Yup.string().required("تعداد جلسات الزامی است"),
     Cost: Yup.string().required("قیمت دوره الزامی است"),
-    StartTime: Yup.date()
-      .typeError("تاریخ شروع معتبر نیست")
-      .required("تاریخ شروع الزامی است"),
+    // StartTime: Yup.date()
+    //   .typeError("تاریخ شروع معتبر نیست")
+    //   .required("تاریخ شروع الزامی است"),
 
-    EndTime: Yup.date()
-      .typeError("تاریخ پایان معتبر نیست")
-      .required("تاریخ پایان الزامی است"),
+    // EndTime: Yup.date()
+    //   .typeError("تاریخ پایان معتبر نیست")
+    //   .required("تاریخ پایان الزامی است"),
   });
 
   // ** Hooks
@@ -88,8 +88,8 @@ const ChildrenModalCourse = () => {
       Describe: "",
       Capacity: "",
       Cost: "",
-      StartTime: "",
-      EndTime: "",
+      // StartTime: "",
+      // EndTime: "",
       CurrentCoursePaymentNumber: "",
       Image: null,
     },
@@ -118,8 +118,8 @@ const ChildrenModalCourse = () => {
         Cost: EditDataCourse.cost || "",
         CurrentCoursePaymentNumber:
           EditDataCourse.CurrentCoursePaymentNumber || "",
-        StartTime: EditDataCourse.startTime || "",
-        EndTime: EditDataCourse.endTime || "",
+        // StartTime: EditDataCourse.startTime || "",
+        // EndTime: EditDataCourse.endTime || "",
       });
     }
   }, [EditIsLoadingCourse, EditDataCourse]);
@@ -130,7 +130,7 @@ const ChildrenModalCourse = () => {
       //   console.log("this is data", data);
       dispatch(
         setCourseType(
-          data.courseTypeDtos.map((item) => ({
+          data?.courseTypeDtos.map((item) => ({
             value: item.id,
             label: item.typeName,
           }))
@@ -138,7 +138,7 @@ const ChildrenModalCourse = () => {
       );
       dispatch(
         setCourseLevel(
-          data.courseLevelDtos.map((item) => ({
+          data?.courseLevelDtos.map((item) => ({
             value: item.id,
             label: item.levelName,
           }))
@@ -146,7 +146,7 @@ const ChildrenModalCourse = () => {
       );
       dispatch(
         setTeachers(
-          data.teachers.map((item) => ({
+          data?.teachers.map((item) => ({
             value: item.teacherId,
             label: item.fullName,
           }))
@@ -154,7 +154,7 @@ const ChildrenModalCourse = () => {
       );
       dispatch(
         setClassRoom(
-          data.classRoomDtos.map((item) => ({
+          data?.classRoomDtos.map((item) => ({
             value: item.id,
             label: item.classRoomName,
           }))
@@ -162,7 +162,7 @@ const ChildrenModalCourse = () => {
       );
       dispatch(
         setTerm(
-          data.termDtos.map((item) => ({
+          data?.termDtos.map((item) => ({
             value: item.id,
             label: item.termName,
           }))
@@ -214,7 +214,7 @@ const ChildrenModalCourse = () => {
   const [currentClassRoom, setCurrentClassRoom] = useState({});
   const [currentPrerequisite, setCurrentPrerequisite] = useState({});
   const [currentTerm, setCurrentTerm] = useState({});
-  //   const { mutate: postDataMutate } = usePutData("postAllData");
+    // const { mutate: postDataMutate } = usePutData("postAllData");
   const onSubmit = (data) => {
     console.log("object")
     // const file = data.Image[0];

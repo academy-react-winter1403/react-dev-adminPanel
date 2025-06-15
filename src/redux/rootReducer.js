@@ -10,18 +10,18 @@ import NewDetailSlice from "../view/news/NewsDetails/store/NewDetailSlice";
 import userInformationSlice from "../view/user/list/users/store/userInformationSlice";
 import userCommentFilterSlice from "../view/user/list/users/store/userCommentFilterSlice";
 import userCommentSlice from "../view/user/list/users/store/userCommentSlice";
-import adminInfoSlice from "../view/dashboard/store/adminInfoSlice"
-import commentManagementSlice from "../view/partialSlice/commentManagementSlice"
-import teacherListSlice from "../view/dashboard/store/theacherListSlice"
-import courseReservListSlice from "../view/dashboard/store/courseReservListSlice"
-import courseListSlice from "../view/dashboard/store/courseListSlice"
+import adminInfoSlice from "../view/dashboard/store/adminInfoSlice";
+import commentManagementSlice from "../view/partialSlice/commentManagementSlice";
+import teacherListSlice from "../view/dashboard/store/theacherListSlice";
+import courseReservListSlice from "../view/dashboard/store/courseReservListSlice";
+import courseListSlice from "../view/dashboard/store/courseListSlice";
 import CourseListFilterSlice from "../view/courseManagement/store/CourseListFilterSlice";
 import allDataCourseSlice from "../view/courseManagement/store/allDataCourseSlice";
 import createCourseFilterSlice from "../view/courseManagement/store/createCourseFilterSlice";
 import allDataAddCourse from "../view/courseManagement/store/allDataAddCourse";
 // ** Reducers
-import classesListSlice from "../view/courseManagement/store/classesListSlice"
-import departmentSlice  from "../view/courseManagement/store/departmentSlice";
+import classesListSlice from "../view/courseManagement/store/classesListSlice";
+import departmentSlice from "../view/courseManagement/store/departmentSlice";
 import buildingListSlice from "../view/courseManagement/store/buildingListSlice";
 import buildingSlice from "../view/partialSlice/buildingSlice";
 import termListSlice from "../view/courseManagement/store/TermListSlice";
@@ -31,6 +31,11 @@ import levelDataSlice from "../view/courseManagement/store/levelDataSlice";
 import workDataSlice from "../view/courseManagement/store/workDdataSlice";
 import assistanceWorkDataSlice from "../view/courseManagement/store/assistanceWorkDataSlice";
 import allCourseAdminDataSlice from "../view/courseManagement/store/allCourseAdminDataSlice";
+import myCourseListFilterSlice from "../view/courseManagement/store/myCourseListFilterSlice";
+import allDataMyCourseSlice from "../view/courseManagement/store/allDataMyCourseSlice";
+import CoursePaymentDetailSlice from "../view/courseManagement/store/CoursePaymentDetailSlice";
+import BuildingListSlice from "../view/Building/store/BuildingListSlice"; 
+import locationSlice from "../view/Building/store/locationSlice"
 
 const rootReducer = {
   navbar,
@@ -63,7 +68,12 @@ const rootReducer = {
   levelDataSlice,
   workDataSlice,
   assistanceWorkDataSlice,
-  allCourseAdminDataSlice
+  allCourseAdminDataSlice,
+  myCourseListFilterSlice,
+  allDataMyCourseSlice,
+  CoursePaymentDetailSlice,
+  BuildingListSlice,
+  location: locationSlice
 };
 
 export default rootReducer;

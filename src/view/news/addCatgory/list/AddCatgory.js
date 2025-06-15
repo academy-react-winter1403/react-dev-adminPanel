@@ -26,68 +26,84 @@ import ModalForm from "../../../../@core/components/common/modals/ModalForm";
 import ChildrenModalCategory from "./ChildrenModalCategory";
 import { MapButtonAction } from "../filterMap/MapButtonAction";
 import EditFormModal from "./EditFormModal";
+import SearchQuery from "../../../../@core/components/common/InputGroupButtons/SearchQuery";
+import DetailsFormModal from "./DetailsFormModal";
 
 const AddCatgory = () => {
   const headers = ["عنوان دسته ها", "تاریخ", "وضعیت"];
+
   const [dataCategory, setDataCategory] = useState([]);
-  const [RowsOfPage, setRowsOfPage] = useState(12);
   const [currentPage, setCurrentPage] = useState(0);
+  const [RowsOfPage, setRowsOfPage] = useState(12);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentData, setCurrentData] = useState(null);
-  const [editModalFlag, setEditModalFlag] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
 
-  // get data
-  const { data, isLoading } = getData(
-    "AddCategory",
-    "/News/GetListNewsCategory"
-  );
+  const [editModalFlag, setEditModalFlag] = useState(null);
+  const [DetailsFlag, setDetailsFlag] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
   // Pagination
   const paginationCalculator = (data, pageNumber, rowsOfPage) => {
     const startIndex = pageNumber * rowsOfPage;
     const endIndex = startIndex + rowsOfPage;
-    const currentData = data.slice(startIndex, endIndex);
-    return currentData;
+    const current = data.slice(startIndex, endIndex);
+    return current;
   };
-
-  useEffect(() => {
-    setCurrentPage(0);
-    if (!isLoading && data) {
-      setDataCategory(data);
-      setCurrentData(paginationCalculator(data, currentPage, RowsOfPage));
-      console.log(data.map((elem) => elem.id));
-      setSelectedId(data.map((elem) => elem.id));
-    }
-  }, [isLoading, data]);
-  // searchQuery
+  //
   const filteredData = dataCategory.filter((item) => {
     return item.categoryName.toLowerCase().includes(searchQuery.toLowerCase());
   });
-  // setTotalCount(filteredData.length);
-  const changeSearchQuery = (Query) => {
-    setSearchQuery(Query.target.value);
-    setCurrentPage(0);
-  };
-  //select page
+
+  useEffect(() => {
+    const paginated = paginationCalculator(
+      filteredData,
+      currentPage,
+      RowsOfPage
+    );
+    setCurrentData(paginated);
+  }, [searchQuery, dataCategory, currentPage, RowsOfPage]);
+
+  // get data
+  const {
+    data: allData,
+    isLoading,
+    refetch,
+  } = getData("AddCategory", "/News/GetListNewsCategory");
+
+  useEffect(() => {
+    if (!isLoading && allData) {
+      setDataCategory(allData);
+      setCurrentPage(0);
+      paginationCalculator(allData, currentPage, RowsOfPage);
+    }
+  }, [isLoading, allData]);
+
+  useEffect(() => {
+    refetch();
+  }, []);
+
+  // RowsOfPage
   const changeSelectRowsOfPage = (SelectNumber) => {
     setRowsOfPage(SelectNumber.label);
     setCurrentPage(0);
   };
-
-  const changePageHandler = (page) => {
-    setCurrentPage(page);
-    setCurrentData(paginationCalculator(data, currentPage, RowsOfPage));
+  // searchQuery
+  const changeSearchQuery = (Query) => {
+    setSearchQuery(Query.target.value);
+    setCurrentPage(0);
+  };
+  // PageNumber
+  const changePageHandler = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   const handleButtonActionId = (elem) => {
-    console.log("this is id card:",elem.id)
     setSelectedId(elem.id);
-  }
+  };
 
   // Button Action
   const handleButtonAction = (item) => {
-    console.log(item);
     if (item.title === "جزئیات") {
+      setDetailsFlag(true);
     }
     if (item.title === "ویرایش") {
       setEditModalFlag(true);
@@ -111,7 +127,7 @@ const AddCatgory = () => {
             </div>
             <div className="d-flex gap-1">
               <div className="mt-2">
-                <InputGroupButtons SearchQuery={changeSearchQuery} />
+                <SearchQuery onChange={changeSearchQuery} />
               </div>
               <div className="demo-inline-spacing mb-1">
                 <ModalForm
@@ -125,11 +141,12 @@ const AddCatgory = () => {
             {currentData && (
               <Export
                 headers={headers}
+                hover={true}
                 hasImage={false}
                 dataMap={currentData}
                 fieldKeys={["insertDate"]}
                 titleField="categoryName"
-                btnOnClick={handleButtonActionId}
+                clickHandle={handleButtonActionId}
                 Btn={
                   <ButtonAction
                     dataArray={MapButtonAction}
@@ -144,12 +161,17 @@ const AddCatgory = () => {
               <SeparatedPagination
                 RowsOfPage={RowsOfPage}
                 totalCount={filteredData.length}
-                changePageNumber={(page) => changePageHandler(page)}
+                changePageNumber={changePageHandler}
               />
             </div>
             <EditFormModal
               isOpen={editModalFlag}
               toggleFunction={() => setEditModalFlag(false)}
+              selectedId={selectedId}
+            />
+            <DetailsFormModal
+              isOpen={DetailsFlag}
+              toggleFunction={() => setDetailsFlag(false)}
               selectedId={selectedId}
             />
           </CardFooter>

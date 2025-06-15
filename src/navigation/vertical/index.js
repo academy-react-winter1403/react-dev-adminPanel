@@ -8,6 +8,7 @@ import {
   FileText,
   BookOpen,
   Calendar,
+  User,
 } from "react-feather";
 
 export default [
@@ -85,12 +86,6 @@ export default [
             title: "دوره های رزرو شده",
             icon: <Circle size={20} />,
             navLink: "/reservedCourses",
-          },
-          {
-            id: "coursePayment",
-            title: "پرداختی دوره ها",
-            icon: <Circle size={20} />,
-            navLink: "/coursePayment",
           },
           {
             id: "MyCourses",
@@ -176,4 +171,15 @@ export default [
     icon: <FileText size={20} />,
     navLink: "/listComments",
   },
+  {
+    id: "Building",
+    title: "ساختمان ها",
+    icon: <FileText size={20} />,
+    navLink: "/Building",
+  },
+  {id:"Chat",
+    title:"مدیریت پیام های کاربران",
+    icon:<User size={20}/>,
+    navLink: "/Chat"
+  }
 ];

@@ -6,6 +6,7 @@ export const getBuildingData = (key, endUrl) => {
         queryKey: key,
         queryFn: async () => {
             const data = await http.get(endUrl)
+            // console.log("getBuildingData",data)
             return data
         },
         refetchOnReconnect: true

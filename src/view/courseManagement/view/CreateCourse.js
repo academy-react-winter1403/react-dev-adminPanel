@@ -40,7 +40,7 @@ const CreateCourse = () => {
     const dataObj = {
       ImageCourse,
       // UniqueUrlString: uniqueUrl,
-      // ShortLink: uniqueValuesRef.current.shortLink,
+      // ShortLink: uniqueUrl,
       ...CourseInfoStepOne,
       ...CourseInfoStepTwo,
       ...finalAdditionalData,

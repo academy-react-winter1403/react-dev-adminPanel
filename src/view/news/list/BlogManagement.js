@@ -32,6 +32,7 @@ import { filterDataNews } from "./filterDataNews";
 import { handleNewsListChanges } from "../store/allDataNewsSlice";
 import { useNavigate } from "react-router-dom";
 import Export from "./../../../@core/components/common/Export/Export";
+import SearchQuery from "../../../@core/components/common/InputGroupButtons/SearchQuery";
 
 const BlogManagement = () => {
   const headers = ["عنوان اخبار", "امتیاز", "تاریخ",""]
@@ -131,7 +132,7 @@ const BlogManagement = () => {
             </div>
             <div className="d-flex gap-1">
               <div className="mt-2">
-                <InputGroupButtons SearchQuery={changeSearchQuery} />
+                <SearchQuery onChange={changeSearchQuery} />
               </div>
               <div className="mt-2">
                 <SelectReact

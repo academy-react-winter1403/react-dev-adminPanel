@@ -30,12 +30,10 @@ const AddNews = () => {
       ...mainInfo,
       ...finalAdditionalData,
     };
-    console.log(image)
-    // const form = new FormData();
-    // form.append()
+    // console.log(image)
     postDataMutate(["/News/CreateNews", dataObj, "multipart/form-data"], {
       onSuccess: (data) => {
-        alert("Success:", data);
+        console.log("Success:", data);
         stepper.next();
       },
       onError: (error) => {

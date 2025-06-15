@@ -26,11 +26,13 @@ import {
 
 // ** Styles
 import "@styles/react/libs/react-select/_react-select.scss";
-import { usePostData } from "../../../../@core/services/api";
+import {
+  getData,
+  usePostData,
+  usePutData,
+} from "../../../../@core/services/api";
 
 const EditFormModal = ({ isOpen, toggleFunction, selectedId }) => {
-  const [currentCategory, setCurrentCategory] = useState({});
-  const [preview, setPreview] = useState(null);
   // ** Yup Validation Schema
   const validationSchema = Yup.object().shape({
     CategoryName: Yup.string()
@@ -47,15 +49,6 @@ const EditFormModal = ({ isOpen, toggleFunction, selectedId }) => {
       .required("توضیح گوگل الزامی است")
       .min(50, "توضیح گوگل باید حداقل ۵۰ کاراکتر باشد")
       .max(160, "توضیح گوگل نباید بیش از ۱۶۰ کاراکتر باشد"),
-
-    Image: Yup.mixed()
-      .required("عکس الزامیست")
-      .test("fileType", "فرمت فقط jpg یا png باشد", (value) => {
-        return value && ["image/jpeg", "image/png"].includes(value[0]?.type);
-      })
-      .test("fileSize", "حجم فایل باید کمتر از ۲ مگابایت باشد", (value) => {
-        return value && value[0]?.size <= 2 * 1024 * 1024;
-      }),
   });
 
   // ** Hooks
@@ -69,50 +62,39 @@ const EditFormModal = ({ isOpen, toggleFunction, selectedId }) => {
       CategoryName: "",
       GoogleTitle: "",
       GoogleDescribe: "",
-      Image: null,
     },
     resolver: yupResolver(validationSchema),
   });
 
-  // const { mutate: postDataMutate } = usePostData("postAllData");
+  const { mutate: putDataMutate } = usePutData("putCategoryData");
   const onSubmit = (data) => {
-    // const formData = new FormData();
-    // formData.append("CategoryName", data.CategoryName);
-    // formData.append("GoogleTitle", data.GoogleTitle);
-    // formData.append("GoogleDescribe", data.GoogleDescribe);
-    // formData.append("Image", data.Image[0]);
-    console.log(formData);
-    // postDataMutate(
-    //   ["/News/CreateNewsCategory", formData, "multipart/form-data"],
-    //   {
-    //     onSuccess: (data) => {
-    //       console.log("Success:", data);
-    //     },
-    //     onError: (error) => {
-    //       console.error("Error:", error);
-    //     },
-    //   }
-    // );
+    const formData = new FormData();
+    formData.append("Id", selectedId);
+    formData.append("CategoryName", data.CategoryName);
+    formData.append("GoogleTitle", data.GoogleTitle);
+    formData.append("GoogleDescribe", data.GoogleDescribe);
 
-    // const { data:getCategoryWithId, isLoading:IsLoadingCategoryWithId } = getData("editNews", `/News/${selectedId}`);
-    useEffect(() => {
-      // if (selectedId) {
-        console.log(selectedId)
-        // if (!IsLoadingCategoryWithId && getCategoryWithId) {
-        //   console.log(getCategoryWithId)
-        // }
-      // }
-    }, [selectedId]);
+    putDataMutate(
+      ["/News/UpdateNewsCategory", formData, "multipart/form-data"],
+      {
+        onSuccess: (data) => {
+          console.log("Success:", data);
+          toggleFunction();
+        },
+        onError: (error) => {
+          console.error("Error:", error);
+        },
+      }
+    );
   };
-  // console.log("test id",selectedId)
-  
+
   return (
     <Modal
       isOpen={isOpen}
       toggle={toggleFunction}
       className="modal-dialog-centered"
     >
-      <ModalHeader toggle={toggleFunction}>Modal title</ModalHeader>
+      <ModalHeader toggle={toggleFunction}>ویرایش دسته بندی</ModalHeader>
       <ModalBody>
         {/* <Fragment> */}
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -175,43 +157,6 @@ const EditFormModal = ({ isOpen, toggleFunction, selectedId }) => {
               />
               {errors.GoogleDescribe && (
                 <FormFeedback>{errors.GoogleDescribe.message}</FormFeedback>
-              )}
-            </Col>
-            <Col md="12">
-              <Label for="Image">آپلود عکس</Label>
-              <Controller
-                control={control}
-                name="Image"
-                render={({ field }) => (
-                  <Input
-                    className="mb-1"
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      const file = e.target.files[0];
-                      field.onChange(e.target.files);
-                      if (file) {
-                        setPreview(URL.createObjectURL(file));
-                      }
-                    }}
-                    invalid={!!errors.Image}
-                  />
-                )}
-              />
-              {errors.Image && (
-                <FormFeedback>{errors.Image.message}</FormFeedback>
-              )}
-              {preview && (
-                <img
-                  src={preview}
-                  alt="پیش نمایش"
-                  style={{
-                    width: "100%",
-                    maxHeight: "300px",
-                    objectFit: "cover",
-                    borderRadius: "8px",
-                  }}
-                />
               )}
             </Col>
           </Row>

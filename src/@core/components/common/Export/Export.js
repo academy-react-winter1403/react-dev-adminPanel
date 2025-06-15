@@ -19,6 +19,12 @@ const Export = ({
   statusName,
   statusKey,
 }) => {
+  const navigate = useNavigate();
+  // const { mutate } = getNewsDetailData("getNewsDetailData");
+
+  // const { id } = useParams()
+  // const { PageNumber, RowsOfPage, SortingCol, SortType, Query, IsActive } =
+  //   useSelector((state) => state.NewsListFilterSlice);
 
   const onRowClick = (itemId) => {
     // console.log(itemId)
@@ -81,7 +87,7 @@ const Export = ({
                                 : statusKey.falseField}
                             </span>
                           )
-                        ) : item[titleItem] || item[titleItem] == 0? (
+                        ) : item[titleItem] || item[titleItem] == 0 ? (
                           item[titleItem]
                         ) : (
                           "ای بابا اسم نداره کهههه😒😒"
@@ -90,7 +96,8 @@ const Export = ({
                     );
                   })}
                   <td>
-                    <div onClick={() => btnOnClick(item)}>{Btn}</div>
+                    {/* <div onClick={() => btnOnClick(item)}>{Btn}</div> */}
+                    {typeof Btn === 'function' ? <Btn item={item} /> : Btn}
                   </td>
                 </tr>
               );
@@ -160,7 +167,8 @@ const Export = ({
                     );
                   })}
                   <td>
-                    <div onClick={() => btnOnClick(item)}>{Btn}</div>
+                    {/* <div onClick={() => btnOnClick(item)}>{Btn}</div> */}
+                    {typeof Btn === 'function' ? <Btn item={item} /> : Btn}
                   </td>
                 </tr>
               );

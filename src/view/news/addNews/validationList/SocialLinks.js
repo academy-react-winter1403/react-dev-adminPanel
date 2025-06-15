@@ -1,5 +1,5 @@
 // ** React Imports
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 // ** Third Party Components
 import { ArrowLeft } from "react-feather";
@@ -11,23 +11,21 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Label, Row, Col, Button, Form, Input, FormFeedback } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setAdditionalInfo } from "../store/allDataAddNews";
+import { setCategory } from "../../NewsDetails/store/NewDetailSlice";
+import { getData } from "../../../../@core/services/api";
+import Select from "react-select";
+
+// ** Utils
+import { selectThemeColors } from "@utils";
 
 const schema = yup.object().shape({
   Keyword: yup.string().required("کیورد اجباری است"),
   IsSlider: yup.boolean().oneOf([true, false], "وضعیت اسلایدر را مشخص کنید"),
-  NewsCatregoryId: yup
-    .number()
-    .typeError("آیدی دسته‌بندی باید عدد باشد")
-    .integer("آیدی دسته‌بندی باید عدد صحیح باشد")
-    .min(1, "آیدی باید حداقل 1 باشد")
-    .max(100, "آیدی نمی‌تواند بیشتر از 100 باشد")
-    .required("آیدی دسته‌بندی الزامی است"),
 });
 
 const defaultValues = {
   Keyword: "",
   IsSlider: false,
-  NewsCatregoryId: "",
 };
 
 const SocialLinks = ({ stepper, onFinalSubmit }) => {
@@ -40,20 +38,43 @@ const SocialLinks = ({ stepper, onFinalSubmit }) => {
     defaultValues,
     resolver: yupResolver(schema),
   });
-
+  const [currentCategory, setCurrentCategory] = useState({});
   const dispatch = useDispatch();
   const mainInfo = useSelector((state) => state.allDataAddNews.mainInfo);
   const image = useSelector((state) => state.allDataAddNews.Image);
-  // const additionalInfo = useSelector((state) => state.allDataAddNews.additionalInfo);
-  
+
+  const Category = useSelector((state) => state.NewDetailSlice.Category);
+
+  const { data: dataCategory, isLoading: isLoadingCategory } = getData(
+    "getDataCategory",
+    `/News/GetListNewsCategory`
+  );
+  useEffect(() => {
+    if (!isLoadingCategory && dataCategory) {
+      dispatch(
+        setCategory(
+          dataCategory.map((item) => ({
+            value: item.id,
+            label: item.categoryName,
+          }))
+        )
+      );
+    }
+  }, [isLoadingCategory, dataCategory]);
+  useEffect(() => {
+    if (Category && Category.length > 0) {
+      setCurrentCategory(Category[0]);
+    }
+  }, [Category]);
 
   const onSubmit = (data) => {
     dispatch(setAdditionalInfo(data));
     const fullData = {
       ...image,
       ...mainInfo,
-      ...data
-    }
+      ...data,
+      NewsCatregoryId: currentCategory.value,
+    };
     onFinalSubmit(fullData);
   };
 
@@ -105,29 +126,22 @@ const SocialLinks = ({ stepper, onFinalSubmit }) => {
               <FormFeedback>{errors.IsSlider.message}</FormFeedback>
             )}
           </Col>
-          <Col md="6" className="mb-1">
-            <Label className="form-label" for="NewsCatregoryId">
-              آیدی دسته‌بندی
-            </Label>
-            <Controller
-              name="NewsCatregoryId"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  type="number"
-                  placeholder="فقط عدد وارد شود (مثلاً: 1)"
-                  id="NewsCatregoryId"
-                  invalid={!!errors.NewsCatregoryId}
-                  {...field}
-                />
-              )}
-            />
-            {errors.NewsCatregoryId && (
-              <FormFeedback>{errors.NewsCatregoryId.message}</FormFeedback>
-            )}
-          </Col>
+            <Col className="" md="6">
+              <Label for="plan-select">دسته بندی</Label>
+              <Select
+                theme={selectThemeColors}
+                isClearable={false}
+                className="react-select"
+                classNamePrefix="select"
+                options={Category}
+                value={currentCategory}
+                onChange={(data) => {
+                  setCurrentCategory(data);
+                }}
+              />
+            </Col>
         </Row>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between mt-1">
           <Button
             color="primary"
             className="btn-prev"
